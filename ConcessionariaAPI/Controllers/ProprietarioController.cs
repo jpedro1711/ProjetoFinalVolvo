@@ -118,5 +118,90 @@ namespace ConcessionariaAPI.Controllers
             }
             return NotFound();
         }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody] Proprietario updatedProprietario)
+        {
+            using (var _context = new ConcessionariaContext())
+            {
+                var existingProprietario = _context.Proprietario.Include("Enderecos").Include("Telefones").FirstOrDefault(p => p.ProprietarioId == id);
+
+                if (existingProprietario != null)
+                {
+                    existingProprietario.Nome = updatedProprietario.Nome;
+                    existingProprietario.Email = updatedProprietario.Email;
+                    existingProprietario.CPF = updatedProprietario.CPF;
+                    existingProprietario.DataNascimento = updatedProprietario.DataNascimento;
+
+                    ICollection<Telefone> telefones = new List<Telefone>();
+                    foreach (var telefone in updatedProprietario.Telefones)
+                    {
+                        if (telefone.TelefoneId != null)
+                        {
+                            var existingTelefone = _context.Telefone.FirstOrDefault(t => t.TelefoneId == telefone.TelefoneId);
+                            if (existingTelefone != null)
+                            {
+                                existingTelefone.Tipo = telefone.Tipo;
+                                existingTelefone.NumeroTelefone = telefone.NumeroTelefone;
+                                telefones.Add(existingTelefone);
+                            }
+                        }
+                        else
+                        {
+                            _context.Telefone.Add(telefone);
+                            telefones.Add(telefone);
+                        }
+                    }
+
+                    existingProprietario.Telefones = telefones;
+
+                    ICollection<Endereco> enderecos = new List<Endereco>();
+
+                    foreach (var endereco in updatedProprietario.Enderecos)
+                    {
+                        if (endereco.EnderecoId != null)
+                        {
+                            var existingEndereco = _context.Endereco.FirstOrDefault(e => e.EnderecoId == endereco.EnderecoId);
+                            if (existingEndereco != null)
+                            {
+                                existingEndereco.Rua = endereco.Rua;
+                                existingEndereco.Numero = endereco.Numero;
+                                existingEndereco.Bairro = endereco.Bairro;
+                                existingEndereco.Cidade = endereco.Cidade;
+                                enderecos.Add(existingEndereco);
+                            }
+                        }
+                        else
+                        {
+                            _context.Endereco.Add(endereco);
+                            enderecos.Add(endereco);
+                        }
+                    }
+
+                    existingProprietario.Enderecos = enderecos;
+                    existingProprietario.Telefones = telefones;
+                    _context.SaveChanges();
+                    return Ok(existingProprietario);
+                }
+                return NotFound();
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            using (var _context = new ConcessionariaContext())
+            {
+                var proprietarioToDelete = _context.Proprietario.FirstOrDefault(p => p.ProprietarioId == id);
+        
+                if (proprietarioToDelete != null)
+                {
+                    _context.Proprietario.Remove(proprietarioToDelete);
+                    _context.SaveChanges();
+                    return Ok();
+                }
+                return NotFound();
+            }
+        }
     }
 }

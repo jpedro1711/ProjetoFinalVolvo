@@ -4,6 +4,7 @@ using ConcessionariaAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConcessionariaAPI.Migrations
 {
     [DbContext(typeof(ConcessionariaContext))]
-    partial class ConcessionariaContextModelSnapshot : ModelSnapshot
+    [Migration("20240131112322_UpdateDatabase6")]
+    partial class UpdateDatabase6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,12 +78,22 @@ namespace ConcessionariaAPI.Migrations
                     b.Property<int>("Numero")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ProprietarioId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Rua")
                         .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
 
+                    b.Property<int?>("VendedorId")
+                        .HasColumnType("int");
+
                     b.HasKey("EnderecoId");
+
+                    b.HasIndex("ProprietarioId");
+
+                    b.HasIndex("VendedorId");
 
                     b.ToTable("Endereco");
                 });
@@ -238,36 +251,6 @@ namespace ConcessionariaAPI.Migrations
                     b.ToTable("Vendedor");
                 });
 
-            modelBuilder.Entity("EnderecoProprietario", b =>
-                {
-                    b.Property<int>("EnderecosEnderecoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProprietariosProprietarioId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EnderecosEnderecoId", "ProprietariosProprietarioId");
-
-                    b.HasIndex("ProprietariosProprietarioId");
-
-                    b.ToTable("EnderecoProprietario");
-                });
-
-            modelBuilder.Entity("EnderecoVendedor", b =>
-                {
-                    b.Property<int>("EnderecosEnderecoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VendedoresVendedorId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EnderecosEnderecoId", "VendedoresVendedorId");
-
-                    b.HasIndex("VendedoresVendedorId");
-
-                    b.ToTable("EnderecoVendedor");
-                });
-
             modelBuilder.Entity("ProprietarioTelefone", b =>
                 {
                     b.Property<int>("ProprietariosProprietarioId")
@@ -313,6 +296,17 @@ namespace ConcessionariaAPI.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ConcessionariaAPI.Models.Endereco", b =>
+                {
+                    b.HasOne("ConcessionariaAPI.Models.Proprietario", null)
+                        .WithMany("Enderecos")
+                        .HasForeignKey("ProprietarioId");
+
+                    b.HasOne("ConcessionariaAPI.Models.Vendedor", null)
+                        .WithMany("Enderecos")
+                        .HasForeignKey("VendedorId");
+                });
+
             modelBuilder.Entity("ConcessionariaAPI.Models.Veiculo", b =>
                 {
                     b.HasOne("ConcessionariaAPI.Models.Proprietario", "Proprietario")
@@ -339,36 +333,6 @@ namespace ConcessionariaAPI.Migrations
                     b.Navigation("Veiculo");
 
                     b.Navigation("Vendedor");
-                });
-
-            modelBuilder.Entity("EnderecoProprietario", b =>
-                {
-                    b.HasOne("ConcessionariaAPI.Models.Endereco", null)
-                        .WithMany()
-                        .HasForeignKey("EnderecosEnderecoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ConcessionariaAPI.Models.Proprietario", null)
-                        .WithMany()
-                        .HasForeignKey("ProprietariosProprietarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("EnderecoVendedor", b =>
-                {
-                    b.HasOne("ConcessionariaAPI.Models.Endereco", null)
-                        .WithMany()
-                        .HasForeignKey("EnderecosEnderecoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ConcessionariaAPI.Models.Vendedor", null)
-                        .WithMany()
-                        .HasForeignKey("VendedoresVendedorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("ProprietarioTelefone", b =>
@@ -399,6 +363,16 @@ namespace ConcessionariaAPI.Migrations
                         .HasForeignKey("VendedoresVendedorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ConcessionariaAPI.Models.Proprietario", b =>
+                {
+                    b.Navigation("Enderecos");
+                });
+
+            modelBuilder.Entity("ConcessionariaAPI.Models.Vendedor", b =>
+                {
+                    b.Navigation("Enderecos");
                 });
 #pragma warning restore 612, 618
         }
