@@ -6,7 +6,7 @@ namespace ConcessionariaAPI.Models
     public class Venda
     {
         [Key]
-        public int VendaId { get; set; }
+        public int? VendaId { get; set; }
         public DateTime DataVenda { get; set; } = DateTime.Now;
         [ForeignKey("VeiculoId")]
         public int VeiculoId { get; set; }

@@ -5,7 +5,7 @@ namespace ConcessionariaAPI.Models
     public class Vendedor
     {
         [Key]
-        public int VendedorId { get; set; }
+        public int? VendedorId { get; set; }
         [StringLength(60)]
         public string Nome { get; set; }
         [StringLength(60)]
@@ -14,7 +14,7 @@ namespace ConcessionariaAPI.Models
         public DateTime DataNascimento { get; set; }
         public DateTime DataAdmissao { get; set; }
 
-        public ICollection<Endereco> Enderecos { get; set; } = new List<Endereco>();
-        public ICollection<Telefone> Telefones { get; set; } = new List<Telefone>();
+        public ICollection<Endereco>? Enderecos { get; set; } = new List<Endereco>();
+        public ICollection<Telefone>? Telefones { get; set; } = new List<Telefone>();
     }
 }

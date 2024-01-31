@@ -5,7 +5,7 @@ namespace ConcessionariaAPI.Models
     public class Endereco
     {
         [Key]
-        public int EnderecoId { get; set; }
+        public int? EnderecoId { get; set; }
         [StringLength(60)]
         public string Rua { get; set; }
         public int Numero { get; set; }

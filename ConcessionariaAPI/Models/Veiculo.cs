@@ -7,7 +7,7 @@ namespace ConcessionariaAPI.Models
     public class Veiculo
     {
         [Key]
-        public int VeiculoId { get; set; }
+        public int? VeiculoId { get; set; }
         [StringLength(17)]
         public string NumeroChassi { get; set; }
         public decimal Valor { get; set; }
@@ -19,6 +19,6 @@ namespace ConcessionariaAPI.Models
         public int? ProprietarioId { get; set; }
         public Proprietario? Proprietario { get; set; }
 
-        public ICollection<Acessorio> Acessorios { get; set; } = new List<Acessorio>();
+        public ICollection<Acessorio>? Acessorios { get; set; } = new List<Acessorio>();
     }
 }
