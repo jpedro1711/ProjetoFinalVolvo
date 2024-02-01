@@ -59,5 +59,14 @@ namespace ConcessionariaAPI.Repositories
             }
             throw new EntityException("Veículo não encontrado");
         }
+
+        public async Task<List<Veiculo>> GetVeiculosByKilomers(int km ,string version)
+        {
+            var cars = await _context.Veiculo
+                .Where(c => c.Quilometragem >= km)
+                .Where(c => c.VersaoSistema == version)
+                .ToListAsync();
+            return cars;
+        }
     }
 }

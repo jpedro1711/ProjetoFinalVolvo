@@ -1,6 +1,7 @@
 using ConcessionariaAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace ConcessionariaAPI.Controllers
 {
@@ -122,6 +123,19 @@ namespace ConcessionariaAPI.Controllers
                     return Ok();
                 }
                 return NotFound();
+            }
+        }
+
+        [HttpGet("byKilometersOrSystemVersion")]
+        public IActionResult GetByKilometers([FromQuery] int km, [FromQuery] string system)
+        {
+            using (var _context = new ConcessionariaContext())
+            {
+                var cars = _context.Veiculo
+                .Where(c => c.Quilometragem >= km)
+                .Where(c => c.VersaoSistema == system)
+                .ToList();
+                return Ok(cars);
             }
         }
     }
