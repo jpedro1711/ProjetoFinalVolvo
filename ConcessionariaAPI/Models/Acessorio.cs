@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ConcessionariaAPI.Models
 {
@@ -9,7 +10,7 @@ namespace ConcessionariaAPI.Models
 
         [StringLength(50)]
         public string? Descricao { get; set; }
-
+        [JsonIgnore]
         public ICollection<Veiculo>? Veiculos { get; set; } = new List<Veiculo>();
     }
 }
