@@ -24,12 +24,14 @@ namespace ConcessionariaAPI.Controllers
                         {
                             telefones.Add(result);
                         }
-                    }                 
+                        
+                    }
                     else
                     {
                         _context.Telefone.Add(telefone);
                         telefones.Add(telefone);
                     }
+
 
                 }
                 vendedor.Telefones = telefones;
@@ -44,13 +46,14 @@ namespace ConcessionariaAPI.Controllers
                         if (result != null)
                         {
                             enderecos.Add(result);
-                        }
-                    }                 
+                        }                        
+                    }
                     else
                     {
                         _context.Endereco.Add(endereco);
                         enderecos.Add(endereco);
                     }
+
                 }
                 vendedor.Enderecos = enderecos;
                 _context.Vendedor.Add(vendedor);
@@ -77,6 +80,47 @@ namespace ConcessionariaAPI.Controllers
                 if (result != null)
                 {
                     return Ok(result);
+                }
+            }
+            return NotFound();
+        }
+
+        [HttpGet("Salario/{id}/{mes}/{ano}")]
+        public IActionResult GetSalario(int id, int mes, int ano)
+        {
+            using (var _context = new ConcessionariaContext())
+            {
+                var resultado = _context.Venda
+                    .Join(_context.Vendedor,
+                        venda => venda.VendedorId,
+                        vendedor => vendedor.VendedorId,
+                        (venda, vendedor) => new { Venda = venda, Vendedor = vendedor })
+                    .Join(_context.Veiculo,
+                        venda => venda.Venda.VeiculoId,
+                        veiculo => veiculo.VeiculoId,
+                        (venda, veiculo) => new { Venda = venda.Venda, Vendedor = venda.Vendedor, Veiculo = veiculo })
+                    .Where(x => x.Venda.DataVenda.Month == mes && x.Venda.DataVenda.Year == ano)
+                    .GroupBy(result => new
+                    {
+                        result.Vendedor.VendedorId,
+                        result.Vendedor.Nome,
+                        result.Vendedor.SalarioBase,
+                        Mes = result.Venda.DataVenda.Month,
+                        Ano = result.Venda.DataVenda.Year
+                    })
+                    .Select(groupedResult => new
+                    {
+                        ID = groupedResult.Key.VendedorId,
+                        Nome = groupedResult.Key.Nome,
+                        Salário = (double)groupedResult.Key.SalarioBase + ((double)groupedResult.Sum(v => v.Veiculo.Valor) * 0.01),
+                        Mês = groupedResult.Key.Mes,
+                        Ano = groupedResult.Key.Ano
+                    })
+                    .ToList();
+
+                if (resultado != null)
+                {
+                    return Ok(resultado);
                 }
             }
             return NotFound();
