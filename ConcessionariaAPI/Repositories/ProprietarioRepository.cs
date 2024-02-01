@@ -28,12 +28,12 @@ namespace ConcessionariaAPI.Repositories
                 _context.Proprietario.Remove(entity);
                 await _context.SaveChangesAsync();
             }
-            throw new EntityException("Proprietário não encontrado");
+            throw new EntityException("Proprietário não encontrado com id " + id);
         }
 
         public async Task<Proprietario> GetById(int id)
         {
-            var entity = await _context.Proprietario.FirstOrDefaultAsync(e => e.ProprietarioId == id);
+            var entity = await _context.Proprietario.Include("Enderecos").Include("Telefones").FirstOrDefaultAsync(e => e.ProprietarioId == id);
 
             if (entity != null)
             {
@@ -44,7 +44,7 @@ namespace ConcessionariaAPI.Repositories
 
         public async Task<List<Proprietario>> GetAll()
         {
-            return await _context.Proprietario.ToListAsync();
+            return await _context.Proprietario.Include("Enderecos").Include("Telefones").ToListAsync();
         }
 
         public async Task<Proprietario> Update(int id, Proprietario proprietario)

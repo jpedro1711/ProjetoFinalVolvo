@@ -15,5 +15,10 @@ namespace ConcessionariaAPI.Models
         public ICollection<Proprietario>? Proprietarios { get; set; } = new List<Proprietario>();
         [JsonIgnore]
         public ICollection<Vendedor>? Vendedores { get; set; } = new List<Vendedor>();
+
+        public static implicit operator Task<object>(Telefone v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
