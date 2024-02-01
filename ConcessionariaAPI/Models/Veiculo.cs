@@ -7,7 +7,7 @@ namespace ConcessionariaAPI.Models
     public class Veiculo
     {
         [Key]
-        public int? VeiculoId { get; set; }
+        public int VeiculoId { get; set; }
         [StringLength(17)]
         public string NumeroChassi { get; set; }
         public decimal Valor { get; set; }

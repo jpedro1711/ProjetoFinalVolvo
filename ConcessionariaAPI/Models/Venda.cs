@@ -10,10 +10,10 @@ namespace ConcessionariaAPI.Models
         public DateTime DataVenda { get; set; } = DateTime.Now;
         [ForeignKey("VeiculoId")]
         public int VeiculoId { get; set; }
-        public Veiculo Veiculo { get; set; }
+        public Veiculo? Veiculo { get; set; }
 
         [ForeignKey("VendedorId")]
         public int VendedorId { get; set; }
-        public Vendedor Vendedor { get; set; }
+        public Vendedor? Vendedor { get; set; }
     }
 }
