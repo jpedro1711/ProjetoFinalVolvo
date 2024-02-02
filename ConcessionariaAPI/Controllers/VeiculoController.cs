@@ -1,6 +1,8 @@
 using ConcessionariaAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using ConcessionariaAPI.Services;
 using Microsoft.EntityFrameworkCore;
+using ConcessionariaAPI.Exceptions;
 using System;
 
 namespace ConcessionariaAPI.Controllers
@@ -9,134 +11,80 @@ namespace ConcessionariaAPI.Controllers
     [Route("[controller]")]
     public class VeiculoController : ControllerBase
     {
-        [HttpPost]
-        public void Create([FromBody] Veiculo veiculo)
+        private VeiculoService _service;
+
+        public VeiculoController()
         {
-            using (var _context = new ConcessionariaContext())
-            {
-                ICollection<Acessorio> acessorios = new List<Acessorio>();
-                foreach (var acessorio in veiculo.Acessorios)
-                {
-                    if (acessorio.AcessorioID != null)
-                    {
-                        var result = _context.Acessorio.FirstOrDefault(t => t.AcessorioID == acessorio.AcessorioID);
-
-                        if (result != null)
-                        {
-                            acessorios.Add(result);
-                        }
-                    }
-                    else
-                    {
-                        _context.Acessorio.Add(acessorio);
-                        acessorios.Add(acessorio);
-                    }
-                }
-
-                veiculo.Acessorios = acessorios;
-
-                _context.Veiculo.Add(veiculo);
-                _context.SaveChanges();
-            }
+            _service = new VeiculoService(new ConcessionariaContext());
         }
 
-        [HttpGet]
-        public List<Veiculo> GetAll()
+        [HttpPost]
+        public async Task<Veiculo> Create([FromBody] Veiculo veiculo)
         {
-            using (var _context = new ConcessionariaContext())
-            {
-                return _context.Veiculo.Include("Acessorios").ToList();
-            }
+            return await _service.Create(veiculo);
+        }
+
+       [HttpGet]
+        public Task<List<Veiculo>> GetAll()
+        {
+            return _service.GetAll();
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            using (var _context = new ConcessionariaContext())
+            try
             {
-                var result = _context.Veiculo.Include("Acessorios").FirstOrDefault(p => p.VeiculoId == id);
-
-                if (result != null)
-                {
-                    return Ok(result);
-                }
+                var result = await _service.GetById(id);
+                return Ok(result);
             }
-            return NotFound();
-        }
+            catch (EntityException e)
+            {
+                return NotFound();
+            }
+        }        
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] Veiculo updatedVeiculo)
+        public async Task<IActionResult> Update(int id, [FromBody] Veiculo updatedVeiculo)
         {
-            using (var _context = new ConcessionariaContext())
+            try
             {
-                var existingVeiculo = _context.Veiculo.Include("Acessorios").FirstOrDefault(p => p.VeiculoId == id);
-
-                if (existingVeiculo != null)
-                {
-                    existingVeiculo.NumeroChassi = updatedVeiculo.NumeroChassi;
-                    existingVeiculo.Valor = updatedVeiculo.Valor;
-                    existingVeiculo.Quilometragem = updatedVeiculo.Quilometragem;
-                    existingVeiculo.VersaoSistema = updatedVeiculo.VersaoSistema;
-                    existingVeiculo.ProprietarioId = updatedVeiculo.ProprietarioId;
-                    existingVeiculo.Proprietario = updatedVeiculo.Proprietario;
-
-                    ICollection<Acessorio> acessorios = new List<Acessorio>();
-                    foreach (var acessorio in updatedVeiculo.Acessorios)
-                    {
-                        if (acessorio.AcessorioID != null)
-                        {
-                            var existingAcessorio = _context.Acessorio.FirstOrDefault(t => t.AcessorioID == acessorio.AcessorioID);
-                            if (existingAcessorio != null)
-                            {
-                                existingAcessorio.Descricao = acessorio.Descricao;
-                                existingAcessorio.Veiculos.Add(updatedVeiculo);
-                                acessorios.Add(existingAcessorio);
-                            }
-                        }
-                        else
-                        {
-                            _context.Acessorio.Add(acessorio);
-                            acessorios.Add(acessorio);
-                        }
-                    }
-
-                    existingVeiculo.Acessorios = acessorios;                
-                    
-                    _context.SaveChanges();
-                    return Ok(existingVeiculo);
-                }
-                return NotFound();
+                var result = await _service.Update(id, updatedVeiculo);
+                return Ok(result);
+            }
+            catch (EntityException e)
+            {
+                return BadRequest(e.Message);
             }
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            using (var _context = new ConcessionariaContext())
+            try
             {
-                var veiculoToDelete = _context.Veiculo.FirstOrDefault(p => p.VeiculoId == id);
-
-                if (veiculoToDelete != null)
-                {
-                    _context.Veiculo.Remove(veiculoToDelete);
-                    _context.SaveChanges();
-                    return Ok();
-                }
-                return NotFound();
+                _service.Delete(id);
+                return NoContent();
+            }
+            catch (EntityException e)
+            {
+                return BadRequest(e.Message);
             }
         }
 
         [HttpGet("byKilometersOrSystemVersion")]
-        public IActionResult GetByKilometers([FromQuery] int km, [FromQuery] string system)
+        public async Task<IActionResult> GetVeiculosByKilomers(int km, string system)
         {
-            using (var _context = new ConcessionariaContext())
+            try
             {
-                var cars = _context.Veiculo
-                .Where(c => c.Quilometragem >= km)
-                .Where(c => c.VersaoSistema == system)
-                .ToList();
-                return Ok(cars);
+                var result = await _service.GetVeiculosByKilomers(km, system);
+                return Ok(result);
             }
+            catch (EntityException e)
+            {
+                return BadRequest(e.Message);
+            }
+           
         }
     }
 }
