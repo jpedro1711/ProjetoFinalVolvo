@@ -17,10 +17,12 @@
                 <p class="card-text"><strong>Modelo do veículo:</strong> @Model.Veiculo.Modelo</p>
                 <p class="card-text"><strong>Valor do veícuo:</strong> @Model.Veiculo.Valor</p>
                 <p class="card-text"><strong>Acessórios:</strong></p>
-                @foreach (Acessorio item in @Model.Veiculo.Acessorios)
-                {
-                    <p>@item.Descricao</p>
-                }
+                <ul>
+                    @foreach (Acessorio item in @Model.Veiculo.Acessorios)
+                    {
+                        <li>@item.Descricao</li>
+                    }
+                </ul>
                 <a asp-action="Index">Voltar a listagem</a>
             </div>
         </div>
