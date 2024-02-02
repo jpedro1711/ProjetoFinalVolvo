@@ -1,12 +1,14 @@
 ﻿using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace ConcessionariaAPI.Repositories
 {
     public class AcessorioRepository : IRepository<Acessorio>
     {
         private ConcessionariaContext _context;
+        private bool disposed = false;
         public AcessorioRepository(ConcessionariaContext context)
         {
             _context = context;
@@ -58,6 +60,24 @@ namespace ConcessionariaAPI.Repositories
                 return acessorio;
             }
             throw new EntityException("Acessório não encontrado");
+        }
+
+        protected async virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    await _context.DisposeAsync();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

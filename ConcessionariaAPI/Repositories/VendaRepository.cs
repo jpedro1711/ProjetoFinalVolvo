@@ -7,6 +7,7 @@ namespace ConcessionariaAPI.Repositories
     public class VendaRepository : IRepository<Venda>
     {
         private ConcessionariaContext _context;
+        private bool disposed = false;
         public VendaRepository(ConcessionariaContext context)
         {
             _context = context;
@@ -58,6 +59,24 @@ namespace ConcessionariaAPI.Repositories
                 return venda;
             }
             throw new EntityException("Venda não encontrado");
+        }
+
+        protected async virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    await _context.DisposeAsync();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
