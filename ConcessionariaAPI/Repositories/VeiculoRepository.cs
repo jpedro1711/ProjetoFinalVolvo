@@ -35,7 +35,7 @@ namespace ConcessionariaAPI.Repositories
 
         public async Task<Veiculo> GetById(int id)
         {
-            var entity = await _context.Veiculo.FirstOrDefaultAsync(e => e.VeiculoId == id);
+            var entity = await _context.Veiculo.Include("Proprietario").Include("Acessorios").FirstOrDefaultAsync(e => e.VeiculoId == id);
 
             if (entity != null)
             {

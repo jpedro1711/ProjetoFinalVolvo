@@ -1,4 +1,7 @@
-01/02/2024 21:52:31 - Acessório não encontrado
-01/02/2024 21:53:50 - Acessório não encontrado
-01/02/2024 21:53:58 - Acessório não encontrado
-01/02/2024 22:07:32 - Endereço não encontrado - 404 - GET BY ID, EnderecoRepository
+02/02/2024 10:33:09 - Acessório não encontrado - 404 - DELETE, AcessorioRepository
+02/02/2024 10:33:46 - Acessório não encontrado - 404 - GET BY ID, AcessorioRepository
+02/02/2024 11:26:14 - Venda não encontrada - 404 - GET BY ID, VendaRepository
+02/02/2024 11:41:12 - Acessório não encontrado - 404 - GET BY ID, AcessorioRepository
+02/02/2024 11:52:13 - Veículo não encontrado - 404 - GET BY ID, VeiculoRepository
+02/02/2024 11:53:19 - Veículo não encontrado - 404 - GET BY ID, VeiculoRepository
+02/02/2024 11:57:13 - Venda não encontrada - 404 - GET BY ID, VendaRepository

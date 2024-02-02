@@ -8,7 +8,7 @@ namespace ConcessionariaAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class VendaController : ControllerBase
+    public class VendaController : Controller
     {
 
         private IService<Venda> _service;
@@ -25,9 +25,9 @@ namespace ConcessionariaAPI.Controllers
         }
 
         [HttpGet]
-        public Task<List<Venda>> GetAll()
+        public async Task<List<Venda>> GetAll()
         {
-            return _service.GetAll();
+            return await _service.GetAll();
         }
         
         [HttpGet("{id}")]

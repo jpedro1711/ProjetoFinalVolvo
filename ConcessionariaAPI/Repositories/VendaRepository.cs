@@ -34,7 +34,11 @@ namespace ConcessionariaAPI.Repositories
 
         public async Task<Venda> GetById(int id)
         {
-            var entity = await _context.Venda.FirstOrDefaultAsync(e => e.VendaId == id);
+            var entity = await _context.Venda
+                    .Include(v => v.Veiculo)
+                    .ThenInclude(veic => veic.Acessorios)
+                    .Include(v => v.Vendedor)
+                    .FirstOrDefaultAsync(e => e.VendaId == id);
 
             if (entity != null)
             {
@@ -45,7 +49,7 @@ namespace ConcessionariaAPI.Repositories
 
         public async Task<List<Venda>> GetAll()
         {
-            return await _context.Venda.ToListAsync();
+            return await _context.Venda.Include("Veiculo").Include("Vendedor").ToListAsync();
         }
 
         public async Task<Venda> Update(int id, Venda venda)

@@ -77,6 +77,7 @@ namespace ConcessionariaAPI.Services
                 existingVeiculo.VersaoSistema = uptadedVeiculo.VersaoSistema;
                 existingVeiculo.ProprietarioId = uptadedVeiculo.ProprietarioId;
                 existingVeiculo.Proprietario = uptadedVeiculo.Proprietario;
+                existingVeiculo.Modelo = uptadedVeiculo.Modelo;
 
                 ICollection<Acessorio> acessorios = new List<Acessorio>();
 

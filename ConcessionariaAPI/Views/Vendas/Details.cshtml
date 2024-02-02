@@ -1,0 +1,33 @@
+﻿@model ConcessionariaAPI.Models.Venda;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@if (Model != null)
+{
+    <div class="w-100">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Detalhes da venda</h5>
+                <p class="card-text"><strong>Data da venda:</strong> @Model.DataVenda</p>
+                <p class="card-text"><strong>Nome do vendedor:</strong> @Model.Vendedor.Nome</p>
+                <p class="card-text"><strong>Data de admissão do vendedor:</strong> @Model.Vendedor.DataAdmissao</p>
+                <p class="card-text"><strong>Número de chassi do veículo:</strong> @Model.Veiculo.NumeroChassi</p>
+                <p class="card-text"><strong>Modelo do veículo:</strong> @Model.Veiculo.Modelo</p>
+                <p class="card-text"><strong>Valor do veícuo:</strong> @Model.Veiculo.Valor</p>
+                <p class="card-text"><strong>Acessórios:</strong></p>
+                @foreach (Acessorio item in @Model.Veiculo.Acessorios)
+                {
+                    <p>@item.Descricao</p>
+                }
+                <a asp-action="Index">Voltar a listagem</a>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <p>Venda não encontrado</p>
+}
+

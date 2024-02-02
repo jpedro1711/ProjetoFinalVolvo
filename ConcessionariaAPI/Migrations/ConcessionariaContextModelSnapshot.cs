@@ -143,11 +143,14 @@ namespace ConcessionariaAPI.Migrations
 
             modelBuilder.Entity("ConcessionariaAPI.Models.Veiculo", b =>
                 {
-                    b.Property<int?>("VeiculoId")
+                    b.Property<int>("VeiculoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("VeiculoId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VeiculoId"));
+
+                    b.Property<string>("Modelo")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NumeroChassi")
                         .IsRequired()

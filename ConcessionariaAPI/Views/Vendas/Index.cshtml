@@ -1,0 +1,33 @@
+﻿@model List<ConcessionariaAPI.Models.Venda>;
+
+<h1>Vendas</h1>
+<p>
+    <a asp-action="Create">Cadastrar Venda</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Data</th>
+            <th scope="col">Veículo</th>
+            <th scope="col">Vendedor</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var venda in Model)
+        {
+            <tr>
+                <td scope="row">@venda.VendaId</td>
+                <td scope="row">@venda.DataVenda</td>
+                <td>@(venda.Veiculo != null ? venda.Veiculo.Modelo : "")</td>
+                <td>@(venda.Vendedor != null ? venda.Vendedor.Nome : "")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@venda.VendaId">Detalhes</a>
+                    <a asp-action="Edit" asp-route-id="@venda.VendaId">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@venda.VendaId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

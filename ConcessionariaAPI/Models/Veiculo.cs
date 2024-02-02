@@ -11,6 +11,7 @@ namespace ConcessionariaAPI.Models
         [StringLength(17)]
         public string NumeroChassi { get; set; }
         public decimal Valor { get; set; }
+        public string? Modelo { get; set; }
         public int Quilometragem { get; set; }
         [StringLength(30)]
         public string VersaoSistema { get; set; }
