@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ConcessionariaAPI.Repositories
 {
-    public class VeiculoRepository : IRepository<Veiculo>
+    public class VeiculoRepository : IRepository<Veiculo>, IDisposable
     {
         private ConcessionariaContext _context;
         private bool disposed = false;
@@ -29,7 +29,7 @@ namespace ConcessionariaAPI.Repositories
                 _context.Veiculo.Remove(entity);
                 await _context.SaveChangesAsync();
             }
-            throw new EntityException("Veículo não encontrado");
+            throw new EntityException("Veículo não encontrado", 404, "DELETE, VeiculoRepository");
         }
 
         public async Task<Veiculo> GetById(int id)
@@ -40,7 +40,7 @@ namespace ConcessionariaAPI.Repositories
             {
                 return entity;
             }
-            throw new EntityException("Veículo não encontrado");
+            throw new EntityException("Veículo não encontrado", 404, "GET BY ID, VeiculoRepository");
         }
 
         public async Task<List<Veiculo>> GetAll()
@@ -58,7 +58,7 @@ namespace ConcessionariaAPI.Repositories
                 await _context.SaveChangesAsync();
                 return veiculo;
             }
-            throw new EntityException("Veículo não encontrado");
+            throw new EntityException("Veículo não encontrado", 404, "UPDATE, VeiculoRepository");
         }
 
         public async Task<List<Veiculo>> GetVeiculosByKilomers(int km ,string version)

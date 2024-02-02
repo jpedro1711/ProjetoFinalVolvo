@@ -140,7 +140,7 @@ namespace ConcessionariaAPI.Services
                 var created = await _repository.Update(id, existingTelefone);
                 return created;
             }
-            throw new EntityException("Erro ao atualizar endereço com id ", id);
+            throw new EntityException("Telefone não encontrado", 404, "UPDATE, TelefoneService");
         }
     }
 }

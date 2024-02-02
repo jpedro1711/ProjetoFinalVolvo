@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ConcessionariaAPI.Repositories
 {
-    public class VendedorRepository : IRepository<Vendedor>
+    public class VendedorRepository : IRepository<Vendedor>, IDisposable
     {
         private ConcessionariaContext _context;
         private bool disposed = false;
@@ -29,7 +29,7 @@ namespace ConcessionariaAPI.Repositories
                 _context.Vendedor.Remove(entity);
                 await _context.SaveChangesAsync();
             }
-            throw new EntityException("Vendedor não encontrado");
+            throw new EntityException("Venda não encontrada", 404, "DELETE, VendedorRepository");
         }
 
         public async Task<Vendedor> GetById(int id)
@@ -40,7 +40,7 @@ namespace ConcessionariaAPI.Repositories
             {
                 return entity;
             }
-            throw new EntityException("Vendedor não encontrado");
+            throw new EntityException("Venda não encontrada", 404, "GET BY ID, VendedorRepository");
         }
 
         public async Task<List<Vendedor>> GetAll()
@@ -58,7 +58,7 @@ namespace ConcessionariaAPI.Repositories
                 await _context.SaveChangesAsync();
                 return vendedor;
             }
-            throw new EntityException("Vendedor não encontrado");
+            throw new EntityException("Venda não encontrada", 404, "UPDATE, VendedorRepository");
         }
 
         protected async virtual void Dispose(bool disposing)

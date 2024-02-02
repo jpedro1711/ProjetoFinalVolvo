@@ -5,7 +5,7 @@ using System;
 
 namespace ConcessionariaAPI.Repositories
 {
-    public class AcessorioRepository : IRepository<Acessorio>
+    public class AcessorioRepository : IRepository<Acessorio>, IDisposable
     {
         private ConcessionariaContext _context;
         private bool disposed = false;
@@ -30,7 +30,7 @@ namespace ConcessionariaAPI.Repositories
                 _context.Acessorio.Remove(entity);
                 await _context.SaveChangesAsync();
             }
-            throw new EntityException("Acessório não encontrado");
+            throw new EntityException("Acessório não encontrado", 404, "DELETE, AcessorioRepository");
         }
 
         public async Task<Acessorio> GetById(int id)
@@ -41,7 +41,7 @@ namespace ConcessionariaAPI.Repositories
             {
                 return entity;
             }
-            throw new EntityException("Acessório não encontrado");
+            throw new EntityException("Acessório não encontrado", 404, "GET BY ID, AcessorioRepository");
         }
 
         public async Task<List<Acessorio>> GetAll()
@@ -59,7 +59,7 @@ namespace ConcessionariaAPI.Repositories
                 await  _context.SaveChangesAsync();
                 return acessorio;
             }
-            throw new EntityException("Acessório não encontrado");
+            throw new EntityException("Acessório não encontrado", 404, "UPDATE ,AcessorioRepository");
         }
 
         protected async virtual void Dispose(bool disposing)

@@ -4,9 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ConcessionariaAPI.Repositories
 {
-    public class EnderecoRepository : IRepository<Endereco>
+    public class EnderecoRepository : IRepository<Endereco>, IDisposable
     {
         private ConcessionariaContext _context;
+        private bool disposed = false;
         public EnderecoRepository(ConcessionariaContext context)
         {
             _context = context;
@@ -28,7 +29,7 @@ namespace ConcessionariaAPI.Repositories
                 _context.Endereco.Remove(entity);
                 await _context.SaveChangesAsync();
             }
-            throw new EntityException("Endereço não encontrado");
+            throw new EntityException("Endereço não encontrado", 404, "DELETE, EnderecoRepository");
         }
 
         public async Task<Endereco> GetById(int id)
@@ -39,7 +40,7 @@ namespace ConcessionariaAPI.Repositories
             {
                 return entity;
             }
-            throw new EntityException("Endereço não encontrado");
+            throw new EntityException("Endereço não encontrado", 404, "GET BY ID, EnderecoRepository");
         }
 
         public async Task<List<Endereco>> GetAll()
@@ -57,7 +58,25 @@ namespace ConcessionariaAPI.Repositories
                 await _context.SaveChangesAsync();
                 return endereco;
             }
-            throw new EntityException("Endereço não encontrado");
+            throw new EntityException("Endereço não encontrado", 404, "UPDATE, EnderecoRepository");
+        }
+
+        protected async virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    await _context.DisposeAsync();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

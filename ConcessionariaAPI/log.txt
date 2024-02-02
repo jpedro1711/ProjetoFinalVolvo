@@ -1,0 +1,4 @@
+01/02/2024 21:52:31 - Acessório não encontrado
+01/02/2024 21:53:50 - Acessório não encontrado
+01/02/2024 21:53:58 - Acessório não encontrado
+01/02/2024 22:07:32 - Endereço não encontrado - 404 - GET BY ID, EnderecoRepository

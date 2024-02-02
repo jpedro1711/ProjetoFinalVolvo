@@ -142,7 +142,7 @@ namespace ConcessionariaAPI.Services
                 var updated = await _repository.Update(id, existingEndereco);
                 return updated;
             }
-            throw new EntityException("Erro ao atualizar com o id ", id);
+            throw new EntityException("Proprietário não encontrado", 404, "UPDATE, EnderecoService");
         }
     }
 }
