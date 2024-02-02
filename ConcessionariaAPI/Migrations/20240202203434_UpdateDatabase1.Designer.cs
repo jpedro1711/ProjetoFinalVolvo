@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConcessionariaAPI.Migrations
 {
     [DbContext(typeof(ConcessionariaContext))]
-    [Migration("20240131112743_UpdateDatabase7")]
-    partial class UpdateDatabase7
+    [Migration("20240202203434_UpdateDatabase1")]
+    partial class UpdateDatabase1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -146,14 +146,16 @@ namespace ConcessionariaAPI.Migrations
 
             modelBuilder.Entity("ConcessionariaAPI.Models.Veiculo", b =>
                 {
-                    b.Property<int?>("VeiculoId")
+                    b.Property<int>("VeiculoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("VeiculoId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VeiculoId"));
+
+                    b.Property<string>("Modelo")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NumeroChassi")
-                        .IsRequired()
                         .HasMaxLength(17)
                         .HasColumnType("nvarchar(17)");
 
@@ -175,7 +177,8 @@ namespace ConcessionariaAPI.Migrations
                     b.HasKey("VeiculoId");
 
                     b.HasIndex("NumeroChassi")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[NumeroChassi] IS NOT NULL");
 
                     b.HasIndex("ProprietarioId");
 

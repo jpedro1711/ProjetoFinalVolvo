@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConcessionariaAPI.Migrations
 {
     [DbContext(typeof(ConcessionariaContext))]
-    [Migration("20240130220443_UpdateDatabase2")]
+    [Migration("20240202203626_UpdateDatabase2")]
     partial class UpdateDatabase2
     {
         /// <inheritdoc />
@@ -42,11 +42,11 @@ namespace ConcessionariaAPI.Migrations
 
             modelBuilder.Entity("ConcessionariaAPI.Models.Acessorio", b =>
                 {
-                    b.Property<int>("AcessorioID")
+                    b.Property<int?>("AcessorioID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AcessorioID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("AcessorioID"));
 
                     b.Property<string>("Descricao")
                         .HasMaxLength(50)
@@ -59,11 +59,11 @@ namespace ConcessionariaAPI.Migrations
 
             modelBuilder.Entity("ConcessionariaAPI.Models.Endereco", b =>
                 {
-                    b.Property<int>("EnderecoId")
+                    b.Property<int?>("EnderecoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EnderecoId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("EnderecoId"));
 
                     b.Property<string>("Bairro")
                         .IsRequired()
@@ -90,11 +90,11 @@ namespace ConcessionariaAPI.Migrations
 
             modelBuilder.Entity("ConcessionariaAPI.Models.Proprietario", b =>
                 {
-                    b.Property<int>("ProprietarioId")
+                    b.Property<int?>("ProprietarioId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProprietarioId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("ProprietarioId"));
 
                     b.Property<string>("CNPJ")
                         .HasMaxLength(14)
@@ -117,23 +117,18 @@ namespace ConcessionariaAPI.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
 
-                    b.Property<int?>("TelefoneId")
-                        .HasColumnType("int");
-
                     b.HasKey("ProprietarioId");
-
-                    b.HasIndex("TelefoneId");
 
                     b.ToTable("Proprietario");
                 });
 
             modelBuilder.Entity("ConcessionariaAPI.Models.Telefone", b =>
                 {
-                    b.Property<int>("TelefoneId")
+                    b.Property<int?>("TelefoneId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TelefoneId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("TelefoneId"));
 
                     b.Property<string>("NumeroTelefone")
                         .IsRequired()
@@ -156,6 +151,9 @@ namespace ConcessionariaAPI.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VeiculoId"));
+
+                    b.Property<string>("Modelo")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NumeroChassi")
                         .IsRequired()
@@ -189,11 +187,11 @@ namespace ConcessionariaAPI.Migrations
 
             modelBuilder.Entity("ConcessionariaAPI.Models.Venda", b =>
                 {
-                    b.Property<int>("VendaId")
+                    b.Property<int?>("VendaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VendaId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("VendaId"));
 
                     b.Property<DateTime>("DataVenda")
                         .HasColumnType("datetime2");
@@ -215,11 +213,11 @@ namespace ConcessionariaAPI.Migrations
 
             modelBuilder.Entity("ConcessionariaAPI.Models.Vendedor", b =>
                 {
-                    b.Property<int>("VendedorId")
+                    b.Property<int?>("VendedorId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VendedorId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("VendedorId"));
 
                     b.Property<DateTime>("DataAdmissao")
                         .HasColumnType("datetime2");
@@ -246,6 +244,66 @@ namespace ConcessionariaAPI.Migrations
                     b.ToTable("Vendedor");
                 });
 
+            modelBuilder.Entity("EnderecoProprietario", b =>
+                {
+                    b.Property<int>("EnderecosEnderecoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProprietariosProprietarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EnderecosEnderecoId", "ProprietariosProprietarioId");
+
+                    b.HasIndex("ProprietariosProprietarioId");
+
+                    b.ToTable("EnderecoProprietario");
+                });
+
+            modelBuilder.Entity("EnderecoVendedor", b =>
+                {
+                    b.Property<int>("EnderecosEnderecoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VendedoresVendedorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EnderecosEnderecoId", "VendedoresVendedorId");
+
+                    b.HasIndex("VendedoresVendedorId");
+
+                    b.ToTable("EnderecoVendedor");
+                });
+
+            modelBuilder.Entity("ProprietarioTelefone", b =>
+                {
+                    b.Property<int>("ProprietariosProprietarioId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TelefonesTelefoneId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProprietariosProprietarioId", "TelefonesTelefoneId");
+
+                    b.HasIndex("TelefonesTelefoneId");
+
+                    b.ToTable("ProprietarioTelefone");
+                });
+
+            modelBuilder.Entity("TelefoneVendedor", b =>
+                {
+                    b.Property<int>("TelefonesTelefoneId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VendedoresVendedorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TelefonesTelefoneId", "VendedoresVendedorId");
+
+                    b.HasIndex("VendedoresVendedorId");
+
+                    b.ToTable("TelefoneVendedor");
+                });
+
             modelBuilder.Entity("AcessorioVeiculo", b =>
                 {
                     b.HasOne("ConcessionariaAPI.Models.Acessorio", null)
@@ -259,13 +317,6 @@ namespace ConcessionariaAPI.Migrations
                         .HasForeignKey("VeiculosVeiculoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("ConcessionariaAPI.Models.Proprietario", b =>
-                {
-                    b.HasOne("ConcessionariaAPI.Models.Telefone", null)
-                        .WithMany("Proprietarios")
-                        .HasForeignKey("TelefoneId");
                 });
 
             modelBuilder.Entity("ConcessionariaAPI.Models.Veiculo", b =>
@@ -296,9 +347,64 @@ namespace ConcessionariaAPI.Migrations
                     b.Navigation("Vendedor");
                 });
 
-            modelBuilder.Entity("ConcessionariaAPI.Models.Telefone", b =>
+            modelBuilder.Entity("EnderecoProprietario", b =>
                 {
-                    b.Navigation("Proprietarios");
+                    b.HasOne("ConcessionariaAPI.Models.Endereco", null)
+                        .WithMany()
+                        .HasForeignKey("EnderecosEnderecoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ConcessionariaAPI.Models.Proprietario", null)
+                        .WithMany()
+                        .HasForeignKey("ProprietariosProprietarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("EnderecoVendedor", b =>
+                {
+                    b.HasOne("ConcessionariaAPI.Models.Endereco", null)
+                        .WithMany()
+                        .HasForeignKey("EnderecosEnderecoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ConcessionariaAPI.Models.Vendedor", null)
+                        .WithMany()
+                        .HasForeignKey("VendedoresVendedorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProprietarioTelefone", b =>
+                {
+                    b.HasOne("ConcessionariaAPI.Models.Proprietario", null)
+                        .WithMany()
+                        .HasForeignKey("ProprietariosProprietarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ConcessionariaAPI.Models.Telefone", null)
+                        .WithMany()
+                        .HasForeignKey("TelefonesTelefoneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TelefoneVendedor", b =>
+                {
+                    b.HasOne("ConcessionariaAPI.Models.Telefone", null)
+                        .WithMany()
+                        .HasForeignKey("TelefonesTelefoneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ConcessionariaAPI.Models.Vendedor", null)
+                        .WithMany()
+                        .HasForeignKey("VendedoresVendedorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcessionariaAPI", "ConcessionariaAPI\ConcessionariaAPI.csproj", "{30BAB8D3-E39D-4FAB-97D7-27F33A5150F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcessionariaAPI", "ConcessionariaAPI\ConcessionariaAPI.csproj", "{BFAE4925-9923-495B-A99C-A52E47DB522A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{30BAB8D3-E39D-4FAB-97D7-27F33A5150F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{30BAB8D3-E39D-4FAB-97D7-27F33A5150F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{30BAB8D3-E39D-4FAB-97D7-27F33A5150F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{30BAB8D3-E39D-4FAB-97D7-27F33A5150F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFAE4925-9923-495B-A99C-A52E47DB522A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFAE4925-9923-495B-A99C-A52E47DB522A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFAE4925-9923-495B-A99C-A52E47DB522A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFAE4925-9923-495B-A99C-A52E47DB522A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {79B4F0D9-DBFA-4C81-991D-CEA864678894}
+		SolutionGuid = {64322C36-D027-4B5F-97FC-1ADCCBCCF5E0}
 	EndGlobalSection
 EndGlobal
