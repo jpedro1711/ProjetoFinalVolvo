@@ -9,7 +9,7 @@ namespace ConcessionariaAPI.Services
     {
         private IRepository<Telefone> _repository;
         private IRepository<Proprietario> _proprietarioRepository;
-        private IRepository<Vendedor> _vendedorRepository;
+        private IVendedorRepository<Vendedor> _vendedorRepository;
         public TelefoneService(ConcessionariaContext context)
         {
             _repository = new TelefoneRepository(context);

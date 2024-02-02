@@ -8,7 +8,7 @@ namespace ConcessionariaAPI.Services
     public class AcessorioService : IService<Acessorio>
     {
         private IRepository<Acessorio> _repository;
-        private IRepository<Veiculo> _veiculoRepository;
+        private IVeiculoRepository<Veiculo> _veiculoRepository;
         public AcessorioService(ConcessionariaContext context) 
         {
             _repository = new AcessorioRepository(context);

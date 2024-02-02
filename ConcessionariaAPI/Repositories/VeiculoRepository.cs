@@ -1,10 +1,11 @@
-﻿using ConcessionariaAPI.Exceptions;
+using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ConcessionariaAPI.Repositories
 {
-    public class VeiculoRepository : IRepository<Veiculo>, IDisposable
+    public class VeiculoRepository : IVeiculoRepository<Veiculo>
     {
         private ConcessionariaContext _context;
         private bool disposed = false;
@@ -69,7 +70,7 @@ namespace ConcessionariaAPI.Repositories
                 .ToListAsync();
             return cars;
         }
-
+        
         protected async virtual void Dispose(bool disposing)
         {
             if (!this.disposed)

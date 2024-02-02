@@ -1,5 +1,7 @@
+using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using ConcessionariaAPI.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace ConcessionariaAPI.Controllers
@@ -8,75 +10,65 @@ namespace ConcessionariaAPI.Controllers
     [Route("[controller]")]
     public class VendaController : ControllerBase
     {
-        [HttpPost]
-        public void Create([FromBody] Venda venda)
+
+        private IService<Venda> _service;
+
+        public VendaController()
         {
-            using (var _context = new ConcessionariaContext())
-            {                                
-                _context.Venda.Add(venda);
-                _context.SaveChanges();
-            }
+            _service = new VendaServico(new ConcessionariaContext());
+        }
+
+        [HttpPost]
+        public async Task<Venda> Create([FromBody] Venda venda)
+        {
+            return await _service.Create(venda);
         }
 
         [HttpGet]
-        public List<Venda> GetAll()
+        public Task<List<Venda>> GetAll()
         {
-            using (var _context = new ConcessionariaContext())
-            {
-                return _context.Venda.ToList();
-            }
+            return _service.GetAll();
         }
-
+        
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            using (var _context = new ConcessionariaContext())
+            try
             {
-                var result = _context.Venda.FirstOrDefault(p => p.VendaId == id);
-
-                if (result != null)
-                {
-                    return Ok(result);
-                }
+                var result = await _service.GetById(id);
+                return Ok(result);
             }
-            return NotFound();
+            catch (EntityException e)
+            {
+                return NotFound();
+            }
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] Venda updatedVenda)
+        public async Task<IActionResult> Update(int id, [FromBody] Venda updatedVenda)
         {
-            using (var _context = new ConcessionariaContext())
+            try
             {
-                var existingVenda = _context.Venda.FirstOrDefault(p => p.VendaId == id);
-
-                if (existingVenda != null)
-                {
-                    existingVenda.DataVenda = updatedVenda.DataVenda;
-                    existingVenda.VeiculoId = updatedVenda.VeiculoId;
-                    existingVenda.Veiculo = updatedVenda.Veiculo;
-                    existingVenda.VendedorId = updatedVenda.VendedorId;
-                    existingVenda.Vendedor = updatedVenda.Vendedor;
-                    _context.SaveChanges();
-                    return Ok(existingVenda);
-                }
-                return NotFound();
+                var result = await _service.Update(id, updatedVenda);
+                return Ok(result);
+            }
+            catch (EntityException e)
+            {
+                return BadRequest(e.Message);
             }
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            using (var _context = new ConcessionariaContext())
+            try
             {
-                var vendaToDelete = _context.Venda.FirstOrDefault(p => p.VendaId == id);
-
-                if (vendaToDelete != null)
-                {
-                    _context.Venda.Remove(vendaToDelete);
-                    _context.SaveChanges();
-                    return Ok();
-                }
-                return NotFound();
+                _service.Delete(id);
+                return NoContent();
+            }
+            catch (EntityException e)
+            {
+                return BadRequest(e.Message);
             }
         }
     }
