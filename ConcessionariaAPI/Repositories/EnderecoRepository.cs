@@ -33,7 +33,7 @@ namespace ConcessionariaAPI.Repositories
 
         public async Task<Endereco> GetById(int id)
         {
-            var entity = await _context.Endereco.FirstOrDefaultAsync(e => e.EnderecoId == id);
+            var entity = await _context.Endereco.Include("Proprietarios").Include("Vendedores").FirstOrDefaultAsync(e => e.EnderecoId == id);
 
             if (entity != null)
             {
@@ -44,7 +44,7 @@ namespace ConcessionariaAPI.Repositories
 
         public async Task<List<Endereco>> GetAll()
         {
-            return await _context.Endereco.ToListAsync();
+            return await _context.Endereco.Include("Proprietarios").Include("Vendedores").ToListAsync();
         }
 
         public async Task<Endereco> Update(int id, Endereco endereco)

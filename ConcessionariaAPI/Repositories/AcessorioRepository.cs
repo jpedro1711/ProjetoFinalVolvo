@@ -33,7 +33,7 @@ namespace ConcessionariaAPI.Repositories
 
         public async Task<Acessorio> GetById(int id)
         {
-            var entity = await _context.Acessorio.FirstOrDefaultAsync(e => e.AcessorioID == id);
+            var entity = await _context.Acessorio.Include("Veiculos").FirstOrDefaultAsync(e => e.AcessorioID == id);
 
             if (entity != null)
             {
@@ -44,7 +44,7 @@ namespace ConcessionariaAPI.Repositories
 
         public async Task<List<Acessorio>> GetAll()
         {
-            return await _context.Acessorio.ToListAsync();
+            return await _context.Acessorio.Include("Veiculos").ToListAsync();
         }
 
         public async Task<Acessorio> Update(int id, Acessorio acessorio)
