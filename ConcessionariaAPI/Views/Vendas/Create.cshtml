@@ -1,5 +1,54 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model ConcessionariaAPI.Models.ViewModels.VendaFormViewModel;
 @{
+    ViewData["Title"] = "Cadastrar Venda";
 }
+<h1>Cadastrar Venda</h1>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Venda.VendedorId" class="control-label"></label>
+        <select asp-for="Venda.VendedorId" asp-items="@(new SelectList(Model.Vendedores, "VendedorId", "Nome"))" 
+        class="form-control"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Venda.VeiculoId" class="control-label"></label>
+        <select asp-for="Venda.VeiculoId"
+                asp-items="@(new SelectList(Model.Veiculos, "VeiculoId", "Modelo"))"
+                class="form-control"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Venda.Veiculo.Proprietario.Nome" class="control-label"></label>
+        <input asp-for="Venda.Veiculo.Proprietario.Nome" class="form-control" />
+        <span asp-validation-for="Venda.Veiculo.Proprietario.Nome" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Venda.Veiculo.Proprietario.Email" class="control-label"></label>
+        <input asp-for="Venda.Veiculo.Proprietario.Email" class="form-control" />
+        <span asp-validation-for="Venda.Veiculo.Proprietario.Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Venda.Veiculo.Proprietario.DataNascimento" class="control-label"></label>
+        <input asp-for="Venda.Veiculo.Proprietario.DataNascimento" class="form-control" />
+        <span asp-validation-for="Venda.Veiculo.Proprietario.DataNascimento" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Venda.Veiculo.Proprietario.CPF" class="control-label"></label>
+        <input asp-for="Venda.Veiculo.Proprietario.CPF" class="form-control" />
+        <span asp-validation-for="Venda.Veiculo.Proprietario.CPF" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Venda.Veiculo.Proprietario.CNPJ" class="control-label"></label>
+        <input asp-for="Venda.Veiculo.Proprietario.CNPJ" class="form-control" />
+        <span asp-validation-for="Venda.Veiculo.Proprietario.CNPJ" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>

@@ -1,4 +1,5 @@
 ﻿using ConcessionariaAPI.Models;
+using ConcessionariaAPI.Models.ViewModels;
 using ConcessionariaAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,14 @@ namespace ConcessionariaAPI.Controllers.ViewControllers
     public class VendasController : Controller
     {
         private IService<Venda> _service;
+        private IVeiculoService<Veiculo> _veiculoService;
+        public IVendedorService<Vendedor> _vendedorService;
 
         public VendasController()
         {
             _service = new VendaServico(new ConcessionariaContext());
+            _veiculoService = new VeiculoService(new ConcessionariaContext());
+            _vendedorService = new VendedorService(new ConcessionariaContext());
         }
 
         [HttpGet]
@@ -74,9 +79,23 @@ namespace ConcessionariaAPI.Controllers.ViewControllers
         }
 
         [HttpGet("Create")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var cars = await _veiculoService.GetAll();
+            var sellers = await _vendedorService.GetAll();
+            var viewModel = new VendaFormViewModel { Veiculos = cars, Vendedores = sellers };
+            return View(viewModel);
+        }
+
+        [HttpPost("Create")]
+        public async Task<IActionResult> Create([FromForm] Venda venda)
+        {
+            var veiculo = await _veiculoService.GetById(venda.VeiculoId);
+            venda.Veiculo.NumeroChassi = veiculo.NumeroChassi;
+            venda.Veiculo.VersaoSistema = veiculo.VersaoSistema;
+
+            await _service.Create(venda);
+            return RedirectToAction("Index");
         }
     }
 }

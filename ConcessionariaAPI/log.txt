@@ -20,3 +20,4 @@
 02/02/2024 16:01:11 - Venda não encontrada - 404 - DELETE, VendaRepository
 02/02/2024 16:02:03 - Venda não encontrada com id 0 - 404 - DELETE, VendaRepository
 02/02/2024 16:06:37 - Veículo não encontrado - 404 - GET BY ID, VeiculoRepository
+02/02/2024 16:41:29 - Venda não encontrada - 404 - GET BY ID, VendaRepository
