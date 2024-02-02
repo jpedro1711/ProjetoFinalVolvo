@@ -5,3 +5,18 @@
 02/02/2024 11:52:13 - Veículo não encontrado - 404 - GET BY ID, VeiculoRepository
 02/02/2024 11:53:19 - Veículo não encontrado - 404 - GET BY ID, VeiculoRepository
 02/02/2024 11:57:13 - Venda não encontrada - 404 - GET BY ID, VendaRepository
+02/02/2024 15:11:34 - Venda não encontrada - 404 - DELETE, VendaRepository
+02/02/2024 15:11:38 - Venda não encontrada - 404 - DELETE, VendaRepository
+02/02/2024 15:15:04 - Venda não encontrada - 404 - DELETE, VendaRepository
+02/02/2024 15:15:57 - Venda não encontrada - 404 - DELETE, VendaRepository
+02/02/2024 15:39:49 - Venda não encontrada - 404 - DELETE, VendaRepository
+02/02/2024 15:42:20 - Venda não encontrada - 404 - DELETE, VendaRepository
+02/02/2024 15:43:34 - Venda não encontrada - 404 - DELETE, VendaRepository
+02/02/2024 15:45:23 - Venda não encontrada - 404 - DELETE, VendaRepository
+02/02/2024 15:48:38 - Venda não encontrada - 404 - DELETE, VendaRepository
+02/02/2024 15:55:46 - Venda não encontrada - 404 - DELETE, VendaRepository
+02/02/2024 15:58:17 - Venda não encontrada - 404 - DELETE, VendaRepository
+02/02/2024 15:58:55 - Venda não encontrada - 404 - DELETE, VendaRepository
+02/02/2024 16:01:11 - Venda não encontrada - 404 - DELETE, VendaRepository
+02/02/2024 16:02:03 - Venda não encontrada com id 0 - 404 - DELETE, VendaRepository
+02/02/2024 16:06:37 - Veículo não encontrado - 404 - GET BY ID, VeiculoRepository

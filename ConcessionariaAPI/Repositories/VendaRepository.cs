@@ -20,7 +20,7 @@ namespace ConcessionariaAPI.Repositories
             return entity;
         }
 
-        public async void Delete(int id)
+        public async Task Delete(int id)
         {
             var entity = await _context.Venda.FirstOrDefaultAsync(e => e.VendaId == id);
 
@@ -29,7 +29,11 @@ namespace ConcessionariaAPI.Repositories
                 _context.Venda.Remove(entity);
                 await _context.SaveChangesAsync();
             }
-            throw new EntityException("Venda não encontrada", 404, "DELETE, VendaRepository");
+            else
+            {
+                throw new EntityException("Venda não encontrada com id " + id, 404, "DELETE, VendaRepository");
+            }
+            
         }
 
         public async Task<Venda> GetById(int id)
@@ -38,6 +42,8 @@ namespace ConcessionariaAPI.Repositories
                     .Include(v => v.Veiculo)
                     .ThenInclude(veic => veic.Acessorios)
                     .Include(v => v.Vendedor)
+                    .Include(v => v.Veiculo)
+                    .ThenInclude(v => v.Proprietario)
                     .FirstOrDefaultAsync(e => e.VendaId == id);
 
             if (entity != null)

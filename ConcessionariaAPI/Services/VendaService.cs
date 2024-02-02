@@ -25,9 +25,9 @@ namespace ConcessionariaAPI.Services
             return created;
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            _repository.Delete(id);
+            await _repository.Delete(id);
         }
 
         public async Task<List<Venda>> GetAll()

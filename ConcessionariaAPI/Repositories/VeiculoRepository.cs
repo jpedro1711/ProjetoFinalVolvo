@@ -21,7 +21,7 @@ namespace ConcessionariaAPI.Repositories
             return entity;
         }
 
-        public async void Delete(int id)
+        public async Task Delete(int id)
         {
             var entity = await _context.Veiculo.FirstOrDefaultAsync(e => e.VeiculoId == id);
 

@@ -8,7 +8,7 @@ namespace ConcessionariaAPI.Repositories
         Task<T> GetById(int id);
         Task<T> Create(T entity);
         Task<T> Update(int id, T entity);
-        void Delete(int id);
+        Task Delete(int id);
         Task<List<Veiculo>> GetVeiculosByKilomers(int km, string system);
     }
 }

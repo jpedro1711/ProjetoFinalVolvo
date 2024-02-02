@@ -2,6 +2,7 @@
 using ConcessionariaAPI.Repositories;
 using ConcessionariaAPI.Exceptions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ConcessionariaAPI.Services
 {
@@ -43,9 +44,9 @@ namespace ConcessionariaAPI.Services
             return acessorio;
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            _repository.Delete(id);
+            await _repository.Delete(id);
         }
 
         public async Task<List<Acessorio>> GetAll()

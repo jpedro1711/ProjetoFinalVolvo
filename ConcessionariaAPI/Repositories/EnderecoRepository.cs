@@ -20,7 +20,7 @@ namespace ConcessionariaAPI.Repositories
             return entity;
         }
 
-        public async void Delete(int id)
+        public async Task Delete(int id)
         {
             var entity = await _context.Endereco.FirstOrDefaultAsync(e => e.EnderecoId == id);
 
