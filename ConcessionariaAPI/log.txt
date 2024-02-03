@@ -1,2 +1,5 @@
-02/02/2024 17:56:08 - Acessório não encontrado - 404 - DELETE, AcessorioRepository
-03/02/2024 11:02:29 - Venda não encontrada com id 2 - 404 - DELETE, VendedorRepository
+
+03/02/2024 11:23:50 - Venda não encontrada - 404 - GET BY ID, VendedorRepository
+03/02/2024 12:36:04 - Não foi possível calcula o salário do vendedor:1 no mês:2 do ano:2022, pois o mesmo não estava contratado!
+03/02/2024 12:36:48 - Não foi possível calcula o salário do vendedor:1 no mês:12 do ano:2022, pois o mesmo não estava contratado!
+

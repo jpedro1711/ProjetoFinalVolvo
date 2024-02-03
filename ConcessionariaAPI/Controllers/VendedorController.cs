@@ -56,8 +56,8 @@ namespace ConcessionariaAPI.Controllers
         
         [HttpGet("Salario/{id}/{mes}/{ano}")]
         public async Task<IActionResult> GetSalarioMesAno(int id, int mes, int ano)
-        {
-             try
+        {            
+            try
             {
                 var result = await _service.GetSalarioMesAno(id, mes, ano);
                 return Ok(result);

@@ -14,6 +14,6 @@ namespace ConcessionariaAPI.Models
 
         [ForeignKey("VendedorId")]
         public int VendedorId { get; set; }
-        public Vendedor? Vendedor { get; set; }
+        public Vendedor? Vendedor { get; set; }        
     }
 }
