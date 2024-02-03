@@ -3,3 +3,9 @@
 03/02/2024 12:36:04 - Não foi possível calcula o salário do vendedor:1 no mês:2 do ano:2022, pois o mesmo não estava contratado!
 03/02/2024 12:36:48 - Não foi possível calcula o salário do vendedor:1 no mês:12 do ano:2022, pois o mesmo não estava contratado!
 
+03/02/2024 13:01:03 - Não foi possível calcular o salário do vendedor:1 no mês:2 do ano:2024, pois ainda estamos no mês solicitado ou mês/ano é superior a data atual!
+03/02/2024 13:02:47 - Não foi possível calcular o salário do vendedor:2 no mês:2 do ano:2024, pois ainda estamos no mês solicitado ou mês/ano é superior a data atual!
+03/02/2024 13:05:27 - Não foi possível calcular o salário do vendedor:1 no mês:2 do ano:2024, pois ainda estamos no mês solicitado ou mês/ano é superior a data atual!
+03/02/2024 13:05:30 - Não foi possível calcular o salário do vendedor:2 no mês:2 do ano:2024, pois ainda estamos no mês solicitado ou mês/ano é superior a data atual!
+03/02/2024 13:05:40 - Não foi possível calcular o salário do vendedor:1 no mês:2 do ano:2010, pois o mesmo não estava contratado!
+03/02/2024 13:05:45 - Não foi possível calcular o salário do vendedor:2 no mês:2 do ano:2010, pois o mesmo não estava contratado!
