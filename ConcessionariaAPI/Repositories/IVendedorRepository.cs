@@ -10,5 +10,7 @@ namespace ConcessionariaAPI.Repositories
         Task<T> Update(int id, T entity);
         Task Delete(int id);
         Task<List<Salario>> GetSalarioMesAno(int id, int mes, int ano);
+        Task<List<Salario>> GetSalarioMesAnoNE(int id, int mes, int ano);
+        Task<List<List<Salario>>> GetSalarioVendedores();
     }
 }

@@ -158,6 +158,11 @@ namespace ConcessionariaAPI.Services
         {
             return await _repository.GetSalarioMesAno( id, mes, ano);
         }
+
+        public async Task<List<List<Salario>>> GetSalarioVendedores()
+        {
+            return await _repository.GetSalarioVendedores();
+        }
     }  
 
 }
