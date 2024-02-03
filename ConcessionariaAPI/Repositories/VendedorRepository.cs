@@ -39,7 +39,7 @@ namespace ConcessionariaAPI.Repositories
 
         public async Task<Vendedor> GetById(int id)
         {
-            var entity = await _context.Vendedor.FirstOrDefaultAsync(e => e.VendedorId == id);
+            var entity = await _context.Vendedor.Include("Telefones").Include("Enderecos").FirstOrDefaultAsync(e => e.VendedorId == id);
 
             if (entity != null)
             {
@@ -50,7 +50,7 @@ namespace ConcessionariaAPI.Repositories
 
         public async Task<List<Vendedor>> GetAll()
         {
-            return await _context.Vendedor.ToListAsync();
+            return await _context.Vendedor.Include("Telefones").Include("Enderecos").ToListAsync();
         }
 
         public async Task<Vendedor> Update(int id, Vendedor vendedor)
