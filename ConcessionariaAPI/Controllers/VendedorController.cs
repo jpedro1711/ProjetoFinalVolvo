@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using ConcessionariaAPI.Services;
 using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Repositories.Dto;
+using Microsoft.Extensions.Logging.EventLog;
 
 namespace ConcessionariaAPI.Controllers
 {
@@ -13,7 +14,7 @@ namespace ConcessionariaAPI.Controllers
     {
 
         private IVendedorService<Vendedor> _service;
-
+        private LogService LogService { get; set; }
         public VendedorController()
         {
             _service = new VendedorService(new ConcessionariaContext());
@@ -22,7 +23,15 @@ namespace ConcessionariaAPI.Controllers
          [HttpPost]
         public async Task<Vendedor> Create([FromBody] Vendedor vendedor)
         {
-            return await _service.Create(vendedor);
+            try
+            {
+                return await _service.Create(vendedor);
+            }
+            catch (Exception ex)
+            {
+                LogService.SaveLog(ex.StackTrace);
+                return null;
+            }
         }
 
         [HttpGet]
