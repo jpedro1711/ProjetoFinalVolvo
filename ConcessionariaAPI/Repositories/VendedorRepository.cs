@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ConcessionariaAPI.Repositories.Dto;
 using System.Net;
+using System.Reflection.Metadata.Ecma335;
 
 namespace ConcessionariaAPI.Repositories
 {
@@ -67,41 +68,68 @@ namespace ConcessionariaAPI.Repositories
         }
 
         public async Task<List<Salario>> GetSalarioMesAno(int id, int mes, int ano){
-            var resultado = _context.Venda
-                .Join(_context.Vendedor,
+
+            DateTime DataAdmissao = _context.Vendedor
+                .Where(v => v.VendedorId == id)
+                .Select(v => v.DataAdmissao)
+                .FirstOrDefault();
+
+            if((DataAdmissao.Month <= mes && DataAdmissao.Year == ano) || (DataAdmissao.Year < ano)){
+                var resultado = _context.Venda
+                .Join(
+                    _context.Vendedor,
                     venda => venda.VendedorId,
                     vendedor => vendedor.VendedorId,
-                    (venda, vendedor) => new { Venda = venda, Vendedor = vendedor })
-                .Join(_context.Veiculo,
-                    venda => venda.Venda.VeiculoId,
+                    (venda, vendedor) => new { Venda = venda, Vendedor = vendedor }
+                )
+                .Join(
+                    _context.Veiculo,
+                    v => v.Venda.VeiculoId,
                     veiculo => veiculo.VeiculoId,
-                    (venda, veiculo) => new { Venda = venda.Venda, Vendedor = venda.Vendedor, Veiculo = veiculo })
-                .Where(x => x.Venda.DataVenda.Month == mes && x.Venda.DataVenda.Year == ano)
-                .GroupBy(result => new
+                    (v, veiculo) => new { V = v, Veiculo = veiculo }
+                )
+                .Where(v => v.V.Venda.DataVenda.Month == mes && v.V.Venda.DataVenda.Year == ano)
+                .GroupBy(
+                    v => new
+                    {
+                        v.V.Vendedor.VendedorId,
+                        v.V.Vendedor.Nome,
+                        v.V.Vendedor.SalarioBase,
+                        Mes = v.V.Venda.DataVenda.Month,
+                        Ano = v.V.Venda.DataVenda.Year
+                    }
+                )
+                .Select(g => new Salario
                 {
-                    result.Vendedor.VendedorId,
-                    result.Vendedor.Nome,
-                    result.Vendedor.SalarioBase,
-                    Mes = result.Venda.DataVenda.Month,
-                    Ano = result.Venda.DataVenda.Year
-                })
-                .Select(groupedResult => new
-                {
-                    ID = groupedResult.Key.VendedorId,
-                    Nome = groupedResult.Key.Nome,
-                    SalarioCalculado = (double)groupedResult.Key.SalarioBase + ((double)groupedResult.Sum(v => v.Veiculo.Valor) * 0.01),
-                    Mes = groupedResult.Key.Mes,
-                    Ano = groupedResult.Key.Ano
+                    ID = g.Key.VendedorId,
+                    Nome = g.Key.Nome,
+                    SalarioCalculado = (double)g.Key.SalarioBase + ((double)g.Sum(v => v.Veiculo.Valor) * 0.01),
+                    Mes = g.Key.Mes,
+                    Ano = g.Key.Ano
                 })
                 .ToList();
-
-            List<Salario> salarios = new List<Salario>();
-            foreach (var r in resultado){
-                Salario salario = new Salario(r.ID, r.Nome, r.SalarioCalculado, r.Mes, r.Ano);
-                salarios.Add(salario);
-            }
             
-            return salarios;
+                if(resultado.Count == 0){
+                    resultado = _context.Vendedor
+                        .Where(v => v.VendedorId == id)
+                        .Select(g => new Salario
+                        {
+                            ID = g.VendedorId,
+                            Nome = g.Nome,
+                            SalarioCalculado = (double)g.SalarioBase,
+                            Mes = mes,
+                            Ano = ano
+                        })
+                        .ToList();
+                }
+                
+                return resultado;        
+            }else{
+                throw new EntityException($"Não foi possível calcula o salário do vendedor:{id} no mês:{mes} do ano:{ano}, pois o mesmo não estava contratado!");
+            }            
+            return null;
         }
+
+        
     }
 }
