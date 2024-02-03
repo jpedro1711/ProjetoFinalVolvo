@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ConcessionariaAPI.Repositories
 {
-    public class VendaRepository : IRepository<Venda>, IDisposable
+    public class VendaRepository : IVendaRepository<Venda>, IDisposable
     {
         private ConcessionariaContext _context;
         private bool disposed = false;
@@ -69,6 +69,13 @@ namespace ConcessionariaAPI.Repositories
                 return venda;
             }
             throw new EntityException("Venda não encontrada", 404, "UPDATE VendaRepository");
+        }
+
+        public async Task<decimal> ValorVendasMesAno(int mes, int ano){
+
+            
+
+            return 0;
         }
 
         protected async virtual void Dispose(bool disposing)
