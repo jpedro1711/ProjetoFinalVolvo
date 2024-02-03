@@ -125,7 +125,7 @@ namespace ConcessionariaAPI.Repositories
                 
                 return resultado;        
             }else{
-                throw new EntityException($"Não foi possível calcula o salário do vendedor:{id} no mês:{mes} do ano:{ano}, pois o mesmo não estava contratado!");
+                throw new EntityException($"Não foi possível calcular o salário do vendedor:{id} no mês:{mes} do ano:{ano}, pois o mesmo não estava contratado!");
             }            
             return null;
         }
