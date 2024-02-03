@@ -68,6 +68,20 @@ namespace ConcessionariaAPI.Controllers
             }
         }
 
+        [HttpGet("Salario/Vendedores")]
+        public async Task<IActionResult> GetSalarioVendedores()
+        {            
+            try
+            {
+                var result = await _service.GetSalarioVendedores();
+                return Ok(result);
+            }
+            catch (EntityException e)
+            {
+                return NotFound();
+            }
+        }
+
        [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] Vendedor updatedVendedor)
         {

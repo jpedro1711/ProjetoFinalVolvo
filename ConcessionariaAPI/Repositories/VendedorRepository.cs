@@ -137,6 +137,97 @@ namespace ConcessionariaAPI.Repositories
             return null;
         }
 
-        
+        public async Task<List<Salario>> GetSalarioMesAnoNE(int id, int mes, int ano){
+
+            DateTime DataAdmissao = _context.Vendedor
+                .Where(v => v.VendedorId == id)
+                .Select(v => v.DataAdmissao)
+                .FirstOrDefault();
+
+            if((DataAdmissao.Month <= mes && DataAdmissao.Year == ano) || (DataAdmissao.Year < ano)){
+                var resultado = _context.Venda
+                .Join(
+                    _context.Vendedor,
+                    venda => venda.VendedorId,
+                    vendedor => vendedor.VendedorId,
+                    (venda, vendedor) => new { Venda = venda, Vendedor = vendedor }
+                )
+                .Join(
+                    _context.Veiculo,
+                    v => v.Venda.VeiculoId,
+                    veiculo => veiculo.VeiculoId,
+                    (v, veiculo) => new { V = v, Veiculo = veiculo }
+                )
+                .Where(v =>v.V.Venda.VendedorId == id && v.V.Venda.DataVenda.Month == mes && v.V.Venda.DataVenda.Year == ano)
+                .GroupBy(
+                    v => new
+                    {
+                        v.V.Vendedor.VendedorId,
+                        v.V.Vendedor.Nome,
+                        v.V.Vendedor.SalarioBase,
+                        Mes = v.V.Venda.DataVenda.Month,
+                        Ano = v.V.Venda.DataVenda.Year
+                    }
+                )
+                .Select(g => new Salario
+                {
+                    ID = g.Key.VendedorId,
+                    Nome = g.Key.Nome,
+                    SalarioCalculado = (double)g.Key.SalarioBase + ((double)g.Sum(v => v.Veiculo.Valor) * 0.01),
+                    Mes = g.Key.Mes,
+                    Ano = g.Key.Ano
+                })
+                .ToList();
+            
+                if(resultado.Count == 0){
+                    resultado = _context.Vendedor
+                        .Where(v => v.VendedorId == id)
+                        .Select(g => new Salario
+                        {
+                            ID = g.VendedorId,
+                            Nome = g.Nome,
+                            SalarioCalculado = (double)g.SalarioBase,
+                            Mes = mes,
+                            Ano = ano
+                        })
+                        .ToList();
+                }
+                
+                return resultado;            
+            }else{
+                return null;
+            }
+                                    
+        }
+
+         public async Task<List<List<Salario>>> GetSalarioVendedores(){
+
+            List<List<Salario>> salarios = new List<List<Salario>>();             
+
+            List<int?> IdsVendedores = _context.Vendedor.Select(v => v.VendedorId).ToList();
+
+            DateTime DataInicio = _context.Vendedor.Min(vendedor => vendedor.DataAdmissao);
+
+            int anos = DateTime.Now.Year - DataInicio.Year;
+            int anoInicio = DataInicio.Year;
+
+
+            for(int i = 0; i < anos; i++){
+                anoInicio += 1;
+                for(int j = 1; j <=12; j++){
+                    if(DateTime.Now.Year == anoInicio && j == DateTime.Now.Month){
+                        return salarios;
+                    }
+                    foreach(int vendedorID in IdsVendedores){
+                        var salario = await GetSalarioMesAnoNE(vendedorID, j, anoInicio);
+                        if(salario != null){
+                            salarios.Add(salario);
+                        }                        
+                    }
+                }
+            }
+
+            return salarios;
+         }
     }
 }
