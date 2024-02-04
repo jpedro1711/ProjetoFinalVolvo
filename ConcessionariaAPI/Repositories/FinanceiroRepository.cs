@@ -50,6 +50,20 @@ namespace ConcessionariaAPI.Repositories
                         }                        
                     }
 
+                    List<int> IdsVeiculos = _context.Venda
+                        .Where(v=> v.DataVenda.Month == j && v.DataVenda.Year == anoInicio).Select(v => v.VeiculoId).ToList();
+
+                    foreach(int idVeiculo in IdsVeiculos){
+                        decimal valorVeiculo = _context.Veiculo.Where(v => v.VeiculoId == idVeiculo).Select(v=> v.Valor).FirstOrDefault();
+
+                        if(valorVeiculo != 0){
+                            balancoMes.Vendido = balancoMes.Vendido + valorVeiculo;
+                        }
+                    }
+
+                    decimal percLucro = ((balancoMes.Vendido - balancoMes.Custos) / balancoMes.Custos)*100;
+                    balancoMes.PercLucro = percLucro;
+
                     balancoFinanceiro.Add(balancoMes);                   
                 }
             }
