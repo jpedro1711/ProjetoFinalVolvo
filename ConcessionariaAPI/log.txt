@@ -12,7 +12,10 @@
 03/02/2024 14:07:25 - Não foi possível calcular o salário do vendedor:1 no mês:1 do ano:2017, pois o mesmo não estava contratado!
 03/02/2024 14:25:36 - Não foi possível calcular o salário do vendedor:1 no mês:1 do ano:2017, pois o mesmo não estava contratado!
 03/02/2024 14:25:36 - Não foi possível calcular o salário do vendedor:1 no mês:1 do ano:2017, pois o mesmo não estava contratado!
-500, Exception in acessorio controller05/02/2024 07:42:35, 500, Exception in acessorio controller
 05/02/2024 07:43:26, 500, Exception in acessorio controller
 05/02/2024 07:43:42, 500, Exception in acessorio controller
 05/02/2024 07:46:15, 500, Exception in acessorio controller
+05/02/2024 07:47:45, 500, Exception in acessorio controller
+05/02/2024 08:09:01 - Endereço não encontrado - 404 - DELETE, EnderecoRepository
+05/02/2024 08:15:43 - Endereço não encontrado - 404 - DELETE, EnderecoRepository
+05/02/2024 08:15:47 - Endereço não encontrado - 404 - GET BY ID, EnderecoRepository

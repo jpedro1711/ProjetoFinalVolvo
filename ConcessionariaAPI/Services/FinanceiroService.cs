@@ -4,6 +4,8 @@ using ConcessionariaAPI.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using ConcessionariaAPI.Repositories.Dto;
+using ConcessionariaAPI.Services.interfaces;
+using ConcessionariaAPI.Repositories.interfaces;
 
 namespace ConcessionariaAPI.Services
 {

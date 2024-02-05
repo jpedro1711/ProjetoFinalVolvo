@@ -24,16 +24,13 @@ namespace ConcessionariaAPI.Repositories
         {
             var entity = await _context.Venda.FirstOrDefaultAsync(e => e.VendaId == id);
 
-            if (entity != null)
-            {
-                _context.Venda.Remove(entity);
-                await _context.SaveChangesAsync();
-            }
-            else
+            if (entity == null)
             {
                 throw new EntityException("Venda não encontrada com id " + id, 404, "DELETE, VendaRepository");
             }
-            
+            _context.Venda.Remove(entity);
+            await _context.SaveChangesAsync();
+
         }
 
         public async Task<Venda> GetById(int id)

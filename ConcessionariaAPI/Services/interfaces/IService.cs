@@ -1,4 +1,4 @@
-﻿namespace ConcessionariaAPI.Services
+﻿namespace ConcessionariaAPI.Services.interfaces
 {
     public interface IService<T> where T : class
     {

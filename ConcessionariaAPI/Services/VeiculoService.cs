@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Migrations;
 using Microsoft.AspNetCore.Http.HttpResults;
+using ConcessionariaAPI.Services.interfaces;
+using ConcessionariaAPI.Repositories.interfaces;
 
 namespace ConcessionariaAPI.Services
 {

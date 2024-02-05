@@ -1,6 +1,8 @@
 using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Models;
+using ConcessionariaAPI.Models.dtos;
 using ConcessionariaAPI.Services;
+using ConcessionariaAPI.Services.interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +12,7 @@ namespace ConcessionariaAPI.Controllers
     [Route("[controller]")]
     public class AcessorioController : ControllerBase
     {
-        private IService<Acessorio> _service;
+        private IAcessorioService _service;
 
         public AcessorioController()
         {
@@ -25,7 +27,7 @@ namespace ConcessionariaAPI.Controllers
 
 
         [HttpPost]
-        public async Task<Acessorio> Create([FromBody] Acessorio acessorio)
+        public async Task<Acessorio> Create([FromBody] AcessorioDto acessorio)
         {
             return await _service.Create(acessorio);
         }
@@ -51,7 +53,7 @@ namespace ConcessionariaAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Acessorio updatedAcessorio)
+        public async Task<IActionResult> Update(int id, [FromBody] AcessorioDto updatedAcessorio)
         {
             try
             {

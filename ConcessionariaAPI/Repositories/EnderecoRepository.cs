@@ -24,12 +24,12 @@ namespace ConcessionariaAPI.Repositories
         {
             var entity = await _context.Endereco.FirstOrDefaultAsync(e => e.EnderecoId == id);
 
-            if (entity != null)
+            if (entity == null)
             {
-                _context.Endereco.Remove(entity);
-                await _context.SaveChangesAsync();
+                throw new EntityException("Endereço não encontrado", 404, "DELETE, EnderecoRepository");
             }
-            throw new EntityException("Endereço não encontrado", 404, "DELETE, EnderecoRepository");
+            _context.Endereco.Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Endereco> GetById(int id)

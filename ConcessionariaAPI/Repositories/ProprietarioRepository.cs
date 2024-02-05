@@ -26,10 +26,10 @@ namespace ConcessionariaAPI.Repositories
 
             if (entity != null)
             {
-                _context.Proprietario.Remove(entity);
-                await _context.SaveChangesAsync();
+                throw new EntityException("Proprietário não encontrado", 404, "DELETE, ProprietarioRepository");
             }
-            throw new EntityException("Proprietário não encontrado", 404, "DELETE, ProprietarioRepository");
+            _context.Proprietario.Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Proprietario> GetById(int id)

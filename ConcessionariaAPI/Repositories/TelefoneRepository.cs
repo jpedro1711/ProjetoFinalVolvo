@@ -24,12 +24,12 @@ namespace ConcessionariaAPI.Repositories
         {
             var entity = await _context.Telefone.FirstOrDefaultAsync(e => e.TelefoneId == id);
 
-            if (entity != null)
+            if (entity == null)
             {
-                _context.Telefone.Remove(entity);
-                await _context.SaveChangesAsync();
+                throw new EntityException("Telefone não encontrado", 404, "DELETE, TelefoneRepository");
             }
-            throw new EntityException("Telefone não encontrado", 404, "DELETE, TelefoneRepository");
+            _context.Telefone.Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Telefone> GetById(int id)

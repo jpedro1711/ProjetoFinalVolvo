@@ -6,6 +6,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using ConcessionariaAPI.Exceptions;
+using ConcessionariaAPI.Services.interfaces;
+using ConcessionariaAPI.Repositories.interfaces;
 
 namespace ConcessionariaAPI.Services
 {

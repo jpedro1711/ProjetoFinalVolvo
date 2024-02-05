@@ -1,4 +1,4 @@
-﻿namespace ConcessionariaAPI.Repositories
+﻿namespace ConcessionariaAPI.Repositories.interfaces
 {
     public interface IRepository<T> where T : class
     {

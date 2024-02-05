@@ -3,10 +3,12 @@ using ConcessionariaAPI.Repositories;
 using ConcessionariaAPI.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using ConcessionariaAPI.Models.dtos;
+using ConcessionariaAPI.Services.interfaces;
 
 namespace ConcessionariaAPI.Services
 {
-    public class AcessorioService : IService<Acessorio>
+    public class AcessorioService : IAcessorioService
     {
         private IRepository<Acessorio> _repository;
         private IVeiculoRepository<Veiculo> _veiculoRepository;
@@ -16,32 +18,12 @@ namespace ConcessionariaAPI.Services
             _veiculoRepository = new VeiculoRepository(context);
         }
 
-        public async Task<Acessorio> Create(Acessorio acessorio)
+        public async Task<Acessorio> Create(AcessorioDto acessorio)
         {
-            ICollection<Veiculo> veiculos = new List<Veiculo>();
 
-            foreach (var veiculo in acessorio.Veiculos)
-            {
-                if (veiculo.VeiculoId != null)
-                {
-                    var result = await _veiculoRepository.GetById((int)acessorio.AcessorioID);
+            var created = await _repository.Create(acessorio.ToEntity());
 
-                    if (result != null)
-                    {
-                        veiculos.Add(result);
-                    }
-                }
-                else
-                {
-                    var created = await _veiculoRepository.Create(veiculo);
-                    veiculos.Add(created);
-                }
-            }
-            acessorio.Veiculos = veiculos;
-
-            var acessory = await _repository.Create(acessorio);
-
-            return acessorio;
+            return created;
         }
 
         public async Task Delete(int id)
@@ -59,40 +41,13 @@ namespace ConcessionariaAPI.Services
             return await _repository.GetById(id);
         }
 
-        public async Task<Acessorio> Update(int id, Acessorio updatedAcessorio)
+        public async Task<Acessorio> Update(int id, AcessorioDto updatedAcessorio)
         {
             var existingAcessorio = await _repository.GetById(id);
 
             if (existingAcessorio != null)
             {
                 existingAcessorio.Descricao = updatedAcessorio.Descricao;
-
-                ICollection<Veiculo> veiculos = new List<Veiculo>();
-                foreach (var veiculo in updatedAcessorio.Veiculos)
-                {
-                    if (veiculo.VeiculoId != null)
-                    {
-                        var existingVeiculo = await _veiculoRepository.GetById(veiculo.VeiculoId);
-                        if (existingVeiculo != null)
-                        {
-                            existingVeiculo.NumeroChassi = veiculo.NumeroChassi;
-                            existingVeiculo.Valor = veiculo.Valor;
-                            existingVeiculo.Quilometragem = veiculo.Quilometragem;
-                            existingVeiculo.VersaoSistema = veiculo.VersaoSistema;
-                            existingVeiculo.ProprietarioId = veiculo.ProprietarioId;
-                            existingVeiculo.Proprietario = veiculo.Proprietario;
-                            existingVeiculo.Acessorios.Add(updatedAcessorio);
-                            veiculos.Add(existingVeiculo);
-                        }
-                    }
-                    else
-                    {
-                        var created = await _veiculoRepository.Create(veiculo);
-                        veiculos.Add(created);
-                    }
-                }
-
-                existingAcessorio.Veiculos = veiculos;
 
                 await _repository.Update(id, existingAcessorio);
                 return existingAcessorio;

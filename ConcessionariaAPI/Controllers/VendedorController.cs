@@ -5,6 +5,7 @@ using ConcessionariaAPI.Services;
 using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Repositories.Dto;
 using Microsoft.Extensions.Logging.EventLog;
+using ConcessionariaAPI.Services.interfaces;
 
 namespace ConcessionariaAPI.Controllers
 {

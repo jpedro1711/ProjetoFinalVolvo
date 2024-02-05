@@ -1,6 +1,7 @@
 using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Models;
 using ConcessionariaAPI.Services;
+using ConcessionariaAPI.Services.interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

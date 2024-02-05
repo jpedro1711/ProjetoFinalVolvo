@@ -2,6 +2,8 @@
 using ConcessionariaAPI.Repositories;
 using Microsoft.EntityFrameworkCore;
 using ConcessionariaAPI.Exceptions;
+using ConcessionariaAPI.Services.interfaces;
+using ConcessionariaAPI.Repositories.interfaces;
 
 namespace ConcessionariaAPI.Services
 {

@@ -3,6 +3,7 @@ using ConcessionariaAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using ConcessionariaAPI.Services;
 using Microsoft.EntityFrameworkCore;
+using ConcessionariaAPI.Services.interfaces;
 
 namespace ConcessionariaAPI.Controllers
 {

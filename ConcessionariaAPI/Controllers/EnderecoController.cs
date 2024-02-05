@@ -1,6 +1,8 @@
 using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Models;
+using ConcessionariaAPI.Models.dtos;
 using ConcessionariaAPI.Services;
+using ConcessionariaAPI.Services.interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +12,7 @@ namespace ConcessionariaAPI.Controllers
     [Route("[controller]")]
     public class EnderecoController : ControllerBase
     {
-        private IService<Endereco> _enderecoService;
+        private IEnderecoService _enderecoService;
 
         public EnderecoController()
         {
@@ -18,7 +20,7 @@ namespace ConcessionariaAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<Endereco> Create([FromBody] Endereco endereco)
+        public async Task<Endereco> Create([FromBody] EnderecoDto endereco)
         {
             return await _enderecoService.Create(endereco);
         }
@@ -44,7 +46,7 @@ namespace ConcessionariaAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Endereco updatedEndereco)
+        public async Task<IActionResult> Update(int id, [FromBody] EnderecoDto updatedEndereco)
         {
             try
             {

@@ -2,6 +2,7 @@ using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Models;
 using ConcessionariaAPI.Repositories.Dto;
 using ConcessionariaAPI.Services;
+using ConcessionariaAPI.Services.interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,7 +19,7 @@ namespace ConcessionariaAPI.Controllers
             _service = new FinanceiroService(new ConcessionariaContext());
         }
 
-        [HttpGet("Financeiro/Balanco")]
+        [HttpGet("Balanco")]
         public async Task<IActionResult> GetBalancoFinanceiro()
         {            
             try

@@ -25,12 +25,12 @@ namespace ConcessionariaAPI.Repositories
         {
             var entity = await _context.Veiculo.FirstOrDefaultAsync(e => e.VeiculoId == id);
 
-            if (entity != null)
+            if (entity == null)
             {
-                _context.Veiculo.Remove(entity);
-                await _context.SaveChangesAsync();
+                throw new EntityException("Veículo não encontrado", 404, "DELETE, VeiculoRepository");
             }
-            throw new EntityException("Veículo não encontrado", 404, "DELETE, VeiculoRepository");
+            _context.Veiculo.Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Veiculo> GetById(int id)
