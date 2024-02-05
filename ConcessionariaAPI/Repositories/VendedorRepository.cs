@@ -210,12 +210,12 @@ namespace ConcessionariaAPI.Repositories
             DateTime DataInicio = _context.Vendedor.Min(vendedor => vendedor.DataAdmissao);
 
             int anos = DateTime.Now.Year - DataInicio.Year;
-            int anoInicio = DataInicio.Year;
+            int anoInicio = DataInicio.Year;                               
 
+            for(int i = 0; i <= anos; i++){                
 
-            for(int i = 0; i < anos; i++){
-                anoInicio += 1;
-                for(int j = 1; j <=12; j++){
+                for(int j = 1; j <=12; j++){                                       
+                    
                     if(DateTime.Now.Year == anoInicio && j == DateTime.Now.Month){
                         return salarios;
                     }
@@ -224,8 +224,10 @@ namespace ConcessionariaAPI.Repositories
                         if(salario != null){
                             salarios.Add(salario);
                         }                        
-                    }
+                    }                                        
                 }
+
+                anoInicio += 1;
             }
 
             return salarios;
