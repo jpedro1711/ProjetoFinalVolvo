@@ -5,7 +5,8 @@ namespace ConcessionariaAPI.Models
     public class ConcessionariaContext : DbContext
     {
         public DbSet<Acessorio> Acessorio { get; set; } = null;
-        public DbSet<Endereco> Endereco { get; set; } = null;
+        public DbSet<Despesa> Despesa { get; set; } = null;
+        public DbSet<Endereco> Endereco { get; set; } = null;        
         public DbSet<Proprietario> Proprietario { get; set; } = null;
         public DbSet<Telefone> Telefone { get; set; } = null;
         public DbSet<Veiculo> Veiculo { get; set; } = null;
@@ -19,6 +20,9 @@ namespace ConcessionariaAPI.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Despesa>()
+                   .Property(e => e.Valor)
+                   .HasPrecision(8, 2);
             modelBuilder.Entity<Veiculo>()
                    .HasIndex(u => u.NumeroChassi)
                    .IsUnique();

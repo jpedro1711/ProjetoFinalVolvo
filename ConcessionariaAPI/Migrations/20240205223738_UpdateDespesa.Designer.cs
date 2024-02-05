@@ -4,6 +4,7 @@ using ConcessionariaAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConcessionariaAPI.Migrations
 {
     [DbContext(typeof(ConcessionariaContext))]
-    partial class ConcessionariaContextModelSnapshot : ModelSnapshot
+    [Migration("20240205223738_UpdateDespesa")]
+    partial class UpdateDespesa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,11 +59,11 @@ namespace ConcessionariaAPI.Migrations
 
             modelBuilder.Entity("ConcessionariaAPI.Models.Despesa", b =>
                 {
-                    b.Property<int>("DespesaID")
+                    b.Property<int>("AcessorioID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DespesaID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AcessorioID"));
 
                     b.Property<string>("Descricao")
                         .IsRequired()
@@ -71,7 +74,7 @@ namespace ConcessionariaAPI.Migrations
                         .HasPrecision(8, 2)
                         .HasColumnType("decimal(8,2)");
 
-                    b.HasKey("DespesaID");
+                    b.HasKey("AcessorioID");
 
                     b.ToTable("Despesa");
                 });
