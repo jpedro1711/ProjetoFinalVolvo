@@ -4,6 +4,7 @@ using ConcessionariaAPI.Repositories.Dto;
 using ConcessionariaAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ConcessionariaAPI.Relatorio;
 
 namespace ConcessionariaAPI.Controllers
 {
@@ -24,6 +25,9 @@ namespace ConcessionariaAPI.Controllers
             try
             {
                 var result = await _service.GetBalancoFinanceiro();
+                if(result.Count > 0){
+                    RelatorioPDF.gerarRelatorioPDF(result);
+                }                    
                 return Ok(result);
             }
             catch (EntityException e)
