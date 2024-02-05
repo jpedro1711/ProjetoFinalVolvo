@@ -1,51 +1,51 @@
 using ConcessionariaAPI.Models;
 using ConcessionariaAPI.Repositories;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-using System.Reflection.Metadata.Ecma335;
-using System.Threading.Tasks;
 using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Migrations;
-using Microsoft.AspNetCore.Http.HttpResults;
 using ConcessionariaAPI.Services.interfaces;
 using ConcessionariaAPI.Repositories.interfaces;
+using ConcessionariaAPI.Models.dtos;
 
 namespace ConcessionariaAPI.Services
 {
-    public class VeiculoService : IVeiculoService<Veiculo>
+    public class VeiculoService : IVeiculoService
     {
         private IVeiculoRepository<Veiculo> _repository;
-        private IRepository<Acessorio> _acessorioRepository;
+        private IAcessorioService _acessorioService;
+        private IProprietarioService _proprietarioService;
 
         public VeiculoService(ConcessionariaContext context)
         {
             _repository = new VeiculoRepository(context);  
-            _acessorioRepository = new AcessorioRepository(context);          
+            _acessorioService = new AcessorioService(context);
+            _proprietarioService = new ProprietarioService(context);
         }
 
-        public async Task<Veiculo> Create(Veiculo veiculo)
+        public async Task<Veiculo> Create(VeiculoDto veiculoDto)
         {
-            List<Acessorio> acessorios = new List<Acessorio>();
-            foreach (var acessorio in veiculo.Acessorios)
+            Veiculo veiculo = veiculoDto.ToEntity();
+
+            if (veiculoDto.ProprietarioId != null)
             {
+                Proprietario p = await _proprietarioService.GetById((int)veiculoDto.ProprietarioId);
+                veiculo.Proprietario = p;
+            }
+            
+            
+
+            foreach (AcessorioDto acessorio in veiculoDto.acessorios)
+            {
+                Acessorio ac;
                 if (acessorio.AcessorioID != null)
                 {
-                    Acessorio result = await _acessorioRepository.GetById((int)acessorio.AcessorioID);
-
-                    if (result != null)
-                    {
-                        acessorios.Add(result);
-                    }
+                    ac = await _acessorioService.GetById((int)acessorio.AcessorioID);
                 }
                 else
                 {
-                    Acessorio result = await _acessorioRepository.Create(acessorio);
-                    acessorios.Add(result);
+                    ac = await _acessorioService.Create(acessorio);
                 }
+                if (ac != null) veiculo.Acessorios.Add(ac);
             }
-
-            veiculo.Acessorios = acessorios;                                  
 
             var created = await _repository.Create(veiculo);
 
@@ -67,46 +67,31 @@ namespace ConcessionariaAPI.Services
             return await _repository.GetById(id);
         }
 
-        public async Task<Veiculo> Update(int id, Veiculo uptadedVeiculo)
+        public async Task<Veiculo> Update(int id, VeiculoDto veiculoDto)
         {
-            Veiculo existingVeiculo = await _repository.GetById(id);
+            Veiculo veiculoAtualizado = await _repository.GetById(id);
 
-            if (existingVeiculo != null)
+            if (veiculoAtualizado == null)
             {
-                existingVeiculo.NumeroChassi = uptadedVeiculo.NumeroChassi;
-                existingVeiculo.Valor = uptadedVeiculo.Valor;
-                existingVeiculo.Quilometragem = uptadedVeiculo.Quilometragem;
-                existingVeiculo.VersaoSistema = uptadedVeiculo.VersaoSistema;
-                existingVeiculo.ProprietarioId = uptadedVeiculo.ProprietarioId;
-                existingVeiculo.Proprietario = uptadedVeiculo.Proprietario;
-                existingVeiculo.Modelo = uptadedVeiculo.Modelo;
-
-                ICollection<Acessorio> acessorios = new List<Acessorio>();
-
-                foreach (var acessorio in uptadedVeiculo.Acessorios)
-                {
-                    if (acessorio.AcessorioID != null)
-                    {
-                        var existingAcessorio = await _acessorioRepository.GetById((int)acessorio.AcessorioID);
-                        if (existingAcessorio != null)
-                        {
-                            existingAcessorio.Descricao = acessorio.Descricao;                            
-                            acessorios.Add(existingAcessorio);
-                        }
-                    }
-                    else
-                    {
-                        Acessorio result = await _acessorioRepository.Create(acessorio);
-                        acessorios.Add(result);
-                    }
-                }
-
-                existingVeiculo.Acessorios = acessorios;                
-
-                var updated = await _repository.Update(id, existingVeiculo);
-                return updated;
+                throw new EntityException("Erro ao atualizar veículo com id " + id + ", não foi encontrado ou dados inválidos");
             }
-            throw new EntityException("Erro ao atualizar veículo com id " + id + ", não foi encontrado ou dados inválidos");                       
+
+            foreach (AcessorioDto acessorio in veiculoDto.acessorios)
+            {
+                Acessorio ac;
+                if (acessorio.AcessorioID != null)
+                {
+                    await _acessorioService.Update((int)acessorio.AcessorioID, acessorio);
+                }
+                else
+                {
+                    var created = await _acessorioService.Create(acessorio);
+                    veiculoAtualizado.Acessorios.Add(created);
+                }
+            }
+
+            var updated = await _repository.Update(id, veiculoDto.ToEntity());
+            return updated;
         }
 
         public async Task<List<Veiculo>> GetVeiculosByKilomers(int km, string system)

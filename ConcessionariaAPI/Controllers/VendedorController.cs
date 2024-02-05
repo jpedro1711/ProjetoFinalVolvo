@@ -6,6 +6,7 @@ using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Repositories.Dto;
 using Microsoft.Extensions.Logging.EventLog;
 using ConcessionariaAPI.Services.interfaces;
+using ConcessionariaAPI.Models.dtos;
 
 namespace ConcessionariaAPI.Controllers
 {
@@ -14,7 +15,7 @@ namespace ConcessionariaAPI.Controllers
     public class VendedorController : ControllerBase
     {
 
-        private IVendedorService<Vendedor> _service;
+        private IVendedorService _service;
         private LogService LogService { get; set; }
         public VendedorController()
         {
@@ -22,7 +23,7 @@ namespace ConcessionariaAPI.Controllers
         }
 
          [HttpPost]
-        public async Task<Vendedor> Create([FromBody] Vendedor vendedor)
+        public async Task<Vendedor> Create([FromBody] VendedorDto vendedor)
         {
             try
             {
@@ -84,7 +85,7 @@ namespace ConcessionariaAPI.Controllers
         }
 
        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Vendedor updatedVendedor)
+        public async Task<IActionResult> Update(int id, [FromBody] VendedorDto updatedVendedor)
         {
             try
             {

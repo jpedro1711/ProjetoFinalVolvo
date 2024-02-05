@@ -93,7 +93,7 @@ namespace ConcessionariaAPI.Services
                     // Se o telefone existir
                     if (tel != null)
                     {
-                        var telUdpated = await _telefoneService.Update((int)telefone.TelefoneId, telefone);
+                        await _telefoneService.Update((int)telefone.TelefoneId, telefone);
                     }
                 }
                 else
@@ -113,7 +113,7 @@ namespace ConcessionariaAPI.Services
                     // Se o telefone existir
                     if (end != null)
                     {
-                        var updatedEnd = await _enderecoService.Update((int)endereco.EnderecoId, endereco);                
+                        await _enderecoService.Update((int)endereco.EnderecoId, endereco);                
                     }
                 }
                 else

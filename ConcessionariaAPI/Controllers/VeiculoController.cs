@@ -4,6 +4,7 @@ using ConcessionariaAPI.Services;
 using Microsoft.EntityFrameworkCore;
 using ConcessionariaAPI.Exceptions;
 using System;
+using ConcessionariaAPI.Models.dtos;
 
 namespace ConcessionariaAPI.Controllers
 {
@@ -19,7 +20,7 @@ namespace ConcessionariaAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<Veiculo> Create([FromBody] Veiculo veiculo)
+        public async Task<Veiculo> Create([FromBody] VeiculoDto veiculo)
         {
             return await _service.Create(veiculo);
         }
@@ -45,7 +46,7 @@ namespace ConcessionariaAPI.Controllers
         }        
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Veiculo updatedVeiculo)
+        public async Task<IActionResult> Update(int id, [FromBody] VeiculoDto updatedVeiculo)
         {
             try
             {

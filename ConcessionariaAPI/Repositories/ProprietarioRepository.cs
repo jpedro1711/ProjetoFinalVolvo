@@ -55,11 +55,7 @@ namespace ConcessionariaAPI.Repositories
 
             if (entity != null)
             {
-                entity.Email = proprietario.Email;
-                entity.CNPJ = proprietario.CNPJ;
-                entity.CPF = proprietario.CPF;
-                entity.DataNascimento = proprietario.DataNascimento;
-                entity.Nome = proprietario.Nome;
+                _context.Entry(entity).CurrentValues.SetValues(proprietario);
                 await _context.SaveChangesAsync();
                 return proprietario;
             }

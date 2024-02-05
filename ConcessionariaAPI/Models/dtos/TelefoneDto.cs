@@ -11,6 +11,7 @@ namespace ConcessionariaAPI.Models.dtos
         [StringLength(14)]
         public string NumeroTelefone { get; set; }
 
+
         public Telefone ToEntity()
         {
             return new Telefone

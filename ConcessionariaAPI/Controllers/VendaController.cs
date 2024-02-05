@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ConcessionariaAPI.Services;
 using Microsoft.EntityFrameworkCore;
 using ConcessionariaAPI.Services.interfaces;
+using ConcessionariaAPI.Models.dtos;
 
 namespace ConcessionariaAPI.Controllers
 {
@@ -12,7 +13,7 @@ namespace ConcessionariaAPI.Controllers
     public class VendaController : Controller
     {
 
-        private IService<Venda> _service;
+        private IVendaService _service;
 
         public VendaController()
         {
@@ -20,7 +21,7 @@ namespace ConcessionariaAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<Venda> Create([FromBody] Venda venda)
+        public async Task<Venda> Create([FromBody] VendaDto venda)
         {
             return await _service.Create(venda);
         }
@@ -46,7 +47,7 @@ namespace ConcessionariaAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Venda updatedVenda)
+        public async Task<IActionResult> Update(int id, [FromBody] VendaDto updatedVenda)
         {
             try
             {

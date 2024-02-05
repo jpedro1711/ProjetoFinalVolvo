@@ -8,71 +8,57 @@ using System.Threading.Tasks;
 using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Services.interfaces;
 using ConcessionariaAPI.Repositories.interfaces;
+using ConcessionariaAPI.Models.dtos;
 
 namespace ConcessionariaAPI.Services
 {
-    public class VendedorService : IVendedorService<Vendedor>
+    public class VendedorService : IVendedorService
     {
         private IVendedorRepository<Vendedor> _repository;
-        private IRepository<Telefone> _telefoneRepository;
-        private IRepository<Endereco> _enderecoRepository;
+        private ITelefoneService _telefoneService;
+        private IEnderecoService _enderecoService;
 
         public VendedorService(ConcessionariaContext context)
         {
             _repository = new VendedorRepository(context);
-            _telefoneRepository = new TelefoneRepository(context);
-            _enderecoRepository = new EnderecoRepository(context);
+            _telefoneService = new TelefoneService(context);
+            _enderecoService = new EnderecoService(context);
         }
 
 
-        public async Task<Vendedor> Create(Vendedor vendedor)
+        public async Task<Vendedor> Create(VendedorDto vendedorDto)
         {
-            List<Telefone> telefones = new List<Telefone>();
-            foreach (var telefone in vendedor.Telefones)
+            Vendedor vendedor = vendedorDto.ToEntity();
+
+            foreach (TelefoneDto telefone in vendedorDto.Telefones)
             {
+                Telefone tel;
                 if (telefone.TelefoneId != null)
                 {
-                    Telefone result = await _telefoneRepository.GetById((int)telefone.TelefoneId);
-
-                    if (result != null)
-                    {
-                        telefones.Add(result);
-                    }
+                    tel = await _telefoneService.GetById((int)telefone.TelefoneId);
                 }
                 else
                 {
-                    Telefone result = await _telefoneRepository.Create(telefone);
-                    telefones.Add(result);
+                    tel = await _telefoneService.Create(telefone);
                 }
-
+                if (tel != null) vendedor.Telefones.Add(tel);
             }
-            
-            vendedor.Telefones = telefones;
-            
 
-            List<Endereco> enderecos = new List<Endereco>();
-            foreach (var endereco in vendedor.Enderecos)
+            foreach (EnderecoDto endereco in vendedorDto.Enderecos)
             {
+                Endereco end;
                 if (endereco.EnderecoId != null)
                 {
-                    Endereco result = await _enderecoRepository.GetById((int)endereco.EnderecoId);
-
-                    if (result != null)
-                    {
-                        enderecos.Add(result);
-                    }
+                    end = await _enderecoService.GetById((int)endereco.EnderecoId);
                 }
                 else
                 {
-                    Endereco result = await _enderecoRepository.Create(endereco);
-                    enderecos.Add(result);
+                    end = await _enderecoService.Create(endereco);
                 }
-
+                vendedor.Enderecos.Add(end);
             }
-            vendedor.Enderecos = enderecos;
 
             var created = await _repository.Create(vendedor);
-
             return created;
         }
 
@@ -91,69 +77,52 @@ namespace ConcessionariaAPI.Services
             return await _repository.GetById(id);
         }
 
-        public async Task<Vendedor> Update(int id, Vendedor updatedVendedor)
+        public async Task<Vendedor> Update(int id, VendedorDto vendedorDto)
         {
-            Vendedor existingVendedor = await _repository.GetById(id);
+            Vendedor vendedorAtualizado = await _repository.GetById(id);
 
-            if (existingVendedor != null)
+            if (vendedorAtualizado == null)
             {
-                existingVendedor.Nome = updatedVendedor.Nome;
-                existingVendedor.Email = updatedVendedor.Email;
-                existingVendedor.SalarioBase = updatedVendedor.SalarioBase;
-                existingVendedor.DataNascimento = updatedVendedor.DataNascimento;
-                existingVendedor.DataAdmissao = updatedVendedor.DataAdmissao;
-
-                ICollection<Telefone> telefones = new List<Telefone>();
-                foreach (var telefone in updatedVendedor.Telefones)
-                {
-                    if (telefone.TelefoneId != null)
-                    {
-                        Telefone existingTelefone = await _telefoneRepository.GetById((int)telefone.TelefoneId);
-                        if (existingTelefone != null)
-                        {
-                            existingTelefone.Tipo = telefone.Tipo;
-                            existingTelefone.NumeroTelefone = telefone.NumeroTelefone;
-                            telefones.Add(existingTelefone);
-                        }
-                    }
-                    else
-                    {
-                        Telefone result = await _telefoneRepository.Create(telefone);
-                        telefones.Add(result);
-                    }
-                }
-
-                existingVendedor.Telefones = telefones;
-
-                ICollection<Endereco> enderecos = new List<Endereco>();
-
-                foreach (var endereco in updatedVendedor.Enderecos)
-                {
-                    if (endereco.EnderecoId != null)
-                    {
-                        var existingEndereco = await _enderecoRepository.GetById((int)endereco.EnderecoId);
-                        if (existingEndereco != null)
-                        {
-                            existingEndereco.Rua = endereco.Rua;
-                            existingEndereco.Numero = endereco.Numero;
-                            existingEndereco.Bairro = endereco.Bairro;
-                            existingEndereco.Cidade = endereco.Cidade;
-                            enderecos.Add(existingEndereco);
-                        }
-                    }
-                    else
-                    {
-                        Endereco result = await _enderecoRepository.Create(endereco);
-                        enderecos.Add(result);
-                    }
-                }
-
-                existingVendedor.Enderecos = enderecos;
-
-                var updated = await _repository.Update(id, existingVendedor);
-                return updated;
+                throw new EntityException("Erro ao atualizar vendedor com id " + id + ", não foi encontrado ou dados inválidos");
             }
-            throw new EntityException("Erro ao atualizar vendedor com id " + id + ", não foi encontrado ou dados inválidos");                     
+
+            foreach (TelefoneDto telefone in vendedorDto.Telefones)
+            {
+                Telefone tel;
+                if (telefone.TelefoneId != null)
+                {
+                 
+                    await _telefoneService.Update((int)telefone.TelefoneId, telefone);
+                }
+                else
+                {
+                    var created = await _telefoneService.Create(telefone);
+                    vendedorAtualizado.Telefones.Add(created);
+                }
+            }
+
+
+            foreach (EnderecoDto endereco in vendedorDto.Enderecos)
+            {
+                Endereco end;
+                if (endereco.EnderecoId != null)
+                {
+                    end = await _enderecoService.GetById((int)endereco.EnderecoId);
+                    // Se o telefone existir
+                    if (end != null)
+                    {
+                        await _enderecoService.Update((int)endereco.EnderecoId, endereco);
+                    }
+                }
+                else
+                {
+                    var created = await _enderecoService.Create(endereco);
+                    vendedorAtualizado.Enderecos.Add(created);
+                }
+            }
+
+            var updated = await _repository.Update(id, vendedorDto.ToEntity());
+            return updated;
         }
         
         public async Task<List<Salario>> GetSalarioMesAno(int id, int mes, int ano)

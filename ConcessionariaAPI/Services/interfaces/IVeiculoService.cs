@@ -1,13 +1,14 @@
 using ConcessionariaAPI.Models;
+using ConcessionariaAPI.Models.dtos;
 
 namespace ConcessionariaAPI.Services.interfaces
 {
-    public interface IVeiculoService<T> where T : class
+    public interface IVeiculoService
     {
-        Task<T> Create(T entity);
-        Task<List<T>> GetAll();
-        Task<T> GetById(int id);
-        Task<T> Update(int id, T entity);
+        Task<Veiculo> Create(VeiculoDto entity);
+        Task<List<Veiculo>> GetAll();
+        Task<Veiculo> GetById(int id);
+        Task<Veiculo> Update(int id, VeiculoDto entity);
         Task Delete(int id);
         Task<List<Veiculo>> GetVeiculosByKilomers(int km, string system);
     }
