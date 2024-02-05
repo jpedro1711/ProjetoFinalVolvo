@@ -42,7 +42,7 @@ namespace ConcessionariaAPI.Controllers
             }
             catch (EntityException e)
             {
-                return NotFound();
+                return NotFound(e.Message);
             }
         }
 

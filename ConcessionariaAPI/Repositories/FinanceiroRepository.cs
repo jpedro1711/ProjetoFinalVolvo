@@ -1,6 +1,6 @@
 using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Models;
-using ConcessionariaAPI.Repositories.Dto;
+using ConcessionariaAPI.Models.dtos;
 using ConcessionariaAPI.Repositories.interfaces;
 using Microsoft.EntityFrameworkCore;
 

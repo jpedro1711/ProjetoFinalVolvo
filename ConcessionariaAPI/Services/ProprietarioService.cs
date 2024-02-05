@@ -36,7 +36,14 @@ namespace ConcessionariaAPI.Services
                 {
                     tel = await _telefoneService.Create(telefone);
                 }
-                if (tel != null) proprietario.Telefones.Add(tel);
+                if (tel != null)
+                {
+                    proprietario.Telefones.Add(tel);
+                }
+                else
+                {
+                    throw new EntityException("Erro ao atualizar proprietário, dados inválidos, telefone não encontrado com id " +  telefone.TelefoneId);
+                }
             }
 
             foreach (EnderecoDto endereco in proprietarioDto.Enderecos)
@@ -50,7 +57,14 @@ namespace ConcessionariaAPI.Services
                 {
                     end = await _enderecoService.Create(endereco);
                 }
-                if (end != null) proprietario.Enderecos.Add(end);
+                if (end != null)
+                {
+                    proprietario.Enderecos.Add(end);
+                }
+                else
+                {
+                    throw new EntityException("Erro ao atualizar proprietário, dados inválidos, endereço não encontrado com id " + end.EnderecoId);
+                }
             }
 
             var created = await _repository.Create(proprietario);
@@ -92,7 +106,14 @@ namespace ConcessionariaAPI.Services
                 {
                     tel = await _telefoneService.Create(telefone);
                 }
-                if (tel != null) proprietarioAtualizado.Telefones.Add(tel);
+                if (tel != null)
+                {
+                    proprietarioAtualizado.Telefones.Add(tel);
+                }
+                else
+                {
+                    throw new EntityException("Erro ao criar proprietário, dados inválidos, telefone não encontrado com id " + telefone.TelefoneId);
+                }
             }
 
 
@@ -107,7 +128,14 @@ namespace ConcessionariaAPI.Services
                 {
                     end = await _enderecoService.Create(endereco);
                 }
-                if (end != null) proprietarioAtualizado.Enderecos.Add(end);
+                if (end != null)
+                {
+                    proprietarioAtualizado.Enderecos.Add(end);
+                }
+                else
+                {
+                    throw new EntityException("Erro ao criar proprietário, dados inválidos, endereço não encontrado com id " + end.EnderecoId);
+                }
             }
 
             var updated = await _repository.Update(id, proprietarioDto.ToEntity());

@@ -26,6 +26,11 @@ namespace ConcessionariaAPI.Services
             var vendedor = await _vendedorService.GetById(venda.VendedorId);
             var carro = await _veiculoService.GetById(venda.VeiculoId);
 
+            if (vendedor == null || carro == null)
+            {
+                throw new EntityException("Erro ao criar venda, dados inválidos");
+            }
+
             Venda newVenda = new Venda();
             newVenda.Vendedor = vendedor;
             newVenda.Veiculo = carro;
@@ -61,6 +66,11 @@ namespace ConcessionariaAPI.Services
 
             var vendedor = await _vendedorService.GetById(updatedVenda.VendedorId);
             var carro = await _veiculoService.GetById(updatedVenda.VeiculoId);
+
+            if (vendedor == null || carro == null)
+            {
+                throw new EntityException("Erro ao criar venda, dados inválidos de carro ou vendedor");
+            }
 
             existingVenda.Vendedor = vendedor;
             existingVenda.Veiculo = carro;

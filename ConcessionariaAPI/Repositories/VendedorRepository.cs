@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using ConcessionariaAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ConcessionariaAPI.Repositories.Dto;
 using System.Net;
 using System.Reflection.Metadata.Ecma335;
 using ConcessionariaAPI.Repositories.interfaces;
+using ConcessionariaAPI.Models.dtos;
 
 namespace ConcessionariaAPI.Repositories
 {
