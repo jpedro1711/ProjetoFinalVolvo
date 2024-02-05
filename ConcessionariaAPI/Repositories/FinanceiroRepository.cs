@@ -67,7 +67,7 @@ namespace ConcessionariaAPI.Repositories
 
                     balancoFinanceiro.Add(balancoMes);                   
                 }
-            }
+            }             
 
             return balancoFinanceiro;
         }     
