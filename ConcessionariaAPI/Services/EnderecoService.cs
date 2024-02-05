@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Services.interfaces;
 using ConcessionariaAPI.Models.dtos;
+using ConcessionariaAPI.Repositories.interfaces;
 
 namespace ConcessionariaAPI.Services
 {

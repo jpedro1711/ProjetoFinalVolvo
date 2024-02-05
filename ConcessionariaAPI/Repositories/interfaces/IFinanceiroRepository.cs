@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using ConcessionariaAPI.Repositories.Dto;
 
-namespace ConcessionariaAPI.Repositories
+namespace ConcessionariaAPI.Repositories.interfaces
 {
-    public interface IFinanceiroRepository<T> where T: class
+    public interface IFinanceiroRepository<T> where T : class
     {
-        Task<List<BalancoFinanceiro>> GetBalancoFinanceiro();     
+        Task<List<BalancoFinanceiro>> GetBalancoFinanceiro();
     }
 }

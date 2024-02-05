@@ -1,5 +1,6 @@
 ﻿using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Models;
+using ConcessionariaAPI.Models.dtos;
 using ConcessionariaAPI.Services;
 using ConcessionariaAPI.Services.interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +12,7 @@ namespace ConcessionariaAPI.Controllers
     [Route("[controller]")]
     public class ProprietarioController : ControllerBase
     {
-        private IService<Proprietario> _service;
+        private IProprietarioService _service;
 
         public ProprietarioController()
         {
@@ -19,7 +20,7 @@ namespace ConcessionariaAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<Proprietario> Create([FromBody] Proprietario proprietario)
+        public async Task<Proprietario> Create([FromBody] ProprietarioDto proprietario)
         {
             return await _service.Create(proprietario);
         }
@@ -45,7 +46,7 @@ namespace ConcessionariaAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Proprietario updatedProprietario)
+        public async Task<IActionResult> Update(int id, [FromBody] ProprietarioDto updatedProprietario)
         {
             try
             {

@@ -1,5 +1,6 @@
 ﻿using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Models;
+using ConcessionariaAPI.Repositories.interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace ConcessionariaAPI.Repositories
@@ -54,7 +55,11 @@ namespace ConcessionariaAPI.Repositories
 
             if (entity != null)
             {
-                _context.Entry(entity).CurrentValues.SetValues(proprietario);
+                entity.Email = proprietario.Email;
+                entity.CNPJ = proprietario.CNPJ;
+                entity.CPF = proprietario.CPF;
+                entity.DataNascimento = proprietario.DataNascimento;
+                entity.Nome = proprietario.Nome;
                 await _context.SaveChangesAsync();
                 return proprietario;
             }

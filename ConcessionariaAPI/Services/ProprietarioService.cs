@@ -7,71 +7,56 @@ using System.Threading.Tasks;
 using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Services.interfaces;
 using ConcessionariaAPI.Repositories.interfaces;
+using ConcessionariaAPI.Models.dtos;
 
 namespace ConcessionariaAPI.Services
 {
-    public class ProprietarioService : IService<Proprietario>
+    public class ProprietarioService : IProprietarioService
     {
         private IRepository<Proprietario> _repository;
-        private IRepository<Telefone> _telefoneRepository;
-        private IRepository<Endereco> _enderecoRepository;
+        private ITelefoneService _telefoneService;
+        private IEnderecoService _enderecoService;
 
         public ProprietarioService(ConcessionariaContext context)
         {
             _repository = new ProprietarioRepository(context);
-            _telefoneRepository = new TelefoneRepository(context);
-            _enderecoRepository = new EnderecoRepository(context);
+            _telefoneService = new TelefoneService(context);
+            _enderecoService = new EnderecoService(context);
         }
 
-
-        public async Task<Proprietario> Create(Proprietario proprietario)
+        public async Task<Proprietario> Create(ProprietarioDto proprietarioDto)
         {
-            List<Telefone> telefones = new List<Telefone>();
-            foreach (var telefone in proprietario.Telefones)
+            Proprietario proprietario = proprietarioDto.ToEntity();
+
+            foreach (TelefoneDto telefone in proprietarioDto.Telefones)
             {
+                Telefone tel;
                 if (telefone.TelefoneId != null)
                 {
-                    Telefone result = await _telefoneRepository.GetById((int)telefone.TelefoneId);
-
-                    if (result != null)
-                    {
-                        telefones.Add(result);
-                    }
+                    tel = await _telefoneService.GetById((int)telefone.TelefoneId);
                 }
                 else
                 {
-                    Telefone result = await _telefoneRepository.Create(telefone);
-                    telefones.Add(result);
+                    tel = await _telefoneService.Create(telefone);
                 }
-
+                if (tel != null) proprietario.Telefones.Add(tel);
             }
-            
-            proprietario.Telefones = telefones;
-            
 
-            List<Endereco> enderecos = new List<Endereco>();
-            foreach (var endereco in proprietario.Enderecos)
+            foreach (EnderecoDto endereco in proprietarioDto.Enderecos)
             {
+                Endereco end;
                 if (endereco.EnderecoId != null)
                 {
-                    Endereco result = await _enderecoRepository.GetById((int)endereco.EnderecoId);
-
-                    if (result != null)
-                    {
-                        enderecos.Add(result);
-                    }
+                    end = await _enderecoService.GetById((int)endereco.EnderecoId);
                 }
                 else
                 {
-                    Endereco result = await _enderecoRepository.Create(endereco);
-                    enderecos.Add(result);
+                    end = await _enderecoService.Create(endereco);
                 }
-
+                proprietario.Enderecos.Add(end);
             }
-            proprietario.Enderecos = enderecos;
 
             var created = await _repository.Create(proprietario);
-
             return created;
         }
 
@@ -90,71 +75,56 @@ namespace ConcessionariaAPI.Services
             return await _repository.GetById(id);
         }
 
-        public async Task<Proprietario> Update(int id, Proprietario updatedProprietario)
+        public async Task<Proprietario> Update(int id, ProprietarioDto proprietarioDto)
         {
-            Proprietario existingProprietario = await _repository.GetById(id);
+            Proprietario proprietarioAtualizado = await _repository.GetById(id);
 
-            if (existingProprietario != null)
+            if (proprietarioAtualizado == null)
             {
-                existingProprietario.Nome = updatedProprietario.Nome;
-                existingProprietario.Email = updatedProprietario.Email;
-                existingProprietario.CPF = updatedProprietario.CPF;
-                existingProprietario.DataNascimento = updatedProprietario.DataNascimento;
-
-                ICollection<Telefone> telefones = new List<Telefone>();
-                foreach (var telefone in updatedProprietario.Telefones)
-                {
-                    if (telefone.TelefoneId != null)
-                    {
-                        Telefone existingTelefone = await _telefoneRepository.GetById((int)telefone.TelefoneId);
-                        if (existingTelefone != null)
-                        {
-                            existingTelefone.Tipo = telefone.Tipo;
-                            existingTelefone.NumeroTelefone = telefone.NumeroTelefone;
-                            telefones.Add(existingTelefone);
-                        }
-                    }
-                    else
-                    {
-                        Telefone result = await _telefoneRepository.Create(telefone);
-                        telefones.Add(result);
-                    }
-                }
-
-                existingProprietario.Telefones = telefones;
-
-                ICollection<Endereco> enderecos = new List<Endereco>();
-
-                foreach (var endereco in updatedProprietario.Enderecos)
-                {
-                    if (endereco.EnderecoId != null)
-                    {
-                        var existingEndereco = await _enderecoRepository.GetById((int)endereco.EnderecoId);
-                        if (existingEndereco != null)
-                        {
-                            existingEndereco.Rua = endereco.Rua;
-                            existingEndereco.Numero = endereco.Numero;
-                            existingEndereco.Bairro = endereco.Bairro;
-                            existingEndereco.Cidade = endereco.Cidade;
-                            enderecos.Add(existingEndereco);
-                        }
-                    }
-                    else
-                    {
-                        Endereco result = await _enderecoRepository.Create(endereco);
-                        enderecos.Add(result);
-                    }
-                }
-
-                existingProprietario.Enderecos = enderecos;
-
-                var updated = await _repository.Update(id, existingProprietario);
-                return updated;
+                throw new EntityException("Erro ao atualizar proprietário com id " + id + ", não foi encontrado ou dados inválidos");
             }
-            throw new EntityException("Erro ao atualizar proprietário com id " + id + ", não foi encontrado ou dados inválidos");
-            
 
-            
+            foreach (TelefoneDto telefone in proprietarioDto.Telefones)
+            {
+                Telefone tel;
+                if (telefone.TelefoneId != null)
+                {
+                    tel = await _telefoneService.GetById((int)telefone.TelefoneId);
+                    // Se o telefone existir
+                    if (tel != null)
+                    {
+                        var telUdpated = await _telefoneService.Update((int)telefone.TelefoneId, telefone);
+                    }
+                }
+                else
+                {
+                    var created = await _telefoneService.Create(telefone);
+                    proprietarioAtualizado.Telefones.Add(created);
+                }
+            }
+
+
+            foreach (EnderecoDto endereco in proprietarioDto.Enderecos)
+            {
+                Endereco end;
+                if (endereco.EnderecoId != null)
+                {
+                    end = await _enderecoService.GetById((int)endereco.EnderecoId);
+                    // Se o telefone existir
+                    if (end != null)
+                    {
+                        var updatedEnd = await _enderecoService.Update((int)endereco.EnderecoId, endereco);                
+                    }
+                }
+                else
+                {
+                    var created = await _enderecoService.Create(endereco);
+                    proprietarioAtualizado.Enderecos.Add(created);
+                }
+            }
+
+            var updated = await _repository.Update(id, proprietarioDto.ToEntity());
+            return updated;
 
         }
     }

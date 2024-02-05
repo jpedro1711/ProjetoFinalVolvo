@@ -1,5 +1,6 @@
 using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Models;
+using ConcessionariaAPI.Models.dtos;
 using ConcessionariaAPI.Services;
 using ConcessionariaAPI.Services.interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -11,14 +12,14 @@ namespace ConcessionariaAPI.Controllers
     [Route("[controller]")]
     public class TelefoneController : ControllerBase
     {
-        private IService<Telefone> _service;
+        private ITelefoneService _service;
 
         public TelefoneController()
         {
             _service = new TelefoneService(new ConcessionariaContext());
         }
         [HttpPost]
-        public async Task<Telefone> Create([FromBody] Telefone telefone)
+        public async Task<Telefone> Create([FromBody] TelefoneDto telefone)
         {
             return await _service.Create(telefone);
         }
@@ -44,7 +45,7 @@ namespace ConcessionariaAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Telefone updatedTelefone)
+        public async Task<IActionResult> Update(int id, [FromBody] TelefoneDto updatedTelefone)
         {
             try
             {

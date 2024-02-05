@@ -1,5 +1,6 @@
 ﻿using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Models;
+using ConcessionariaAPI.Repositories.interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 

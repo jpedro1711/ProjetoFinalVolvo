@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using ConcessionariaAPI.Repositories.Dto;
 using System.Net;
 using System.Reflection.Metadata.Ecma335;
+using ConcessionariaAPI.Repositories.interfaces;
 
 namespace ConcessionariaAPI.Repositories
 {
