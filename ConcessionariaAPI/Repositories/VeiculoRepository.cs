@@ -52,7 +52,7 @@ namespace ConcessionariaAPI.Repositories
 
         public async Task<Veiculo> Update(int id, Veiculo veiculo)
         {
-            var entity = await _context.Veiculo.FirstOrDefaultAsync(e => e.VeiculoId == id);
+            var entity = await _context.Veiculo.Include("Acessorios").FirstOrDefaultAsync(e => e.VeiculoId == id);
 
             if (entity != null)
             {

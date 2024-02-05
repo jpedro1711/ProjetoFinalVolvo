@@ -1,4 +1,4 @@
-using ConcessionariaAPI.Repositories.Dto;
+using ConcessionariaAPI.Models.dtos;
 
 namespace ConcessionariaAPI.Repositories.interfaces
 {

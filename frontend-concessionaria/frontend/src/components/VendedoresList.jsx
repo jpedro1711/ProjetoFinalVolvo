@@ -16,14 +16,15 @@ const VendedoresList = () => {
   }, [vendedores]);
 
   return (
-    <div className="fixed-top fixed-left p-3">
-      <div>
+    <div className="fixed-top fixed-left p-3 mt-5">
+      <h2>Vendedores</h2>
+      <div className="mt-2">
         <a href={'/cadastrarVendedor'} className="btn btn-primary" id="btn-cad">
           Cadastrar vendedor
         </a>
       </div>
-      <div className="d-flex justify-content-center">
-        <table className="table" style={{ maxWidth: '75%' }}>
+      <div className="d-flex justify-content-center mt-2">
+        <table className="table table-striped" style={{ maxWidth: '75%' }}>
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -49,13 +50,13 @@ const VendedoresList = () => {
                     <div className="d-flex justify-content-center">
                       <div className="d-flex">
                         <a
-                          className="link-primary mx-2"
+                          className="btn btn-info mx-2"
                           href={`/vendedor/${vendedor.vendedorId}`}
                         >
                           Visualizar
                         </a>
                         <a
-                          className="link-primary mx-2"
+                          className="btn btn-danger mx-2"
                           href={`/excluir/${vendedor.vendedorId}`}
                         >
                           Excluir

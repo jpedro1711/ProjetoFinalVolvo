@@ -17,6 +17,7 @@ const Vendedor = () => {
 
   return (
     <div>
+      <h2>Vendedor</h2>
       {vendedor && (
         <div className="card">
           <div className="card-body">
@@ -64,7 +65,7 @@ const Vendedor = () => {
               ))}
             </ul>
 
-            <Link to="/" className="btn btn-primary">
+            <Link to="/vendedores" className="btn btn-primary">
               Voltar
             </Link>
           </div>

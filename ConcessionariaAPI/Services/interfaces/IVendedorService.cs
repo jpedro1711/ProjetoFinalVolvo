@@ -1,6 +1,5 @@
 using ConcessionariaAPI.Models;
 using ConcessionariaAPI.Models.dtos;
-using ConcessionariaAPI.Repositories.Dto;
 
 namespace ConcessionariaAPI.Services.interfaces
 {

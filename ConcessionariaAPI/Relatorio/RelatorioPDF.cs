@@ -1,10 +1,11 @@
 using System.Diagnostics;
 using System.IO;
-using ConcessionariaAPI.Repositories.Dto;
+using ConcessionariaAPI.Models.dtos;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
-namespace ConcessionariaAPI.Relatorio{
+namespace ConcessionariaAPI.Relatorio
+{
     public class RelatorioPDF{
 
         /*private List<BalancoFinanceiro> balancoFinanceiro;

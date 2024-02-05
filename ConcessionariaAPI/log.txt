@@ -51,6 +51,3 @@
 05/02/2024 12:56:41 - Não foi possível calcular o salário do vendedor:1 no mês:2 do ano:2024, pois ainda estamos no mês solicitado ou mês/ano é superior a data atual!
 05/02/2024 12:57:44 - Não foi possível calcular o salário do vendedor:1 no mês:2 do ano:2024, pois ainda estamos no mês solicitado ou mês/ano é superior a data atual!
 05/02/2024 12:57:59 - Não foi possível calcular o salário do vendedor:1 no mês:1 do ano:2024, pois o mesmo não estava contratado!
-05/02/2024 19:54:41, 500, Sequence contains no elements.
-05/02/2024 20:27:52, 500, Attempted to divide by zero.
-05/02/2024 20:27:56, 500, Attempted to divide by zero.

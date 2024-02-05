@@ -48,7 +48,7 @@ const CadastrarVendedor = () => {
       console.log(res.headers);
       console.log(res.statusText);
       console.log(res.data);
-      navigate('/');
+      navigate('/vendedores');
     } catch (error) {
       console.log(error);
       console.log(error.message);
