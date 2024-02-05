@@ -22,7 +22,7 @@ namespace ConcessionariaAPI.Controllers
         [HttpGet("error")]
         public IActionResult GetError()
         {
-            throw new EntityException("Exception in acessorio controller");
+            throw new Exception("Erro, tente novamente mais tarde!");
         }
 
 

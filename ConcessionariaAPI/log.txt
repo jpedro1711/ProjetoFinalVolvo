@@ -51,3 +51,12 @@
 05/02/2024 12:56:41 - Não foi possível calcular o salário do vendedor:1 no mês:2 do ano:2024, pois ainda estamos no mês solicitado ou mês/ano é superior a data atual!
 05/02/2024 12:57:44 - Não foi possível calcular o salário do vendedor:1 no mês:2 do ano:2024, pois ainda estamos no mês solicitado ou mês/ano é superior a data atual!
 05/02/2024 12:57:59 - Não foi possível calcular o salário do vendedor:1 no mês:1 do ano:2024, pois o mesmo não estava contratado!
+05/02/2024 14:03:09 - Acessório não encontrado - 404 - GET BY ID, AcessorioRepository
+05/02/2024 14:03:09, 500, Acessório não encontrado
+05/02/2024 14:03:17 - Acessório não encontrado - 404 - GET BY ID, AcessorioRepository
+05/02/2024 14:03:17, 500, Acessório não encontrado
+05/02/2024 14:06:55 - Exception in acessorio controller
+05/02/2024 14:06:55, 500, Exception in acessorio controller
+05/02/2024 14:07:24, 500, Erro, tente novamente mais tarde!
+05/02/2024 18:54:19, 500, Erro, tente novamente mais tarde!
+05/02/2024 20:00:26, 500, Object reference not set to an instance of an object.

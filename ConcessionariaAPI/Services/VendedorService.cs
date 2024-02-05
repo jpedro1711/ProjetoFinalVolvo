@@ -1,6 +1,5 @@
 using ConcessionariaAPI.Models;
 using ConcessionariaAPI.Repositories;
-using ConcessionariaAPI.Repositories.Dto;
 using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Services.interfaces;
 using ConcessionariaAPI.Repositories.interfaces;
@@ -37,7 +36,14 @@ namespace ConcessionariaAPI.Services
                 {
                     tel = await _telefoneService.Create(telefone);
                 }
-                if (tel != null) vendedor.Telefones.Add(tel);
+                if (tel != null)
+                {
+                    vendedor.Telefones.Add(tel);
+                }
+                else
+                {
+                    throw new EntityException("Erro ao criar vendedor, dados inválidos, telefone não encontrado com id " + telefone.TelefoneId);
+                }
             }
 
             foreach (EnderecoDto endereco in vendedorDto.Enderecos)
@@ -51,7 +57,14 @@ namespace ConcessionariaAPI.Services
                 {
                     end = await _enderecoService.Create(endereco);
                 }
-                if (end != null) vendedor.Enderecos.Add(end);
+                if (end != null)
+                {
+                    vendedor.Enderecos.Add(end);
+                }
+                else
+                {
+                    throw new EntityException("Erro ao criar vendedor, dados inválidos, endereço não encontrado com id " + endereco.EnderecoId);
+                }
             }
 
             var created = await _repository.Create(vendedor);
@@ -94,7 +107,14 @@ namespace ConcessionariaAPI.Services
                 {
                     tel = await _telefoneService.Create(telefone);
                 }
-                if(tel != null) vendedorAtualizado.Telefones.Add(tel);
+                if (tel != null)
+                {
+                    vendedorAtualizado.Telefones.Add(tel);
+                }
+                else
+                {
+                    throw new EntityException("Erro ao atualizar vendedor, dados inválidos, telefone não encontrado com id " + telefone.TelefoneId);
+                }
             }
 
 
@@ -110,7 +130,14 @@ namespace ConcessionariaAPI.Services
                 {
                     end = await _enderecoService.Create(endereco);
                 }
-                if (end != null) vendedorAtualizado.Enderecos.Add(end);
+                if (end != null)
+                {
+                    vendedorAtualizado.Enderecos.Add(end);
+                }
+                else
+                {
+                    throw new EntityException("Erro ao atualizar vendedor, dados inválidos, endereço não encontrado com id " + endereco.EnderecoId);
+                }
             }
 
             var updated = await _repository.Update(id, vendedorDto.ToEntity());

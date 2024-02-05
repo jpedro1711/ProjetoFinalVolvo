@@ -45,7 +45,14 @@ namespace ConcessionariaAPI.Services
                 {
                     ac = await _acessorioService.Create(acessorio);
                 }
-                if (ac != null) veiculo.Acessorios.Add(ac);
+                if (ac != null)
+                {
+                    veiculo.Acessorios.Add(ac);
+                }
+                else
+                {
+                    throw new EntityException("Acessório não encontrado com id " + acessorio.AcessorioID + " ao criar veículo");
+                }
             }
 
             var created = await _repository.Create(veiculo);
@@ -88,7 +95,14 @@ namespace ConcessionariaAPI.Services
                 {
                     ac = await _acessorioService.Create(acessorio);
                 }
-                if (ac != null) veiculoAtualizado.Acessorios.Add(ac);
+                if (ac != null)
+                {
+                    veiculoAtualizado.Acessorios.Add(ac);
+                }
+                else
+                {
+                    throw new EntityException("Acessório não encontrado com id " + acessorio.AcessorioID + " ao atualizar veículo");
+                }
             }
 
             var updated = await _repository.Update(id, veiculoDto.ToEntity());

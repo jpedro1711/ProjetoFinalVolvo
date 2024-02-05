@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ConcessionariaAPI.Repositories.Dto;
+using ConcessionariaAPI.Models.dtos;
 
 namespace ConcessionariaAPI.Repositories.interfaces
 {
