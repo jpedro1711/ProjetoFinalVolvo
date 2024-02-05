@@ -25,7 +25,7 @@ namespace ConcessionariaAPI.Repositories
         {
             var entity = await _context.Proprietario.FirstOrDefaultAsync(e => e.ProprietarioId == id);
 
-            if (entity != null)
+            if (entity == null)
             {
                 throw new EntityException("Proprietário não encontrado", 404, "DELETE, ProprietarioRepository");
             }

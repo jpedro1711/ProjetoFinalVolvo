@@ -11,13 +11,10 @@ namespace ConcessionariaAPI.Services
     public class EnderecoService : IEnderecoService
     {
         private IRepository<Endereco> _repository;
-        private IRepository<Proprietario> _proprietarioRepository;
-        private IRepository<Vendedor> _vendedoresRepository;
 
         public EnderecoService(ConcessionariaContext context)
         {
             _repository = new EnderecoRepository(context);
-            _proprietarioRepository = new ProprietarioRepository(context);
         }
 
         public async Task<Endereco> Create(EnderecoDto endereco)

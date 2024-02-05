@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ConcessionariaAPI.Repositories
 {
-    public class VeiculoRepository : IVeiculoRepository<Veiculo>
+    public class VeiculoRepository : IVeiculoRepository<Veiculo>, IDisposable
     {
         private ConcessionariaContext _context;
         private bool disposed = false;

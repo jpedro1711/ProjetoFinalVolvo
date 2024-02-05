@@ -5,6 +5,7 @@ using ConcessionariaAPI.Migrations;
 using ConcessionariaAPI.Services.interfaces;
 using ConcessionariaAPI.Repositories.interfaces;
 using ConcessionariaAPI.Models.dtos;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace ConcessionariaAPI.Services
 {
@@ -81,13 +82,13 @@ namespace ConcessionariaAPI.Services
                 Acessorio ac;
                 if (acessorio.AcessorioID != null)
                 {
-                    await _acessorioService.Update((int)acessorio.AcessorioID, acessorio);
+                    ac = await _acessorioService.GetById((int)acessorio.AcessorioID);
                 }
                 else
                 {
-                    var created = await _acessorioService.Create(acessorio);
-                    veiculoAtualizado.Acessorios.Add(created);
+                    ac = await _acessorioService.Create(acessorio);
                 }
+                if (ac != null) veiculoAtualizado.Acessorios.Add(ac);
             }
 
             var updated = await _repository.Update(id, veiculoDto.ToEntity());

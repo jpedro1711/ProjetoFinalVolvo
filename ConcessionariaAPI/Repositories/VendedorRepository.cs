@@ -11,7 +11,7 @@ using ConcessionariaAPI.Repositories.interfaces;
 
 namespace ConcessionariaAPI.Repositories
 {
-    public class VendedorRepository : IVendedorRepository<Vendedor>
+    public class VendedorRepository : IVendedorRepository<Vendedor>, IDisposable
     {
         private ConcessionariaContext _context;
         private bool disposed = false;
@@ -230,5 +230,23 @@ namespace ConcessionariaAPI.Repositories
 
             return salarios;
          }
+
+        protected async virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    await _context.DisposeAsync();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
     }
 }

@@ -34,3 +34,20 @@
 05/02/2024 11:51:54 - Veículo não encontrado - 404 - GET BY ID, VeiculoRepository
 05/02/2024 12:04:39 - Exception in acessorio controller
 05/02/2024 12:04:39, 500, Exception in acessorio controller
+05/02/2024 12:21:31, 500, The instance of entity type 'Telefone' cannot be tracked because another instance with the same key value for {'TelefoneId'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+05/02/2024 12:43:53 - Proprietário não encontrado - 404 - DELETE, ProprietarioRepository
+05/02/2024 12:46:39 - Proprietário não encontrado - 404 - DELETE, ProprietarioRepository
+05/02/2024 12:46:49 - Proprietário não encontrado - 404 - DELETE, ProprietarioRepository
+05/02/2024 12:47:13 - Proprietário não encontrado - 404 - DELETE, ProprietarioRepository
+05/02/2024 12:48:12 - Proprietário não encontrado - 404 - GET BY ID, ProprietarioRepository
+05/02/2024 12:50:09 - Telefone não encontrado - 404 - GET BY ID, TelefoneRepository
+05/02/2024 12:50:13 - Telefone não encontrado - 404 - GET BY ID, TelefoneRepository
+05/02/2024 12:50:57 - Acessório não encontrado - 404 - GET BY ID, AcessorioRepository
+05/02/2024 12:50:57, 500, Acessório não encontrado
+05/02/2024 12:51:24, 500, An error occurred while saving the entity changes. See the inner exception for details.
+05/02/2024 12:53:01 - Veículo não encontrado - 404 - GET BY ID, VeiculoRepository
+05/02/2024 12:56:01 - Não foi possível calcular o salário do vendedor:1 no mês:2 do ano:2024, pois ainda estamos no mês solicitado ou mês/ano é superior a data atual!
+05/02/2024 12:56:11 - Não foi possível calcular o salário do vendedor:2 no mês:2 do ano:2024, pois ainda estamos no mês solicitado ou mês/ano é superior a data atual!
+05/02/2024 12:56:41 - Não foi possível calcular o salário do vendedor:1 no mês:2 do ano:2024, pois ainda estamos no mês solicitado ou mês/ano é superior a data atual!
+05/02/2024 12:57:44 - Não foi possível calcular o salário do vendedor:1 no mês:2 do ano:2024, pois ainda estamos no mês solicitado ou mês/ano é superior a data atual!
+05/02/2024 12:57:59 - Não foi possível calcular o salário do vendedor:1 no mês:1 do ano:2024, pois o mesmo não estava contratado!

@@ -1,10 +1,6 @@
 using ConcessionariaAPI.Models;
 using ConcessionariaAPI.Repositories;
 using ConcessionariaAPI.Repositories.Dto;
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-using System.Reflection.Metadata.Ecma335;
-using System.Threading.Tasks;
 using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Services.interfaces;
 using ConcessionariaAPI.Repositories.interfaces;
@@ -55,7 +51,7 @@ namespace ConcessionariaAPI.Services
                 {
                     end = await _enderecoService.Create(endereco);
                 }
-                vendedor.Enderecos.Add(end);
+                if (end != null) vendedor.Enderecos.Add(end);
             }
 
             var created = await _repository.Create(vendedor);
@@ -91,14 +87,14 @@ namespace ConcessionariaAPI.Services
                 Telefone tel;
                 if (telefone.TelefoneId != null)
                 {
-                 
-                    await _telefoneService.Update((int)telefone.TelefoneId, telefone);
+
+                    tel = await _telefoneService.GetById((int)telefone.TelefoneId);
                 }
                 else
                 {
-                    var created = await _telefoneService.Create(telefone);
-                    vendedorAtualizado.Telefones.Add(created);
+                    tel = await _telefoneService.Create(telefone);
                 }
+                if(tel != null) vendedorAtualizado.Telefones.Add(tel);
             }
 
 
@@ -108,17 +104,13 @@ namespace ConcessionariaAPI.Services
                 if (endereco.EnderecoId != null)
                 {
                     end = await _enderecoService.GetById((int)endereco.EnderecoId);
-                    // Se o telefone existir
-                    if (end != null)
-                    {
-                        await _enderecoService.Update((int)endereco.EnderecoId, endereco);
-                    }
+                    
                 }
                 else
                 {
-                    var created = await _enderecoService.Create(endereco);
-                    vendedorAtualizado.Enderecos.Add(created);
+                    end = await _enderecoService.Create(endereco);
                 }
+                if (end != null) vendedorAtualizado.Enderecos.Add(end);
             }
 
             var updated = await _repository.Update(id, vendedorDto.ToEntity());

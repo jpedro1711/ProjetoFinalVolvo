@@ -12,11 +12,9 @@ namespace ConcessionariaAPI.Services
     public class AcessorioService : IAcessorioService
     {
         private IRepository<Acessorio> _repository;
-        private IVeiculoRepository<Veiculo> _veiculoRepository;
         public AcessorioService(ConcessionariaContext context) 
         {
             _repository = new AcessorioRepository(context);
-            _veiculoRepository = new VeiculoRepository(context);
         }
 
         public async Task<Acessorio> Create(AcessorioDto acessorio)

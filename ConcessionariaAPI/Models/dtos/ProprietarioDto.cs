@@ -27,6 +27,7 @@ namespace ConcessionariaAPI.Models.dtos
                 Email = Email,
                 CPF = CPF,
                 CNPJ = CNPJ,
+                DataNascimento = DataNascimento
             };
         }
     }

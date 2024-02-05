@@ -1,9 +1,5 @@
 ﻿using ConcessionariaAPI.Models;
 using ConcessionariaAPI.Repositories;
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-using System.Reflection.Metadata.Ecma335;
-using System.Threading.Tasks;
 using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Services.interfaces;
 using ConcessionariaAPI.Repositories.interfaces;
@@ -33,6 +29,7 @@ namespace ConcessionariaAPI.Services
                 Telefone tel;
                 if (telefone.TelefoneId != null)
                 {
+                    // Telefone já existe
                     tel = await _telefoneService.GetById((int)telefone.TelefoneId);
                 }
                 else
@@ -53,7 +50,7 @@ namespace ConcessionariaAPI.Services
                 {
                     end = await _enderecoService.Create(endereco);
                 }
-                proprietario.Enderecos.Add(end);
+                if (end != null) proprietario.Enderecos.Add(end);
             }
 
             var created = await _repository.Create(proprietario);
@@ -90,17 +87,12 @@ namespace ConcessionariaAPI.Services
                 if (telefone.TelefoneId != null)
                 {
                     tel = await _telefoneService.GetById((int)telefone.TelefoneId);
-                    // Se o telefone existir
-                    if (tel != null)
-                    {
-                        await _telefoneService.Update((int)telefone.TelefoneId, telefone);
-                    }
                 }
                 else
                 {
-                    var created = await _telefoneService.Create(telefone);
-                    proprietarioAtualizado.Telefones.Add(created);
+                    tel = await _telefoneService.Create(telefone);
                 }
+                if (tel != null) proprietarioAtualizado.Telefones.Add(tel);
             }
 
 
@@ -110,17 +102,12 @@ namespace ConcessionariaAPI.Services
                 if (endereco.EnderecoId != null)
                 {
                     end = await _enderecoService.GetById((int)endereco.EnderecoId);
-                    // Se o telefone existir
-                    if (end != null)
-                    {
-                        await _enderecoService.Update((int)endereco.EnderecoId, endereco);                
-                    }
                 }
                 else
                 {
-                    var created = await _enderecoService.Create(endereco);
-                    proprietarioAtualizado.Enderecos.Add(created);
+                    end = await _enderecoService.Create(endereco);
                 }
+                if (end != null) proprietarioAtualizado.Enderecos.Add(end);
             }
 
             var updated = await _repository.Update(id, proprietarioDto.ToEntity());
