@@ -19,10 +19,11 @@ const ExcluirVendedor = () => {
 
   const handleClick = async () => {
     await axios.delete(`https://localhost:7084/Vendedor/${params.vendedorId}`);
-    navigate('/');
+    navigate('/vendedores');
   };
   return (
     <div>
+      <h2>Excluir vendedor</h2>
       {vendedor && (
         <div className="card">
           <div className="card-body">
@@ -70,7 +71,7 @@ const ExcluirVendedor = () => {
               ))}
             </ul>
 
-            <Link to="/" className="btn btn-primary">
+            <Link to="/vendedores" className="btn btn-primary">
               Voltar
             </Link>
             <button className="btn btn-danger mx-2" onClick={handleClick}>
