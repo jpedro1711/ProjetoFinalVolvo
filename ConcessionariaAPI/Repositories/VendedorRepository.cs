@@ -1,10 +1,10 @@
 using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Models;
+using ConcessionariaAPI.Models.dtos;
 using Microsoft.EntityFrameworkCore;
 using ConcessionariaAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ConcessionariaAPI.Repositories.Dto;
 using System.Net;
 using System.Reflection.Metadata.Ecma335;
 using ConcessionariaAPI.Repositories.interfaces;

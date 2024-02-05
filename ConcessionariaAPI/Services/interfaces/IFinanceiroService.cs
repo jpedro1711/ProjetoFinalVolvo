@@ -6,7 +6,7 @@ using ConcessionariaAPI.Models.dtos;
 
 namespace ConcessionariaAPI.Services.interfaces
 {
-    public interface IFinanceiroService<T> where T : class
+    public interface IFinanceiroService
     {
         Task<List<BalancoFinanceiro>> GetBalancoFinanceiro();
     }

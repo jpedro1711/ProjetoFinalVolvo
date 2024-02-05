@@ -1,6 +1,6 @@
 using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Models;
-using ConcessionariaAPI.Repositories.Dto;
+using ConcessionariaAPI.Models.dtos;
 using ConcessionariaAPI.Services;
 using ConcessionariaAPI.Services.interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +13,7 @@ namespace ConcessionariaAPI.Controllers
     [Route("[controller]")]
     public class FinanceiroController : ControllerBase
     {
-        private IFinanceiroService<BalancoFinanceiro> _service;
+        private IFinanceiroService _service;
 
         public FinanceiroController()
         {

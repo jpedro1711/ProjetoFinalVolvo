@@ -1,6 +1,7 @@
 using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Models;
-using ConcessionariaAPI.Repositories.Dto;
+using ConcessionariaAPI.Models.dtos;
+using ConcessionariaAPI.Repositories;
 using ConcessionariaAPI.Repositories.interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -51,7 +52,8 @@ namespace ConcessionariaAPI.Repositories
                         foreach(int vendedorID in IdsVendedores){
                             var salario = await _vendedorRepository.GetSalarioMesAnoNE(vendedorID, j, anoInicio);
                             if(salario != null){
-                                foreach(Salario s in salario){
+                                foreach (Salario s in salario)
+                                {
                                     balancoMes.Custos = balancoMes.Custos + (decimal) s.SalarioCalculado;
                                 }
                             }                        

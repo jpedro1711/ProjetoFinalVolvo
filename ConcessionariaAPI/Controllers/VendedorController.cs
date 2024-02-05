@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ConcessionariaAPI.Services;
 using ConcessionariaAPI.Exceptions;
-using ConcessionariaAPI.Repositories.Dto;
 using Microsoft.Extensions.Logging.EventLog;
 using ConcessionariaAPI.Services.interfaces;
 using ConcessionariaAPI.Models.dtos;
