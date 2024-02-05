@@ -1,4 +1,6 @@
 
+using ConcessionariaAPI.Middlewares;
+
 namespace ConcessionariaAPI
 {
     public class Program
@@ -26,7 +28,7 @@ namespace ConcessionariaAPI
             }
 
             app.UseHttpsRedirection();
-
+            app.UseMiddleware<ErrorMiddleware>();
             app.UseAuthorization();
 
             app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:5173"));

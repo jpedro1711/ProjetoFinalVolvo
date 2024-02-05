@@ -17,6 +17,12 @@ namespace ConcessionariaAPI.Controllers
             _service = new AcessorioService(new ConcessionariaContext());
         }
 
+        [HttpGet("error")]
+        public IActionResult GetError()
+        {
+            throw new Exception("Exception in acessorio controller");
+        }
+
 
         [HttpPost]
         public async Task<Acessorio> Create([FromBody] Acessorio acessorio)
