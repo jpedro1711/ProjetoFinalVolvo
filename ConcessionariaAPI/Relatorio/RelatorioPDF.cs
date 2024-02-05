@@ -6,13 +6,7 @@ using iTextSharp.text.pdf;
 
 namespace ConcessionariaAPI.Relatorio
 {
-    public class RelatorioPDF{
-
-        /*private List<BalancoFinanceiro> balancoFinanceiro;
-
-        public Relatorio(List<BalancoFinanceiro> balancoFinanceiro){
-            this.balancoFinanceiro = balancoFinanceiro;
-        }*/
+    public class RelatorioPDF{       
 
         static BaseFont fonteBase = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, false);
 

@@ -13,7 +13,7 @@ namespace ConcessionariaAPI.Controllers
     [Route("[controller]")]
     public class FinanceiroController : ControllerBase
     {
-        private IFinanceiroService<BalancoFinanceiro> _service;
+        private IFinanceiroService _service;
 
         public FinanceiroController()
         {
