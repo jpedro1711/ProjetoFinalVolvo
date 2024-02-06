@@ -50,4 +50,13 @@
 05/02/2024 12:56:11 - Não foi possível calcular o salário do vendedor:2 no mês:2 do ano:2024, pois ainda estamos no mês solicitado ou mês/ano é superior a data atual!
 05/02/2024 12:56:41 - Não foi possível calcular o salário do vendedor:1 no mês:2 do ano:2024, pois ainda estamos no mês solicitado ou mês/ano é superior a data atual!
 05/02/2024 12:57:44 - Não foi possível calcular o salário do vendedor:1 no mês:2 do ano:2024, pois ainda estamos no mês solicitado ou mês/ano é superior a data atual!
-05/02/2024 12:57:59 - Não foi possível calcular o salário do vendedor:1 no mês:1 do ano:2024, pois o mesmo não estava contratado!
+05/02/2024 12:57:59 - Não foi possível calcular o salário do vendedor:1 no mês:1 do ano:2024, pois o mesmo não estava contratado!05/02/2024 20:57:14, 500, A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+05/02/2024 21:02:37 - Acessório não encontrado - 404 - GET BY ID, AcessorioRepository
+05/02/2024 21:04:34 - Endereço não encontrado - 404 - GET BY ID, EnderecoRepository
+05/02/2024 21:07:07 - Proprietário não encontrado - 404 - GET BY ID, ProprietarioRepository
+05/02/2024 21:09:03 - Telefone não encontrado - 404 - GET BY ID, TelefoneRepository
+05/02/2024 21:12:10 - Veículo não encontrado - 404 - GET BY ID, VeiculoRepository
+05/02/2024 21:16:47 - Venda não encontrada - 404 - GET BY ID, VendaRepository
+05/02/2024 21:19:33 - Venda não encontrada - 404 - GET BY ID, VendedorRepository
+05/02/2024 21:24:17 - Venda não encontrada - 404 - GET BY ID, VendedorRepository
+05/02/2024 21:26:37 - Vendedor não encontrado - 404 - GET BY ID, VendedorRepository

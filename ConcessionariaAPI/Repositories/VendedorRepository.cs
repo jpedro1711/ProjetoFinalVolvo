@@ -34,7 +34,7 @@ namespace ConcessionariaAPI.Repositories
 
             if (entity == null)
             {
-                throw new EntityException("Venda não encontrada com id " + id, 404, "DELETE, VendedorRepository");
+                throw new EntityException("Vendedor não encontrado com id " + id, 404, "DELETE, VendedorRepository");
             }
             _context.Vendedor.Remove(entity);
             await _context.SaveChangesAsync();
@@ -48,7 +48,7 @@ namespace ConcessionariaAPI.Repositories
             {
                 return entity;
             }
-            throw new EntityException("Venda não encontrada", 404, "GET BY ID, VendedorRepository");
+            throw new EntityException("Vendedor não encontrado", 404, "GET BY ID, VendedorRepository");
         }
 
         public async Task<List<Vendedor>> GetAll()
@@ -66,7 +66,7 @@ namespace ConcessionariaAPI.Repositories
                 await _context.SaveChangesAsync();
                 return vendedor;
             }
-            throw new EntityException("Venda não encontrada", 404, "UPDATE, VendedorRepository");
+            throw new EntityException("Vendedor não encontrado", 404, "UPDATE, VendedorRepository");
         }
 
         public async Task<List<Salario>> GetSalarioMesAno(int id, int mes, int ano){
