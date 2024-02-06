@@ -23,7 +23,25 @@ namespace ConcessionariaAPI.Services
 
         public async Task<Vendedor> Create(VendedorDto vendedorDto)        
         {            
+            if(vendedorDto.VendedorId != null){
+                throw new EntityException("ID não deve ser informado!");
+            }           
             
+            if(vendedorDto.Nome.Length == 0 || vendedorDto.Nome == "" || vendedorDto.Nome.Length > 60){
+                throw new EntityException("O nome do vendedor deve ser informado e deve possuir no máximo 60 carácteres!");
+            }
+
+            if(vendedorDto.Email.Length == 0 || vendedorDto.Email == "" || vendedorDto.Email.Length > 60){
+                throw new EntityException("O email do vendedor deve ser informado e deve possuir no máximo 60 carácteres!");
+            }            
+
+            if(vendedorDto.SalarioBase <= 0){
+                throw new EntityException("O salário do vendedor deve ser superior a 0!");
+            }
+
+            if(vendedorDto.DataNascimento != null && (DateTime.Now.Year - vendedorDto.DataNascimento.Year) < 18){
+                throw new EntityException("Vendedor deve ser maior de idade!");
+            }            
 
             Vendedor vendedor = vendedorDto.ToEntity();            
 
@@ -90,6 +108,26 @@ namespace ConcessionariaAPI.Services
 
         public async Task<Vendedor> Update(int id, VendedorDto vendedorDto)
         {           
+            if(id != vendedorDto.VendedorId){
+                throw new EntityException("IDs informados não coincidem!");
+            }          
+            
+            if(vendedorDto.Nome.Length == 0 || vendedorDto.Nome == "" || vendedorDto.Nome.Length > 60){
+                throw new EntityException("O nome do vendedor deve ser informado e deve possuir no máximo 60 carácteres!");
+            }
+
+            if(vendedorDto.Email.Length == 0 || vendedorDto.Email == "" || vendedorDto.Email.Length > 60){
+                throw new EntityException("O email do vendedor deve ser informado e deve possuir no máximo 60 carácteres!");
+            }            
+
+            if(vendedorDto.SalarioBase <= 0){
+                throw new EntityException("O salário do vendedor deve ser superior a 0!");
+            }
+
+            if(vendedorDto.DataNascimento != null && (DateTime.Now.Year - vendedorDto.DataNascimento.Year) < 18){
+                throw new EntityException("Vendedor deve ser maior de idade!");
+            }
+
             Vendedor vendedorAtualizado = await _repository.GetById(id);
 
             if (vendedorAtualizado == null)

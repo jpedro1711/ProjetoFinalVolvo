@@ -26,12 +26,12 @@ namespace ConcessionariaAPI.Services
                 throw new EntityException("ID não deve ser informado!");
             }
 
-            if(proprietarioDto.Nome.Length == 0 || proprietarioDto.Nome == ""){
-                throw new EntityException("O nome do proprietário deve ser informado!");
+            if(proprietarioDto.Nome.Length == 0 || proprietarioDto.Nome == "" || proprietarioDto.Nome.Length > 60){
+                throw new EntityException("O nome do proprietário deve ser informado e deve possuir no máximo 60 carácteres!");
             }
 
-            if(proprietarioDto.Email.Length == 0 || proprietarioDto.Email == ""){
-                throw new EntityException("O email do proprietário deve ser informado!");
+            if(proprietarioDto.Email.Length == 0 || proprietarioDto.Email == "" || proprietarioDto.Email.Length > 60){
+                throw new EntityException("O email do proprietário deve ser informado e deve possuir no máximo 60 carácteres!");
             }            
 
             if(proprietarioDto.CPF.Length == 0 && proprietarioDto.CNPJ.Length == 0){
@@ -42,11 +42,11 @@ namespace ConcessionariaAPI.Services
                 throw new EntityException("Proprietário não pode ser pessoa física e empresa ao mesmo tempo!");
             }
 
-            if(proprietarioDto.CPF.Length != 0 && proprietarioDto.CPF.Length < 11){
+            if(proprietarioDto.CPF.Length != 0 && (proprietarioDto.CPF.Length < 11 || proprietarioDto.CPF.Length > 11)){
                 throw new EntityException("CPF deve conter os 11 digitos!");
             }            
 
-            if(proprietarioDto.CNPJ.Length != 0 && proprietarioDto.CNPJ.Length < 14){
+            if(proprietarioDto.CNPJ.Length != 0 && (proprietarioDto.CNPJ.Length < 14 || proprietarioDto.CNPJ.Length > 14)){
                 throw new EntityException("CNPJ deve conter os 14 digitos!");
             }
 
@@ -132,12 +132,12 @@ namespace ConcessionariaAPI.Services
                 throw new EntityException("IDs informados não coincidem!");
             }
 
-            if(proprietarioDto.Nome.Length == 0 || proprietarioDto.Nome == ""){
-                throw new EntityException("O nome do proprietário deve ser informado!");
+            if(proprietarioDto.Nome.Length == 0 || proprietarioDto.Nome == "" || proprietarioDto.Nome.Length > 60){
+                throw new EntityException("O nome do proprietário deve ser informado e deve possuir no máximo 60 carácteres!");
             }
 
-            if(proprietarioDto.Email.Length == 0 || proprietarioDto.Email == ""){
-                throw new EntityException("O email do proprietário deve ser informado!");
+            if(proprietarioDto.Email.Length == 0 || proprietarioDto.Email == "" || proprietarioDto.Email.Length > 60){
+                throw new EntityException("O email do proprietário deve ser informado e deve possuir no máximo 60 carácteres!");
             }            
 
             if(proprietarioDto.CPF.Length == 0 && proprietarioDto.CNPJ.Length == 0){
@@ -148,11 +148,11 @@ namespace ConcessionariaAPI.Services
                 throw new EntityException("Proprietário não pode ser pessoa física e empresa ao mesmo tempo!");
             }
 
-            if(proprietarioDto.CPF.Length != 0 && proprietarioDto.CPF.Length < 11){
+            if(proprietarioDto.CPF.Length != 0 && (proprietarioDto.CPF.Length < 11 || proprietarioDto.CPF.Length > 11)){
                 throw new EntityException("CPF deve conter os 11 digitos!");
             }            
 
-            if(proprietarioDto.CNPJ.Length != 0 && proprietarioDto.CNPJ.Length < 14){
+            if(proprietarioDto.CNPJ.Length != 0 && (proprietarioDto.CNPJ.Length < 14 || proprietarioDto.CNPJ.Length > 14)){
                 throw new EntityException("CNPJ deve conter os 14 digitos!");
             }
 
