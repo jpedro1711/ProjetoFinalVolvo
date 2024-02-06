@@ -14,8 +14,8 @@ namespace ConcessionariaAPI.Repositories
             _context = context;
         }
 
-        public async Task<Endereco> Create(Endereco entity)
-        {
+        public async Task<Endereco> Create(Endereco entity)        
+        {           
             await _context.Endereco.AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity;
@@ -50,7 +50,7 @@ namespace ConcessionariaAPI.Repositories
         }
 
         public async Task<Endereco> Update(int id, Endereco endereco)
-        {
+        {          
             var entity = await _context.Endereco.FirstOrDefaultAsync(e => e.EnderecoId == id);
 
             if (entity != null)

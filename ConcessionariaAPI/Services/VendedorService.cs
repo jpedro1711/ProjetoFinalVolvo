@@ -21,9 +21,11 @@ namespace ConcessionariaAPI.Services
         }
 
 
-        public async Task<Vendedor> Create(VendedorDto vendedorDto)
-        {
-            Vendedor vendedor = vendedorDto.ToEntity();
+        public async Task<Vendedor> Create(VendedorDto vendedorDto)        
+        {            
+            
+
+            Vendedor vendedor = vendedorDto.ToEntity();            
 
             foreach (TelefoneDto telefone in vendedorDto.Telefones)
             {
@@ -87,7 +89,7 @@ namespace ConcessionariaAPI.Services
         }
 
         public async Task<Vendedor> Update(int id, VendedorDto vendedorDto)
-        {
+        {           
             Vendedor vendedorAtualizado = await _repository.GetById(id);
 
             if (vendedorAtualizado == null)
@@ -145,8 +147,8 @@ namespace ConcessionariaAPI.Services
         }
         
         public async Task<List<Salario>> GetSalarioMesAno(int id, int mes, int ano)
-        {
-            return await _repository.GetSalarioMesAno( id, mes, ano);
+        {            
+            return await _repository.GetSalarioMesAno( id, mes, ano);            
         }
 
         public async Task<List<List<Salario>>> GetSalarioVendedores()

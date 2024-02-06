@@ -17,6 +17,14 @@ namespace ConcessionariaAPI.Repositories
 
         public async Task<Veiculo> Create(Veiculo entity)
         {
+            Veiculo valNumeroChassi = null;
+            if(entity.NumeroChassi.Length != 0){
+                valNumeroChassi = await _context.Veiculo.FirstOrDefaultAsync(e => e.NumeroChassi == entity.NumeroChassi);
+                if(valNumeroChassi != null){
+                    throw new EntityException($"Número Chassi {entity.NumeroChassi} já está cadastrado no sistema!");
+                }
+            }
+
             await _context.Veiculo.AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity;
@@ -66,8 +74,7 @@ namespace ConcessionariaAPI.Repositories
         public async Task<List<Veiculo>> GetVeiculosByKilomers(int km ,string version)
         {
             var cars = await _context.Veiculo
-                .Where(c => c.Quilometragem >= km)
-                .Where(c => c.VersaoSistema == version)
+                .Where(c => c.Quilometragem >= km)                
                 .ToListAsync();
             return cars;
         }

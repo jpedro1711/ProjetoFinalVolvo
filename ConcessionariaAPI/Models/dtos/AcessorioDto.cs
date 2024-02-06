@@ -7,7 +7,7 @@ namespace ConcessionariaAPI.Models.dtos
     {
         public int? AcessorioID { get; set; }
         [StringLength(50)]
-        public string? Descricao { get; set; }
+        public string Descricao { get; set; }
         
         public Acessorio ToEntity()
         {

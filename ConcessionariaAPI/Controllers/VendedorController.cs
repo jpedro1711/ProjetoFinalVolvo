@@ -21,7 +21,7 @@ namespace ConcessionariaAPI.Controllers
             _service = new VendedorService(new ConcessionariaContext());
         }
 
-         [HttpPost]
+        [HttpPost]
         public async Task<Vendedor> Create([FromBody] VendedorDto vendedor)
         {
             try
@@ -65,7 +65,7 @@ namespace ConcessionariaAPI.Controllers
             }
             catch (EntityException e)
             {
-                return NotFound();
+                return NotFound(e.Message);
             }
         }
 
@@ -79,7 +79,7 @@ namespace ConcessionariaAPI.Controllers
             }
             catch (EntityException e)
             {
-                return NotFound();
+                return NotFound(e.Message);
             }
         }
 

@@ -5,7 +5,7 @@ namespace ConcessionariaAPI.Models.dtos
 {
     public class DespesaDto : IDto<Despesa>
     {        
-        public int DespesaID { get; set; }
+        public int? DespesaID { get; set; }
 
         [StringLength(50)]
         public string Descricao { get; set; }

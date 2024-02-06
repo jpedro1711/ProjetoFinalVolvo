@@ -19,6 +19,13 @@ namespace ConcessionariaAPI.Services
 
         public async Task<Acessorio> Create(AcessorioDto acessorio)
         {
+            if(acessorio.AcessorioID != null){
+                throw new EntityException("ID não deve ser informado!");
+            }
+
+            if(acessorio.Descricao.Length == 0 || acessorio.Descricao == ""){
+                throw new EntityException("A descrição do acessório deve ser informada!");
+            }
 
             var created = await _repository.Create(acessorio.ToEntity());
 
@@ -40,8 +47,16 @@ namespace ConcessionariaAPI.Services
             return await _repository.GetById(id);
         }
 
-        public async Task<Acessorio> Update(int id, AcessorioDto updatedAcessorio)
+        public async Task<Acessorio> Update(int id, AcessorioDto updatedAcessorio)        
         {
+            if(id != updatedAcessorio.AcessorioID){
+                throw new EntityException("IDs informados não coincidem!");
+            }
+
+            if(updatedAcessorio.Descricao.Length == 0 || updatedAcessorio.Descricao == ""){
+                throw new EntityException("A descrição do acessório deve ser informada no acessório atualizado!");
+            }
+
             var existingAcessorio = await _repository.GetById(id);
 
             if (existingAcessorio != null)

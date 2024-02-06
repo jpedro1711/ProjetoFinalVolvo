@@ -41,7 +41,7 @@ namespace ConcessionariaAPI.Controllers
             }
             catch (EntityException e)
             {
-                return NotFound();
+                return NotFound(e.Message);
             }
         }        
 
@@ -73,7 +73,7 @@ namespace ConcessionariaAPI.Controllers
             }
         }
 
-        [HttpGet("byKilometersOrSystemVersion")]
+        [HttpGet("QuilometragemAcima")]
         public async Task<IActionResult> GetVeiculosByKilomers(int km, string system)
         {
             try

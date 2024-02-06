@@ -50,4 +50,181 @@
 05/02/2024 12:56:11 - Não foi possível calcular o salário do vendedor:2 no mês:2 do ano:2024, pois ainda estamos no mês solicitado ou mês/ano é superior a data atual!
 05/02/2024 12:56:41 - Não foi possível calcular o salário do vendedor:1 no mês:2 do ano:2024, pois ainda estamos no mês solicitado ou mês/ano é superior a data atual!
 05/02/2024 12:57:44 - Não foi possível calcular o salário do vendedor:1 no mês:2 do ano:2024, pois ainda estamos no mês solicitado ou mês/ano é superior a data atual!
-05/02/2024 12:57:59 - Não foi possível calcular o salário do vendedor:1 no mês:1 do ano:2024, pois o mesmo não estava contratado!
+05/02/2024 12:57:59 - Não foi possível calcular o salário do vendedor:1 no mês:1 do ano:2024, pois o mesmo não estava contratado!05/02/2024 20:53:34 - Não foi possível calcular o salário do vendedor:1 no mês:1 do ano:2000, pois o mesmo não estava contratado!
+06/02/2024 11:07:05 - ID não deve ser informado!
+06/02/2024 11:07:05, 500, ID não deve ser informado!
+06/02/2024 11:15:52 - ID não deve ser informado!
+06/02/2024 11:15:52, 500, ID não deve ser informado!
+06/02/2024 11:18:16 - A descrição do acessório deve ser informada!
+06/02/2024 11:18:16, 500, A descrição do acessório deve ser informada!
+06/02/2024 11:20:06 - ID não deve ser informado no body do acessório atualizado!
+06/02/2024 11:20:27 - ID não deve ser informado no body do acessório atualizado!
+06/02/2024 11:20:31 - ID não deve ser informado no body do acessório atualizado!
+06/02/2024 11:21:10 - ID não deve ser informado no body do acessório atualizado!
+06/02/2024 11:21:49 - A descrição do acessório deve ser informada no acessório atualizado!
+06/02/2024 11:24:27 - ID não deve ser informado!
+06/02/2024 11:24:27, 500, ID não deve ser informado!
+06/02/2024 11:24:36 - A descrição da despesa deve ser informada!
+06/02/2024 11:24:36, 500, A descrição da despesa deve ser informada!
+06/02/2024 11:24:43 - O valor da despesa deve ser informado e deve ser superior a 0!
+06/02/2024 11:24:43, 500, O valor da despesa deve ser informado e deve ser superior a 0!
+06/02/2024 11:24:47 - O valor da despesa deve ser informado e deve ser superior a 0!
+06/02/2024 11:24:47, 500, O valor da despesa deve ser informado e deve ser superior a 0!
+06/02/2024 11:28:45 - A descrição da despesa atualizada deve ser informada!
+06/02/2024 11:28:50 - O valor da despesa atualizada deve ser informado e deve ser superior a 0!
+06/02/2024 11:28:56 - O valor da despesa atualizada deve ser informado e deve ser superior a 0!
+06/02/2024 11:34:00 - ID não deve ser informado!
+06/02/2024 11:34:00, 500, ID não deve ser informado!
+06/02/2024 11:34:05 - A rua do endereço deve ser informada!
+06/02/2024 11:34:06, 500, A rua do endereço deve ser informada!
+06/02/2024 11:34:18 - O número do complemento deve ser informado e deve ser superior a 0!
+06/02/2024 11:34:18, 500, O número do complemento deve ser informado e deve ser superior a 0!
+06/02/2024 11:34:24 - O número do complemento deve ser informado e deve ser superior a 0!
+06/02/2024 11:34:24, 500, O número do complemento deve ser informado e deve ser superior a 0!
+06/02/2024 11:34:33 - O bairro do endereço deve ser informado!
+06/02/2024 11:34:33, 500, O bairro do endereço deve ser informado!
+06/02/2024 11:34:40 - A cidade do endereço deve ser informada!
+06/02/2024 11:34:40, 500, A cidade do endereço deve ser informada!
+06/02/2024 11:35:09 - A rua do endereço atualizado deve ser informada!
+06/02/2024 11:35:20 - O número do complemento deve ser informado e deve ser superior a 0!
+06/02/2024 11:35:24 - O número do complemento deve ser informado e deve ser superior a 0!
+06/02/2024 11:35:32 - O bairro do endereço atualizado deve ser informado!
+06/02/2024 11:35:39 - A cidade do endereço atualizado deve ser informada!
+06/02/2024 11:35:47, 500, The property 'Endereco.EnderecoId' is part of a key and so cannot be modified or marked as modified. To change the principal of an existing entity with an identifying foreign key, first delete the dependent and invoke 'SaveChanges', and then associate the dependent with the new principal.
+06/02/2024 11:37:38 - IDs informados não coincidem!
+06/02/2024 11:37:54 - A cidade do endereço atualizado deve ser informada!
+06/02/2024 11:44:42 - ID não deve ser informado!
+06/02/2024 11:44:42, 500, ID não deve ser informado!
+06/02/2024 11:44:49 - A descrição do acessório deve ser informada!
+06/02/2024 11:44:49, 500, A descrição do acessório deve ser informada!
+06/02/2024 11:45:15 - IDs informados não coincidem!
+06/02/2024 11:45:22 - A descrição do acessório deve ser informada no acessório atualizado!
+06/02/2024 11:45:32 - IDs informados não coincidem!
+06/02/2024 12:05:16 - ID não deve ser informado!
+06/02/2024 12:05:16, 500, ID não deve ser informado!
+06/02/2024 12:10:12 - ID não deve ser informado!
+06/02/2024 12:10:12, 500, ID não deve ser informado!
+06/02/2024 12:10:18 - O nome do proprietário deve ser informado!
+06/02/2024 12:10:18, 500, O nome do proprietário deve ser informado!
+06/02/2024 12:11:02 - Cliente não pode ser pessoa física e empresa ao mesmo tempo!
+06/02/2024 12:11:02, 500, Cliente não pode ser pessoa física e empresa ao mesmo tempo!
+06/02/2024 12:26:30 - O email do proprietário deve ser informado!
+06/02/2024 12:26:30, 500, O email do proprietário deve ser informado!
+06/02/2024 12:26:40 - Cliente não pode ser pessoa física e empresa ao mesmo tempo!
+06/02/2024 12:26:40, 500, Cliente não pode ser pessoa física e empresa ao mesmo tempo!
+06/02/2024 12:26:51 - Proprietário deve ser maior de idade!
+06/02/2024 12:26:51, 500, Proprietário deve ser maior de idade!
+06/02/2024 12:27:55 - Cliente não pode ser pessoa física e empresa ao mesmo tempo!
+06/02/2024 12:27:55, 500, Cliente não pode ser pessoa física e empresa ao mesmo tempo!
+06/02/2024 12:28:05 - Proprietário deve ser maior de idade!
+06/02/2024 12:28:05, 500, Proprietário deve ser maior de idade!
+06/02/2024 12:28:38 - Proprietário deve ser maior de idade!
+06/02/2024 12:28:38, 500, Proprietário deve ser maior de idade!
+06/02/2024 12:29:31 - CPF deve conter os 11 digitos!
+06/02/2024 12:29:31, 500, CPF deve conter os 11 digitos!
+06/02/2024 12:30:06 - CNPJ deve conter os 14 digitos!
+06/02/2024 12:30:06, 500, CNPJ deve conter os 14 digitos!
+06/02/2024 12:30:12 - Empresa não deve possuir data de nascimento!
+06/02/2024 12:30:12, 500, Empresa não deve possuir data de nascimento!
+06/02/2024 12:31:17 - IDs informados não coincidem!
+06/02/2024 12:31:24 - O nome do proprietário deve ser informado!
+06/02/2024 12:31:30 - O email do proprietário deve ser informado!
+06/02/2024 13:20:41 - Proprietário deve ser pessoa física ou empresa!
+06/02/2024 13:20:41, 500, Proprietário deve ser pessoa física ou empresa!
+06/02/2024 13:20:48 - Proprietário deve ser maior de idade!
+06/02/2024 13:20:48, 500, Proprietário deve ser maior de idade!
+06/02/2024 13:20:55 - Telefone não encontrado - 404 - GET BY ID, TelefoneRepository
+06/02/2024 13:20:55, 500, Telefone não encontrado
+06/02/2024 13:21:02 - CPF 13245608942 já está cadastrado no sistema!
+06/02/2024 13:21:02, 500, CPF 13245608942 já está cadastrado no sistema!
+06/02/2024 13:21:37, 500, Object reference not set to an instance of an object.
+06/02/2024 13:21:44, 500, Object reference not set to an instance of an object.
+06/02/2024 13:23:04, 500, Object reference not set to an instance of an object.
+06/02/2024 13:23:39, 500, Object reference not set to an instance of an object.
+06/02/2024 13:24:04 - ID não deve ser informado!
+06/02/2024 13:24:04, 500, ID não deve ser informado!
+06/02/2024 13:24:15, 500, Object reference not set to an instance of an object.
+06/02/2024 13:24:21, 500, Object reference not set to an instance of an object.
+06/02/2024 13:24:52, 500, Object reference not set to an instance of an object.
+06/02/2024 13:25:20, 500, Object reference not set to an instance of an object.
+06/02/2024 13:25:56, 500, Object reference not set to an instance of an object.
+06/02/2024 13:26:28, 500, Object reference not set to an instance of an object.
+06/02/2024 13:26:33, 500, Object reference not set to an instance of an object.
+06/02/2024 13:26:41, 500, Object reference not set to an instance of an object.
+06/02/2024 13:28:14, 500, Object reference not set to an instance of an object.
+06/02/2024 13:29:06 - Cliente não pode ser pessoa física e empresa ao mesmo tempo!
+06/02/2024 13:29:06, 500, Cliente não pode ser pessoa física e empresa ao mesmo tempo!
+06/02/2024 13:29:15, 500, Object reference not set to an instance of an object.
+06/02/2024 13:29:21, 500, Object reference not set to an instance of an object.
+06/02/2024 13:29:42, 500, Object reference not set to an instance of an object.
+06/02/2024 13:31:57, 500, Object reference not set to an instance of an object.
+06/02/2024 13:33:05 - Cliente não pode ser pessoa física e empresa ao mesmo tempo!
+06/02/2024 13:33:05, 500, Cliente não pode ser pessoa física e empresa ao mesmo tempo!
+06/02/2024 13:33:13, 500, Object reference not set to an instance of an object.
+06/02/2024 13:33:57 - Cliente não pode ser pessoa física e empresa ao mesmo tempo!
+06/02/2024 13:33:57, 500, Cliente não pode ser pessoa física e empresa ao mesmo tempo!
+06/02/2024 13:34:07, 500, Object reference not set to an instance of an object.
+06/02/2024 13:46:30 - ID não deve ser informado!
+06/02/2024 13:46:30, 500, ID não deve ser informado!
+06/02/2024 13:46:36 - O tipo do telefone deve ser 'r' para residencial ou 'c' para celular
+06/02/2024 13:46:36, 500, O tipo do telefone deve ser 'r' para residencial ou 'c' para celular
+06/02/2024 13:46:41 - Telefone residencial deve possuir 12 dígitos e celular 13!
+06/02/2024 13:46:41, 500, Telefone residencial deve possuir 12 dígitos e celular 13!
+06/02/2024 13:46:54 - Telefone 5541984961004 já está cadastrado no sistema!
+06/02/2024 13:46:54, 500, Telefone 5541984961004 já está cadastrado no sistema!
+06/02/2024 13:47:05 - Telefone 5541984961204 já está cadastrado no sistema!
+06/02/2024 13:47:05, 500, Telefone 5541984961204 já está cadastrado no sistema!
+06/02/2024 13:47:58 - IDs informados não coincidem!
+06/02/2024 13:48:04 - O tipo do telefone deve ser 'r' para residencial ou 'c' para celular
+06/02/2024 13:48:09 - O tipo do telefone deve ser 'r' para residencial ou 'c' para celular
+06/02/2024 13:59:09 - ID não deve ser informado!
+06/02/2024 13:59:09, 500, ID não deve ser informado!
+06/02/2024 13:59:36 - Número do chassi deve ser informado e possuir no máximo 17 carácteres!
+06/02/2024 13:59:36, 500, Número do chassi deve ser informado e possuir no máximo 17 carácteres!
+06/02/2024 13:59:43 - Valor do veículo deve ser superior a 0!
+06/02/2024 13:59:43, 500, Valor do veículo deve ser superior a 0!
+06/02/2024 13:59:53 - Modelo do veículo deve ser informado!
+06/02/2024 13:59:53, 500, Modelo do veículo deve ser informado!
+06/02/2024 14:01:18 - Proprietário não encontrado - 404 - GET BY ID, ProprietarioRepository
+06/02/2024 14:01:18, 500, Proprietário não encontrado
+06/02/2024 14:01:34 - Quilometragem do veículo deve ser superior ou igual a 0!
+06/02/2024 14:01:34, 500, Quilometragem do veículo deve ser superior ou igual a 0!
+06/02/2024 14:01:43 - Versão do sistema deve ser informada e possuir no máximo 30 carácteres!
+06/02/2024 14:01:43, 500, Versão do sistema deve ser informada e possuir no máximo 30 carácteres!
+06/02/2024 14:02:09 - Acessório não encontrado - 404 - GET BY ID, AcessorioRepository
+06/02/2024 14:02:09, 500, Acessório não encontrado
+06/02/2024 14:02:16 - Número Chassi 5dLD0aWJ6PAEA9624 já está cadastrado no sistema!
+06/02/2024 14:02:16, 500, Número Chassi 5dLD0aWJ6PAEA9624 já está cadastrado no sistema!
+06/02/2024 14:02:58 - IDs informados não coincidem!
+06/02/2024 14:03:03 - IDs informados não coincidem!
+06/02/2024 14:06:09 - ID da venda não deve ser informado!
+06/02/2024 14:06:09, 500, ID da venda não deve ser informado!
+06/02/2024 14:06:15 - Venda não encontrada - 404 - GET BY ID, VendedorRepository
+06/02/2024 14:06:15, 500, Venda não encontrada
+06/02/2024 14:06:46 - Venda não encontrada - 404 - GET BY ID, VendedorRepository
+06/02/2024 14:06:46, 500, Venda não encontrada
+06/02/2024 14:07:07 - IDs informados não coincidem!
+06/02/2024 14:07:11 - Venda não encontrada - 404 - GET BY ID, VendedorRepository
+06/02/2024 14:15:09 - ID não deve ser informado!
+06/02/2024 14:15:09, 500, Object reference not set to an instance of an object.
+06/02/2024 14:17:07 - ID não deve ser informado!
+06/02/2024 14:17:07, 500, Object reference not set to an instance of an object.
+06/02/2024 16:50:42, 500, Object reference not set to an instance of an object.
+06/02/2024 16:53:27 - ID não deve ser informado!
+06/02/2024 16:53:27, 500, Object reference not set to an instance of an object.
+06/02/2024 16:53:34 - Proprietário deve ser maior de idade!
+06/02/2024 16:53:34, 500, Object reference not set to an instance of an object.
+06/02/2024 16:54:23 - ID não deve ser informado!
+06/02/2024 16:54:23, 500, Object reference not set to an instance of an object.
+06/02/2024 16:54:45 - ID não deve ser informado!
+06/02/2024 16:54:45, 500, Object reference not set to an instance of an object.
+06/02/2024 16:54:51 - O salário deve ser superior a 0!
+06/02/2024 16:54:51, 500, Object reference not set to an instance of an object.
+06/02/2024 17:04:09 - Não foi possível calcular o salário do vendedor:1 no mês:1 do ano:2022, pois o mesmo não estava contratado!
+06/02/2024 17:06:17 - ID não deve ser informado!
+06/02/2024 17:06:17, 500, ID não deve ser informado!
+06/02/2024 17:06:22 - O tipo do telefone deve ser 'r' para residencial ou 'c' para celular
+06/02/2024 17:06:22, 500, O tipo do telefone deve ser 'r' para residencial ou 'c' para celular
+06/02/2024 17:06:27 - Telefone residencial deve possuir 12 dígitos e celular 13!
+06/02/2024 17:06:27, 500, Telefone residencial deve possuir 12 dígitos e celular 13!
+06/02/2024 17:06:48 - Não foi possível calcular o salário do vendedor:1 no mês:1 do ano:2020, pois o mesmo não estava contratado!

@@ -18,6 +18,22 @@ namespace ConcessionariaAPI.Services
         }
         public async Task<Telefone> Create(TelefoneDto telefone)
         {
+            if(telefone.TelefoneId != null){
+                throw new EntityException("ID não deve ser informado!");
+            }
+
+            if(telefone.Tipo.Equals("") || telefone.Tipo == null){
+                throw new EntityException("Tipo do telefone deve ser informado!");
+            }
+
+            if(!telefone.Tipo.Equals('r') && !telefone.Tipo.Equals('c')){
+                throw new EntityException("O tipo do telefone deve ser 'r' para residencial ou 'c' para celular");
+            }
+            
+            if((telefone.NumeroTelefone.Length < 12 && telefone.Tipo.Equals('r')) || (telefone.NumeroTelefone.Length < 13 && telefone.Tipo.Equals('c'))){
+                throw new EntityException("Telefone residencial deve possuir 12 dígitos e celular 13!");
+            }
+
             var created = await _repository.Create(telefone.ToEntity());
             return created;
         }
@@ -39,6 +55,22 @@ namespace ConcessionariaAPI.Services
 
         public async Task<Telefone> Update(int id, TelefoneDto telefoneDto)
         {
+            if(id != telefoneDto.TelefoneId){
+                throw new EntityException("IDs informados não coincidem!");
+            }
+
+            if(telefoneDto.Tipo.Equals("") || telefoneDto.Tipo == null){
+                throw new EntityException("Tipo do telefone deve ser informado!");
+            }
+
+            if(!telefoneDto.Tipo.Equals('r') && !telefoneDto.Tipo.Equals('c')){
+                throw new EntityException("O tipo do telefone deve ser 'r' para residencial ou 'c' para celular");
+            }
+            
+            if((telefoneDto.NumeroTelefone.Length < 12 && telefoneDto.Tipo.Equals('r')) || (telefoneDto.NumeroTelefone.Length < 13 && telefoneDto.Tipo.Equals('c'))){
+                throw new EntityException("Telefone residencial deve possuir 12 dígitos e celular 13!");
+            }
+
             var existingTelefone = await _repository.GetById(id);
 
             if (existingTelefone == null)

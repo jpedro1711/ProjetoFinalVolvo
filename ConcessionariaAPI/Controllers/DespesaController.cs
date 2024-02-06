@@ -17,14 +17,7 @@ namespace ConcessionariaAPI.Controllers
         public DespesaController()
         {
             _service = new DespesaService(new ConcessionariaContext());
-        }
-
-        [HttpGet("error")]
-        public IActionResult GetError()
-        {
-            throw new EntityException("Exception in despesa controller");
-        }
-
+        }        
 
         [HttpPost]
         public async Task<Despesa> Create([FromBody] DespesaDto despesa)

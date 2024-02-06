@@ -16,6 +16,14 @@ namespace ConcessionariaAPI.Repositories
 
         public async Task<Telefone> Create(Telefone entity)
         {
+            Telefone valTelefone = null;
+            if(entity.NumeroTelefone.Length != 0){
+                valTelefone = await _context.Telefone.FirstOrDefaultAsync(e => e.NumeroTelefone == entity.NumeroTelefone);
+                if(valTelefone != null){
+                    throw new EntityException($"Telefone {entity.NumeroTelefone} já está cadastrado no sistema!");
+                }
+            }
+
             await _context.Telefone.AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity;

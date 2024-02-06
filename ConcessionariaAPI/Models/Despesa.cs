@@ -6,7 +6,7 @@ namespace ConcessionariaAPI.Models
     public class Despesa
     {
         [Key]
-        public int DespesaID { get; set; }
+        public int? DespesaID { get; set; }
 
         [StringLength(50)]
         public string Descricao { get; set; }

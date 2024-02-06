@@ -15,7 +15,7 @@ namespace ConcessionariaAPI.Repositories
         }
 
         public async Task<Proprietario> Create(Proprietario entity)
-        {
+        {                  
             await _context.Proprietario.AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity;

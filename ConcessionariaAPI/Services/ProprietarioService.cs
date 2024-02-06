@@ -21,7 +21,7 @@ namespace ConcessionariaAPI.Services
         }
 
         public async Task<Proprietario> Create(ProprietarioDto proprietarioDto)
-        {
+        {                       
             Proprietario proprietario = proprietarioDto.ToEntity();
 
             foreach (TelefoneDto telefone in proprietarioDto.Telefones)
@@ -72,8 +72,8 @@ namespace ConcessionariaAPI.Services
             return await _repository.GetById(id);
         }
 
-        public async Task<Proprietario> Update(int id, ProprietarioDto proprietarioDto)
-        {
+        public async Task<Proprietario> Update(int id, ProprietarioDto proprietarioDto)        
+        {                        
             Proprietario proprietarioAtualizado = await _repository.GetById(id);
 
             if (proprietarioAtualizado == null)

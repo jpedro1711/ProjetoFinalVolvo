@@ -11,12 +11,12 @@ namespace ConcessionariaAPI.Repositories
         private ConcessionariaContext _context;
         private bool disposed = false;
         public AcessorioRepository(ConcessionariaContext context)
-        {
+        {            
             _context = context;
         }
 
         public async Task<Acessorio> Create(Acessorio entity)
-        {
+        {            
             await _context.Acessorio.AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity;
@@ -50,8 +50,8 @@ namespace ConcessionariaAPI.Repositories
             return await _context.Acessorio.Include("Veiculos").ToListAsync();
         }
 
-        public async Task<Acessorio> Update(int id, Acessorio acessorio)
-        {
+        public async Task<Acessorio> Update(int id, Acessorio acessorio)        
+        {  
             var entity = await _context.Acessorio.FirstOrDefaultAsync(e => e.AcessorioID == id);
 
             if (entity != null)

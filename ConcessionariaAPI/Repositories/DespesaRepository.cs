@@ -14,8 +14,8 @@ namespace ConcessionariaAPI.Repositories
             _context = context;
         }
 
-        public async Task<Despesa> Create(Despesa entity)
-        {
+        public async Task<Despesa> Create(Despesa entity)        
+        {           
             await _context.Despesa.AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity;
@@ -50,8 +50,8 @@ namespace ConcessionariaAPI.Repositories
             return await _context.Despesa.ToListAsync();
         }
 
-        public async Task<Despesa> Update(int id, Despesa despesa)
-        {
+        public async Task<Despesa> Update(int id, Despesa despesa)        
+        {          
             var entity = await _context.Despesa.FirstOrDefaultAsync(e => e.DespesaID == id);
 
             if (entity != null)

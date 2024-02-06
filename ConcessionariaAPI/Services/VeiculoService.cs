@@ -22,18 +22,40 @@ namespace ConcessionariaAPI.Services
             _proprietarioService = new ProprietarioService(context);
         }
 
-        public async Task<Veiculo> Create(VeiculoDto veiculoDto)
+        public async Task<Veiculo> Create(VeiculoDto veiculoDto)        
         {
+            if(veiculoDto.VeiculoId != null){
+                throw new EntityException("ID não deve ser informado!");
+            }
+
+            if(veiculoDto.NumeroChassi.Length == 0 || veiculoDto.NumeroChassi.Length < 17 || veiculoDto.NumeroChassi.Length > 17){
+                throw new EntityException("Número do chassi deve ser informado e possuir no máximo 17 carácteres!");
+            }
+
+            if(veiculoDto.Valor <= 0){
+                throw new EntityException("Valor do veículo deve ser superior a 0!");
+            }
+
+            if(veiculoDto.Quilometragem < 0){
+                 throw new EntityException("Quilometragem do veículo deve ser superior ou igual a 0!");
+            }
+
+            if(veiculoDto.Modelo.Length == 0 || veiculoDto.Modelo == ""){
+                throw new EntityException("Modelo do veículo deve ser informado!");
+            }
+
+            if(veiculoDto.VersaoSistema.Length == 0 || veiculoDto.VersaoSistema.Length > 30){
+                throw new EntityException("Versão do sistema deve ser informada e possuir no máximo 30 carácteres!");
+            }
+
             Veiculo veiculo = veiculoDto.ToEntity();
 
             if (veiculoDto.ProprietarioId != null)
             {
                 Proprietario p = await _proprietarioService.GetById((int)veiculoDto.ProprietarioId);
                 veiculo.Proprietario = p;
-            }
-            
-            
-
+            }           
+                        
             foreach (AcessorioDto acessorio in veiculoDto.acessorios)
             {
                 Acessorio ac;
@@ -77,6 +99,30 @@ namespace ConcessionariaAPI.Services
 
         public async Task<Veiculo> Update(int id, VeiculoDto veiculoDto)
         {
+            if(id != veiculoDto.VeiculoId){
+                throw new EntityException("IDs informados não coincidem!");
+            }
+
+            if(veiculoDto.NumeroChassi.Length == 0 || veiculoDto.NumeroChassi.Length < 17 || veiculoDto.NumeroChassi.Length > 17){
+                throw new EntityException("Número do chassi deve ser informado e possuir no máximo 17 carácteres!");
+            }
+
+            if(veiculoDto.Valor <= 0){
+                throw new EntityException("Valor do veículo deve ser superior a 0!");
+            }
+
+            if(veiculoDto.Quilometragem < 0){
+                 throw new EntityException("Quilometragem do veículo deve ser superior ou igual a 0!");
+            }
+
+            if(veiculoDto.Modelo.Length == 0 || veiculoDto.Modelo == ""){
+                throw new EntityException("Modelo do veículo deve ser informado!");
+            }
+
+            if(veiculoDto.VersaoSistema.Length == 0 || veiculoDto.VersaoSistema.Length > 30){
+                throw new EntityException("Versão do sistema deve ser informada e possuir no máximo 30 carácteres!");
+            }            
+
             Veiculo veiculoAtualizado = await _repository.GetById(id);
 
             if (veiculoAtualizado == null)

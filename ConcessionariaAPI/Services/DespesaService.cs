@@ -19,6 +19,17 @@ namespace ConcessionariaAPI.Services
 
         public async Task<Despesa> Create(DespesaDto despesa)
         {
+            if(despesa.DespesaID != null){
+                throw new EntityException("ID não deve ser informado!");
+            }
+
+            if(despesa.Descricao.Length == 0 || despesa.Descricao == ""){
+                throw new EntityException("A descrição da despesa deve ser informada!");
+            }
+
+            if(despesa.Valor <= 0){
+                throw new EntityException("O valor da despesa deve ser informado e deve ser superior a 0!");
+            }
 
             var created = await _repository.Create(despesa.ToEntity());
 
@@ -42,6 +53,18 @@ namespace ConcessionariaAPI.Services
 
         public async Task<Despesa> Update(int id, DespesaDto updatedDespesa)
         {
+             if(id != updatedDespesa.DespesaID){
+                throw new EntityException("IDs informados não coincidem!");
+            }
+
+            if(updatedDespesa.Descricao.Length == 0 || updatedDespesa.Descricao == ""){
+                throw new EntityException("A descrição da despesa atualizada deve ser informada!");
+            }
+
+            if(updatedDespesa.Valor <= 0){
+                throw new EntityException("O valor da despesa atualizada deve ser informado e deve ser superior a 0!");
+            }
+
             var existingDespesa = await _repository.GetById(id);
 
             if (existingDespesa != null)

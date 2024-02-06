@@ -23,8 +23,19 @@ namespace ConcessionariaAPI.Services
 
         public async Task<Venda> Create(VendaDto venda)
         {
+            if(venda.VendaId != null){
+                throw new EntityException("ID da venda não deve ser informado!");
+            }
+
             var vendedor = await _vendedorService.GetById(venda.VendedorId);
+            if(vendedor == null){
+                throw new EntityException("ID do vendedor informado não está cadastrado!");
+            }
+
             var carro = await _veiculoService.GetById(venda.VeiculoId);
+            if(carro == null){
+                throw new EntityException("ID do carro informado não está cadastrado!");
+            }
 
             Venda newVenda = new Venda();
             newVenda.Vendedor = vendedor;
@@ -52,6 +63,10 @@ namespace ConcessionariaAPI.Services
 
         public async Task<Venda> Update(int id, VendaDto updatedVenda)
         {
+            if(id != updatedVenda.VendaId){
+                throw new EntityException("IDs informados não coincidem!");
+            }
+
             Venda existingVenda = await _repository.GetById(id);
 
             if (existingVenda == null)
@@ -60,7 +75,14 @@ namespace ConcessionariaAPI.Services
             }
 
             var vendedor = await _vendedorService.GetById(updatedVenda.VendedorId);
+            if(vendedor == null){
+                throw new EntityException("ID do vendedor informado não está cadastrado!");
+            }
+
             var carro = await _veiculoService.GetById(updatedVenda.VeiculoId);
+            if(carro == null){
+                throw new EntityException("ID do carro informado não está cadastrado!");
+            }
 
             existingVenda.Vendedor = vendedor;
             existingVenda.Veiculo = carro;

@@ -32,6 +32,9 @@ namespace ConcessionariaAPI.Models
             modelBuilder.Entity<Vendedor>()
                    .Property(e => e.SalarioBase)
                    .HasPrecision(6, 2);
+            modelBuilder.Entity<Vendedor>()
+                .Property(e => e.SalarioBase)
+                .HasDefaultValue(1412.0);
             
         }
     }
