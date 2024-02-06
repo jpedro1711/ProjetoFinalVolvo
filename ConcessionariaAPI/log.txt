@@ -60,3 +60,7 @@
 05/02/2024 21:19:33 - Venda não encontrada - 404 - GET BY ID, VendedorRepository
 05/02/2024 21:24:17 - Venda não encontrada - 404 - GET BY ID, VendedorRepository
 05/02/2024 21:26:37 - Vendedor não encontrado - 404 - GET BY ID, VendedorRepository
+05/02/2024 21:35:15, 500, Erro, tente novamente mais tarde!
+06/02/2024 07:00:58 - Não foi possível calcular o salário do vendedor:1 no mês:1 do ano:2023, pois o mesmo não estava contratado!
+06/02/2024 07:02:01, 500, Nome de objeto 'Despesa' inválido.
+06/02/2024 07:03:16, 500, Nome de objeto 'Despesa' inválido.

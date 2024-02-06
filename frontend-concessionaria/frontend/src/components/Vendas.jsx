@@ -13,15 +13,17 @@ const Vendas = () => {
   }, []);
 
   return (
-    <div className="fixed-top fixed-left p-3 mt-5">
-      <h2>Vendas</h2>
-      <div className="mt-2">
-        <a href={'/cadastrarVenda'} className="btn btn-primary" id="btn-cad">
-          Cadastrar venda
-        </a>
+    <div className="p-3 mt-5" style={{ width: '75%' }}>
+      <div>
+        <h2>Vendas</h2>
+        <div className="mt-2">
+          <a href={'/cadastrarVenda'} className="btn btn-primary" id="btn-cad">
+            Cadastrar venda
+          </a>
+        </div>
       </div>
-      <div className="d-flex justify-content-center mt-2">
-        <table className="table table-striped" style={{ maxWidth: '75%' }}>
+      <div className="mt-2">
+        <table className="table table-striped">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -37,7 +39,7 @@ const Vendas = () => {
               vendas.map((venda, index) => (
                 <tr key={index}>
                   <th scope="row">{venda.vendaId}</th>
-                  <td>{venda.dataVenda}</td>
+                  <td>{venda.dataVenda.substring(0, 10)}</td>
                   <td>{venda.veiculo.modelo}</td>
                   <td>{venda.veiculo.valor}</td>
                   <td>{venda.vendedor.nome}</td>

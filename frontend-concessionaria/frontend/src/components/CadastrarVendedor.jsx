@@ -57,7 +57,7 @@ const CadastrarVendedor = () => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="container my-4">
       <h2 className="mb-4">Cadastrar Vendedor</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">

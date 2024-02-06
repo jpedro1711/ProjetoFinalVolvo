@@ -16,7 +16,7 @@ const VendedoresList = () => {
   }, [vendedores]);
 
   return (
-    <div className="fixed-top fixed-left p-3 mt-5">
+    <div className="p-3 mt-5" style={{ width: '75%' }}>
       <h2>Vendedores</h2>
       <div className="mt-2">
         <a href={'/cadastrarVendedor'} className="btn btn-primary" id="btn-cad">
@@ -24,7 +24,7 @@ const VendedoresList = () => {
         </a>
       </div>
       <div className="d-flex justify-content-center mt-2">
-        <table className="table table-striped" style={{ maxWidth: '75%' }}>
+        <table className="table table-striped" style={{ maxWidth: '100%' }}>
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -50,7 +50,7 @@ const VendedoresList = () => {
                     <div className="d-flex justify-content-center">
                       <div className="d-flex">
                         <a
-                          className="btn btn-info mx-2"
+                          className="btn  btn-secondary mx-2"
                           href={`/vendedor/${vendedor.vendedorId}`}
                         >
                           Visualizar

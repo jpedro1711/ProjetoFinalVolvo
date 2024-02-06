@@ -25,7 +25,7 @@ const ExcluirVeiculo = () => {
   };
 
   return (
-    <div>
+    <div className="p-3 mt-5">
       {veiculo && (
         <div className="card">
           <div className="card-body">

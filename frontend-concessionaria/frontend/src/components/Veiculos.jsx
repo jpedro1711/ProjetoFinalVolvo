@@ -12,7 +12,7 @@ const Veiculos = () => {
   }, []);
 
   return (
-    <div className="fixed-top fixed-left p-3 mt-5">
+    <div className="p-3 mt-5" style={{ width: '75%' }}>
       <h2>Veículos</h2>
       <div className="mt-2">
         <a href={'/cadastrarVeiculo'} className="btn btn-primary" id="btn-cad">
@@ -20,7 +20,7 @@ const Veiculos = () => {
         </a>
       </div>
       <div className="d-flex justify-content-center mt-2">
-        <table className="table table-striped" style={{ maxWidth: '75%' }}>
+        <table className="table table-striped">
           <thead>
             <tr>
               <th scope="col">#</th>

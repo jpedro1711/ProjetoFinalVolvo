@@ -16,7 +16,7 @@ const Vendedor = () => {
   }, [params.vendedorId]);
 
   return (
-    <div>
+    <div className="p-3 mt-5">
       <h2>Vendedor</h2>
       {vendedor && (
         <div className="card">

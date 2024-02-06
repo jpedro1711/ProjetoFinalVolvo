@@ -40,7 +40,7 @@ const CadastrarVenda = () => {
   };
 
   return (
-    <div>
+    <div className="p-3 mt-5">
       <form onSubmit={handleSubmit}>
         <h2>Cadastrar venda</h2>
         <div className="mb-3">
@@ -74,7 +74,8 @@ const CadastrarVenda = () => {
             <option value="">Selecione um veículo</option>
             {veiculos.map((veiculo) => (
               <option key={veiculo.veiculoId} value={veiculo.veiculoId}>
-                {veiculo.modelo}
+                {veiculo.modelo} {' - '}
+                {veiculo.numeroChassi}
               </option>
             ))}
           </select>
