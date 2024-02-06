@@ -22,6 +22,46 @@ namespace ConcessionariaAPI.Services
 
         public async Task<Proprietario> Create(ProprietarioDto proprietarioDto)
         {                       
+            if(proprietarioDto.ProprietarioId != null){
+                throw new EntityException("ID não deve ser informado!");
+            }
+
+            if(proprietarioDto.Nome.Length == 0 || proprietarioDto.Nome == ""){
+                throw new EntityException("O nome do proprietário deve ser informado!");
+            }
+
+            if(proprietarioDto.Email.Length == 0 || proprietarioDto.Email == ""){
+                throw new EntityException("O email do proprietário deve ser informado!");
+            }            
+
+            if(proprietarioDto.CPF.Length == 0 && proprietarioDto.CNPJ.Length == 0){
+                throw new EntityException("Proprietário deve ser pessoa física ou empresa!");
+            }
+
+            if(proprietarioDto.CPF.Length != 0 && proprietarioDto.CNPJ.Length != 0){
+                throw new EntityException("Proprietário não pode ser pessoa física e empresa ao mesmo tempo!");
+            }
+
+            if(proprietarioDto.CPF.Length != 0 && proprietarioDto.CPF.Length < 11){
+                throw new EntityException("CPF deve conter os 11 digitos!");
+            }            
+
+            if(proprietarioDto.CNPJ.Length != 0 && proprietarioDto.CNPJ.Length < 14){
+                throw new EntityException("CNPJ deve conter os 14 digitos!");
+            }
+
+            if(proprietarioDto.CNPJ.Length != 0 && proprietarioDto.DataNascimento != null){
+                 throw new EntityException("Empresa não deve possuir data de nascimento!");
+            }
+
+            if(proprietarioDto.CPF.Length != 0 && proprietarioDto.DataNascimento == null){
+                 throw new EntityException("Data de nascimento do proprietário deve ser informada!");
+            }
+
+            if(proprietarioDto.DataNascimento != null && (DateTime.Now.Year - proprietarioDto.DataNascimento.Value.Year) < 18){
+                throw new EntityException("Proprietário deve ser maior de idade!");
+            }
+
             Proprietario proprietario = proprietarioDto.ToEntity();
 
             foreach (TelefoneDto telefone in proprietarioDto.Telefones)
@@ -88,6 +128,47 @@ namespace ConcessionariaAPI.Services
 
         public async Task<Proprietario> Update(int id, ProprietarioDto proprietarioDto)        
         {                        
+            if(id != proprietarioDto.ProprietarioId){
+                throw new EntityException("IDs informados não coincidem!");
+            }
+
+            if(proprietarioDto.Nome.Length == 0 || proprietarioDto.Nome == ""){
+                throw new EntityException("O nome do proprietário deve ser informado!");
+            }
+
+            if(proprietarioDto.Email.Length == 0 || proprietarioDto.Email == ""){
+                throw new EntityException("O email do proprietário deve ser informado!");
+            }            
+
+            if(proprietarioDto.CPF.Length == 0 && proprietarioDto.CNPJ.Length == 0){
+                throw new EntityException("Proprietário deve ser pessoa física ou empresa!");
+            }
+
+            if(proprietarioDto.CPF.Length != 0 && proprietarioDto.CNPJ.Length != 0){
+                throw new EntityException("Proprietário não pode ser pessoa física e empresa ao mesmo tempo!");
+            }
+
+            if(proprietarioDto.CPF.Length != 0 && proprietarioDto.CPF.Length < 11){
+                throw new EntityException("CPF deve conter os 11 digitos!");
+            }            
+
+            if(proprietarioDto.CNPJ.Length != 0 && proprietarioDto.CNPJ.Length < 14){
+                throw new EntityException("CNPJ deve conter os 14 digitos!");
+            }
+
+            if(proprietarioDto.CNPJ.Length != 0 && proprietarioDto.DataNascimento != null){
+                 throw new EntityException("Empresa não deve possuir data de nascimento!");
+            }
+
+            if(proprietarioDto.CPF.Length != 0 && proprietarioDto.DataNascimento == null){
+                 throw new EntityException("Data de nascimento do proprietário deve ser informada!");
+            }
+
+            if(proprietarioDto.DataNascimento != null && (DateTime.Now.Year - proprietarioDto.DataNascimento.Value.Year) < 18){
+                throw new EntityException("Proprietário deve ser maior de idade!");
+            }
+
+
             Proprietario proprietarioAtualizado = await _repository.GetById(id);
 
             if (proprietarioAtualizado == null)

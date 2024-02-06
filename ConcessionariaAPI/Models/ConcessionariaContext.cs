@@ -14,7 +14,7 @@ namespace ConcessionariaAPI.Models
         public DbSet<Vendedor> Vendedor { get; set; } = null;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=LAPTOP-P8BTRSBI\SQLEXPRESS;Database=DB_CONCESSIONARIA;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-NJE93RJ;Database=DB_CONCESSIONARIA;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
 
         }
 

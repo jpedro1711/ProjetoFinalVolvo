@@ -22,7 +22,7 @@ namespace ConcessionariaAPI.Repositories
         }
 
         public async Task<Vendedor> Create(Vendedor entity)
-        {
+        {            
             await _context.Vendedor.AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity;

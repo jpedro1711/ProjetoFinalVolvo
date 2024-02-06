@@ -64,3 +64,33 @@
 06/02/2024 07:00:58 - Não foi possível calcular o salário do vendedor:1 no mês:1 do ano:2023, pois o mesmo não estava contratado!
 06/02/2024 07:02:01, 500, Nome de objeto 'Despesa' inválido.
 06/02/2024 07:03:16, 500, Nome de objeto 'Despesa' inválido.
+06/02/2024 17:14:36, 500, A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SNI_PN11, error: 26 - Error Locating Server/Instance Specified)
+06/02/2024 17:15:23 - Não foi possível calcular o salário do vendedor:1 no mês:1 do ano:2000, pois o mesmo não estava contratado!
+06/02/2024 17:15:29 - Não foi possível calcular o salário do vendedor:1 no mês:13 do ano:2000, pois o mesmo não estava contratado!
+06/02/2024 17:19:12 - ID não deve ser informado!
+06/02/2024 17:19:12, 500, ID não deve ser informado!
+06/02/2024 17:19:20 - O nome do proprietário deve ser informado!
+06/02/2024 17:19:20, 500, O nome do proprietário deve ser informado!
+06/02/2024 17:19:34 - O email do proprietário deve ser informado!
+06/02/2024 17:19:34, 500, O email do proprietário deve ser informado!
+06/02/2024 17:19:39 - Cliente não pode ser pessoa física e empresa ao mesmo tempo!
+06/02/2024 17:19:39, 500, Cliente não pode ser pessoa física e empresa ao mesmo tempo!
+06/02/2024 17:19:45 - Proprietário deve ser pessoa física ou empresa!
+06/02/2024 17:19:45, 500, Proprietário deve ser pessoa física ou empresa!
+06/02/2024 17:20:07, 500, Object reference not set to an instance of an object.
+06/02/2024 17:20:18 - Cliente não pode ser pessoa física e empresa ao mesmo tempo!
+06/02/2024 17:20:18, 500, Cliente não pode ser pessoa física e empresa ao mesmo tempo!
+06/02/2024 17:20:32 - Cliente não pode ser pessoa física e empresa ao mesmo tempo!
+06/02/2024 17:20:32, 500, Cliente não pode ser pessoa física e empresa ao mesmo tempo!
+06/02/2024 17:20:37, 500, Object reference not set to an instance of an object.
+06/02/2024 17:20:45, 500, Object reference not set to an instance of an object.
+06/02/2024 17:22:04 - Proprietário deve ser maior de idade!
+06/02/2024 17:22:04, 500, Proprietário deve ser maior de idade!
+06/02/2024 17:22:29 - Cliente não pode ser pessoa física e empresa ao mesmo tempo!
+06/02/2024 17:22:29, 500, Cliente não pode ser pessoa física e empresa ao mesmo tempo!
+06/02/2024 17:45:14 - CPF:13245608942 já está cadastrado no sistema!
+06/02/2024 17:45:14, 500, CPF:13245608942 já está cadastrado no sistema!
+06/02/2024 17:45:56 - CNPJ:55873453000114 já está cadastrado no sistema!
+06/02/2024 17:45:56, 500, CNPJ:55873453000114 já está cadastrado no sistema!
+06/02/2024 17:46:40 - Proprietário deve ser maior de idade!
+06/02/2024 17:46:41, 500, Proprietário deve ser maior de idade!

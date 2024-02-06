@@ -16,6 +16,23 @@ namespace ConcessionariaAPI.Repositories
 
         public async Task<Proprietario> Create(Proprietario entity)
         {                  
+
+            Proprietario valCPF = null;
+            if(entity.CPF != ""){
+                valCPF = await _context.Proprietario.FirstOrDefaultAsync(e => e.CPF == entity.CPF);
+                if(valCPF != null){
+                    throw new EntityException($"CPF:{entity.CPF} já está cadastrado no sistema!");
+                }
+            }
+
+            Proprietario valCNPJ = null;
+            if(entity.CNPJ != ""){
+                valCNPJ = await _context.Proprietario.FirstOrDefaultAsync(e => e.CNPJ == entity.CNPJ);
+                if(valCNPJ != null){
+                    throw new EntityException($"CNPJ:{entity.CNPJ} já está cadastrado no sistema!");
+                }
+            }
+
             await _context.Proprietario.AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity;
