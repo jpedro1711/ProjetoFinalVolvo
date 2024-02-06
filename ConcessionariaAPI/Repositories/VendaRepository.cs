@@ -15,7 +15,12 @@ namespace ConcessionariaAPI.Repositories
         }
 
         public async Task<Venda> Create(Venda entity)
-        {
+        {                        
+            var valVeiculo = await _context.Venda.FirstOrDefaultAsync(v => v.VeiculoId == entity.VeiculoId);
+            if(valVeiculo != null){
+                throw new EntityException($"Carro com ID:{entity.VeiculoId}, já foi vendido!");
+            }                
+
             await _context.Venda.AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity;
@@ -57,7 +62,12 @@ namespace ConcessionariaAPI.Repositories
         }
 
         public async Task<Venda> Update(int id, Venda venda)
-        {
+        {                       
+            Venda valVeiculo = await _context.Venda.Include(v=> v.Veiculo).FirstOrDefaultAsync(v => v.VeiculoId == venda.VeiculoId);
+            if(valVeiculo != null && valVeiculo.VendaId != venda.VendaId){
+                throw new EntityException($"Carro com ID:{venda.VeiculoId}, já foi vendido!");
+            }
+           
             var entity = await _context.Venda.FirstOrDefaultAsync(e => e.VendaId == id);
 
             if (entity != null)

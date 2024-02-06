@@ -127,3 +127,6 @@
 06/02/2024 18:16:10 - Número Chassi 5dLD0aWJ6PAEA9623 já está cadastrado no sistema!
 06/02/2024 18:17:24 - Telefone 5541989023145 já está cadastrado no sistema!
 06/02/2024 18:17:39 - Telefone residencial deve possuir 12 dígitos e celular 13!
+06/02/2024 18:22:51 - ID da venda não deve ser informado!
+06/02/2024 18:22:51, 500, ID da venda não deve ser informado!
+06/02/2024 18:36:12 - IDs informados não coincidem!
