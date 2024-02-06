@@ -30,7 +30,7 @@ namespace ConcessionariaAPI.Services
                 throw new EntityException("O tipo do telefone deve ser 'r' para residencial ou 'c' para celular");
             }
             
-            if((telefone.NumeroTelefone.Length < 12 && telefone.Tipo.Equals('r')) || (telefone.NumeroTelefone.Length < 13 && telefone.Tipo.Equals('c'))){
+            if((telefone.NumeroTelefone.Length != 12 && telefone.Tipo.Equals('r')) || (telefone.NumeroTelefone.Length != 13 && telefone.Tipo.Equals('c'))){
                 throw new EntityException("Telefone residencial deve possuir 12 dígitos e celular 13!");
             }
 
@@ -67,7 +67,7 @@ namespace ConcessionariaAPI.Services
                 throw new EntityException("O tipo do telefone deve ser 'r' para residencial ou 'c' para celular");
             }
             
-            if((telefoneDto.NumeroTelefone.Length < 12 && telefoneDto.Tipo.Equals('r')) || (telefoneDto.NumeroTelefone.Length < 13 && telefoneDto.Tipo.Equals('c'))){
+            if(((telefoneDto.NumeroTelefone.Length != 12) && telefoneDto.Tipo.Equals('r')) || (telefoneDto.NumeroTelefone.Length != 13 && telefoneDto.Tipo.Equals('c'))){
                 throw new EntityException("Telefone residencial deve possuir 12 dígitos e celular 13!");
             }
 

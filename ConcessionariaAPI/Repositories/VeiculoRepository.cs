@@ -21,7 +21,7 @@ namespace ConcessionariaAPI.Repositories
             if(entity.NumeroChassi.Length != 0){
                 valNumeroChassi = await _context.Veiculo.FirstOrDefaultAsync(e => e.NumeroChassi == entity.NumeroChassi);
                 if(valNumeroChassi != null){
-                    throw new EntityException($"Número Chassi {entity.NumeroChassi} já está cadastrado no sistema!");
+                    throw new EntityException($"Número Chassi:{entity.NumeroChassi} já está cadastrado no sistema!");
                 }
             }
 
@@ -60,6 +60,14 @@ namespace ConcessionariaAPI.Repositories
 
         public async Task<Veiculo> Update(int id, Veiculo veiculo)
         {
+            Veiculo valNumeroChassi = null;
+            if(veiculo.NumeroChassi.Length != 0){
+                valNumeroChassi = await _context.Veiculo.FirstOrDefaultAsync(e => e.NumeroChassi == veiculo.NumeroChassi);
+                if(valNumeroChassi != null && valNumeroChassi.VeiculoId != veiculo.VeiculoId){
+                    throw new EntityException($"Número Chassi:{veiculo.NumeroChassi} já está cadastrado no sistema!");
+                }
+            }
+
             var entity = await _context.Veiculo.Include("Acessorios").FirstOrDefaultAsync(e => e.VeiculoId == id);
 
             if (entity != null)

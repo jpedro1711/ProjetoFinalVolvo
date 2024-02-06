@@ -20,7 +20,7 @@ namespace ConcessionariaAPI.Repositories
             if(entity.NumeroTelefone.Length != 0){
                 valTelefone = await _context.Telefone.FirstOrDefaultAsync(e => e.NumeroTelefone == entity.NumeroTelefone);
                 if(valTelefone != null){
-                    throw new EntityException($"Telefone {entity.NumeroTelefone} já está cadastrado no sistema!");
+                    throw new EntityException($"Telefone:{entity.NumeroTelefone} já está cadastrado no sistema!");
                 }
             }
 
@@ -59,6 +59,14 @@ namespace ConcessionariaAPI.Repositories
 
         public async Task<Telefone> Update(int id, Telefone telefone)
         {
+            Telefone valTelefone = null;
+            if(telefone.NumeroTelefone.Length != 0){
+                valTelefone = await _context.Telefone.FirstOrDefaultAsync(e => e.NumeroTelefone == telefone.NumeroTelefone);
+                if(valTelefone != null && valTelefone.TelefoneId != telefone.TelefoneId){
+                    throw new EntityException($"Telefone:{telefone.NumeroTelefone} já está cadastrado no sistema!");
+                }
+            }
+
             var entity = await _context.Telefone.FirstOrDefaultAsync(e => e.TelefoneId == id);
 
             if (entity != null)

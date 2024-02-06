@@ -23,8 +23,8 @@ namespace ConcessionariaAPI.Services
                 throw new EntityException("ID não deve ser informado!");
             }
 
-            if(acessorio.Descricao.Length == 0 || acessorio.Descricao == ""){
-                throw new EntityException("A descrição do acessório deve ser informada!");
+            if(acessorio.Descricao.Length == 0 || acessorio.Descricao == "" || acessorio.Descricao.Length > 50){
+                throw new EntityException("A descrição do acessório deve ser informada e deve possuir no máximo 50 carácteres!");
             }
 
             var created = await _repository.Create(acessorio.ToEntity());
@@ -53,8 +53,8 @@ namespace ConcessionariaAPI.Services
                 throw new EntityException("IDs informados não coincidem!");
             }
 
-            if(updatedAcessorio.Descricao.Length == 0 || updatedAcessorio.Descricao == ""){
-                throw new EntityException("A descrição do acessório deve ser informada no acessório atualizado!");
+            if(updatedAcessorio.Descricao.Length == 0 || updatedAcessorio.Descricao == "" || updatedAcessorio.Descricao.Length > 50){
+                throw new EntityException("A descrição do acessório deve ser informada e deve possuir no máximo 50 carácteres!");
             }
 
             var existingAcessorio = await _repository.GetById(id);

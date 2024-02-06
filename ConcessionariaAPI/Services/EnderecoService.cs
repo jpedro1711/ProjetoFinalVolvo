@@ -23,20 +23,20 @@ namespace ConcessionariaAPI.Services
                 throw new EntityException("ID não deve ser informado!");
             }
 
-            if(endereco.Rua.Length == 0 || endereco.Rua == ""){
-                throw new EntityException("A rua do endereço deve ser informada!");
+            if(endereco.Rua.Length == 0 || endereco.Rua == "" || endereco.Rua.Length > 60){
+                throw new EntityException("A rua do endereço deve ser informada e deve posuir no máximo 60 carácteres!");
             }
 
             if(endereco.Numero <= 0){
                 throw new EntityException("O número do complemento deve ser informado e deve ser superior a 0!");
             }
 
-            if(endereco.Bairro.Length == 0 || endereco.Bairro == ""){
-                throw new EntityException("O bairro do endereço deve ser informado!");
+            if(endereco.Bairro.Length == 0 || endereco.Bairro == "" || endereco.Bairro.Length > 60){
+                throw new EntityException("O bairro do endereço deve ser informado e deve posuir no máximo 60 carácteres!");
             }
 
-            if(endereco.Cidade.Length == 0 || endereco.Cidade == ""){
-                throw new EntityException("A cidade do endereço deve ser informada!");
+            if(endereco.Cidade.Length == 0 || endereco.Cidade == "" || endereco.Cidade.Length > 60){
+                throw new EntityException("A cidade do endereço deve ser informada e deve posuir no máximo 60 carácteres!");
             }
 
             var enderecoCreated = await _repository.Create(endereco.ToEntity());
@@ -64,20 +64,20 @@ namespace ConcessionariaAPI.Services
                 throw new EntityException("IDs informados não coincidem!");
             }
 
-            if(updatedEndereco.Rua.Length == 0 || updatedEndereco.Rua == ""){
-                throw new EntityException("A rua do endereço atualizado deve ser informada!");
+            if(updatedEndereco.Rua.Length == 0 || updatedEndereco.Rua == "" || updatedEndereco.Rua.Length > 60){
+                throw new EntityException("A rua do endereço deve ser informada e deve posuir no máximo 60 carácteres!");
             }
 
             if(updatedEndereco.Numero <= 0){
                 throw new EntityException("O número do complemento deve ser informado e deve ser superior a 0!");
             }
 
-            if(updatedEndereco.Bairro.Length == 0 || updatedEndereco.Bairro == ""){
-                throw new EntityException("O bairro do endereço atualizado deve ser informado!");
+            if(updatedEndereco.Bairro.Length == 0 || updatedEndereco.Bairro == "" || updatedEndereco.Bairro.Length > 60){
+                throw new EntityException("O bairro do endereço deve ser informado e deve posuir no máximo 60 carácteres!");
             }
 
-            if(updatedEndereco.Cidade.Length == 0 || updatedEndereco.Cidade == ""){
-                throw new EntityException("A cidade do endereço atualizado deve ser informada!");
+            if(updatedEndereco.Cidade.Length == 0 || updatedEndereco.Cidade == "" || updatedEndereco.Cidade.Length > 60){
+                throw new EntityException("A cidade do endereço deve ser informada e deve posuir no máximo 60 carácteres!");
             }
 
             var existingEndereco = await _repository.GetById(id);

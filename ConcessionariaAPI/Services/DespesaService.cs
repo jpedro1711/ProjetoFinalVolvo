@@ -23,8 +23,8 @@ namespace ConcessionariaAPI.Services
                 throw new EntityException("ID não deve ser informado!");
             }
 
-            if(despesa.Descricao.Length == 0 || despesa.Descricao == ""){
-                throw new EntityException("A descrição da despesa deve ser informada!");
+            if(despesa.Descricao.Length == 0 || despesa.Descricao == "" || despesa.Descricao.Length > 50){
+                throw new EntityException("A descrição da despesa deve ser informada e deve possuir no máximo 50 carácteres!");
             }
 
             if(despesa.Valor <= 0){
@@ -57,12 +57,12 @@ namespace ConcessionariaAPI.Services
                 throw new EntityException("IDs informados não coincidem!");
             }
 
-            if(updatedDespesa.Descricao.Length == 0 || updatedDespesa.Descricao == ""){
-                throw new EntityException("A descrição da despesa atualizada deve ser informada!");
+            if(updatedDespesa.Descricao.Length == 0 || updatedDespesa.Descricao == "" || updatedDespesa.Descricao.Length > 50){
+                throw new EntityException("A descrição da despesa deve ser informada e deve possuir no máximo 50 carácteres!");
             }
 
             if(updatedDespesa.Valor <= 0){
-                throw new EntityException("O valor da despesa atualizada deve ser informado e deve ser superior a 0!");
+                throw new EntityException("O valor da despesa deve ser informado e deve ser superior a 0!");
             }
 
             var existingDespesa = await _repository.GetById(id);

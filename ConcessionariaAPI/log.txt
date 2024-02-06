@@ -104,3 +104,26 @@
 06/02/2024 17:57:21 - IDs informados não coincidem!
 06/02/2024 17:57:28 - O nome do vendedor deve ser informado e deve possuir no máximo 60 carácteres!
 06/02/2024 17:57:34 - O salário do vendedor deve ser superior a 0!
+06/02/2024 18:06:25 - ID não deve ser informado!
+06/02/2024 18:06:25, 500, ID não deve ser informado!
+06/02/2024 18:06:29 - O tipo do telefone deve ser 'r' para residencial ou 'c' para celular
+06/02/2024 18:06:29, 500, O tipo do telefone deve ser 'r' para residencial ou 'c' para celular
+06/02/2024 18:06:41 - Telefone residencial deve possuir 12 dígitos e celular 13!
+06/02/2024 18:06:41, 500, Telefone residencial deve possuir 12 dígitos e celular 13!
+06/02/2024 18:06:46 - Telefone residencial deve possuir 12 dígitos e celular 13!
+06/02/2024 18:06:46, 500, Telefone residencial deve possuir 12 dígitos e celular 13!
+06/02/2024 18:06:50 - Telefone 554136678933 já está cadastrado no sistema!
+06/02/2024 18:06:50, 500, Telefone 554136678933 já está cadastrado no sistema!
+06/02/2024 18:07:09 - Telefone residencial deve possuir 12 dígitos e celular 13!
+06/02/2024 18:07:09, 500, Telefone residencial deve possuir 12 dígitos e celular 13!
+06/02/2024 18:07:19 - Telefone residencial deve possuir 12 dígitos e celular 13!
+06/02/2024 18:07:19, 500, Telefone residencial deve possuir 12 dígitos e celular 13!
+06/02/2024 18:08:11 - Proprietário não encontrado - 404 - DELETE, ProprietarioRepository
+06/02/2024 18:08:29 - O salário do vendedor deve ser superior a 0!
+06/02/2024 18:08:45 - Vendedor não encontrado com id 11 - 404 - DELETE, VendedorRepository
+06/02/2024 18:13:41, 500, Object reference not set to an instance of an object.
+06/02/2024 18:14:33 - CPF:14256723189 já está cadastrado no sistema!
+06/02/2024 18:15:10 - CNPJ:55873453000114 já está cadastrado no sistema!
+06/02/2024 18:16:10 - Número Chassi 5dLD0aWJ6PAEA9623 já está cadastrado no sistema!
+06/02/2024 18:17:24 - Telefone 5541989023145 já está cadastrado no sistema!
+06/02/2024 18:17:39 - Telefone residencial deve possuir 12 dígitos e celular 13!

@@ -68,6 +68,22 @@ namespace ConcessionariaAPI.Repositories
 
         public async Task<Proprietario> Update(int id, Proprietario proprietario)
         {
+            Proprietario valCPF = null;
+            if(proprietario.CPF != ""){
+                valCPF = await _context.Proprietario.FirstOrDefaultAsync(e => e.CPF == proprietario.CPF);
+                if(valCPF != null && valCPF.ProprietarioId != proprietario.ProprietarioId){
+                    throw new EntityException($"CPF:{proprietario.CPF} já está cadastrado no sistema!");
+                }
+            }
+
+            Proprietario valCNPJ = null;
+            if(proprietario.CNPJ != ""){
+                valCNPJ = await _context.Proprietario.FirstOrDefaultAsync(e => e.CNPJ == proprietario.CNPJ);
+                if(valCNPJ != null && valCNPJ.ProprietarioId != proprietario.ProprietarioId){
+                    throw new EntityException($"CNPJ:{proprietario.CNPJ} já está cadastrado no sistema!");
+                }
+            }
+
             var entity = await _context.Proprietario.FirstOrDefaultAsync(e => e.ProprietarioId == id);
 
             if (entity != null)
