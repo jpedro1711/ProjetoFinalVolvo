@@ -6,6 +6,7 @@ const VendedoresList = () => {
   const [vendedores, setVendedores] = useState(null);
 
   useEffect(() => {
+    setVendedores(null);
     axios.get('https://localhost:7084/Vendedor').then((res) => {
       setVendedores(res.data);
     });

@@ -6,6 +6,7 @@ const Veiculos = () => {
   const [veiculos, setVeiculos] = useState(null);
 
   useEffect(() => {
+    setVeiculos(null);
     axios.get('https://localhost:7084/Veiculo').then((res) => {
       setVeiculos(res.data);
     });

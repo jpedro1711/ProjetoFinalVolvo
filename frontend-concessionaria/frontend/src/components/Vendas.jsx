@@ -6,6 +6,7 @@ const Vendas = () => {
   const [vendas, setVendas] = useState(null);
 
   useEffect(() => {
+    setVendas(null);
     axios.get('https://localhost:7084/Venda').then((res) => {
       setVendas(res.data);
       console.log(res.data);
