@@ -22,16 +22,16 @@ namespace ConcessionariaAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<Vendedor> Create([FromBody] VendedorDto vendedor)
+        public async Task<IActionResult> Create([FromBody] VendedorDto vendedor)
         {
             try
             {
-                return await _service.Create(vendedor);
+                var created =  await _service.Create(vendedor);
+                return Ok(created);
             }
             catch (Exception ex)
             {
-                LogService.SaveLog(ex.StackTrace);
-                return null;
+                return BadRequest(ex.Message);
             }
         }
 
@@ -51,7 +51,7 @@ namespace ConcessionariaAPI.Controllers
             }
             catch (EntityException e)
             {
-                return NotFound();
+                return NotFound(e.Message);
             }
         }
         

@@ -37,6 +37,11 @@ namespace ConcessionariaAPI.Services
                 throw new EntityException("ID do carro informado não está cadastrado!");
             }
 
+            if (vendedor == null || carro == null)
+            {
+                throw new EntityException("Erro ao criar venda, dados inválidos");
+            }
+
             Venda newVenda = new Venda();
             newVenda.Vendedor = vendedor;
             newVenda.Veiculo = carro;
@@ -82,6 +87,11 @@ namespace ConcessionariaAPI.Services
             var carro = await _veiculoService.GetById(updatedVenda.VeiculoId);
             if(carro == null){
                 throw new EntityException("ID do carro informado não está cadastrado!");
+            }
+
+            if (vendedor == null || carro == null)
+            {
+                throw new EntityException("Erro ao criar venda, dados inválidos de carro ou vendedor");
             }
 
             existingVenda.Vendedor = vendedor;

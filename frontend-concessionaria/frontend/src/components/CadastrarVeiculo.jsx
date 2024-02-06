@@ -41,7 +41,7 @@ const CadastrarVeiculo = () => {
   };
 
   return (
-    <div>
+    <div className="p-3 mt-5">
       <h2>Cadastrar veículo</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">

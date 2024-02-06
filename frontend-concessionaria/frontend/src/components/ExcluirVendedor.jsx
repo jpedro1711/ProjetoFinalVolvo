@@ -22,7 +22,7 @@ const ExcluirVendedor = () => {
     navigate('/vendedores');
   };
   return (
-    <div>
+    <div className="p-3 mt-5">
       <h2>Excluir vendedor</h2>
       {vendedor && (
         <div className="card">

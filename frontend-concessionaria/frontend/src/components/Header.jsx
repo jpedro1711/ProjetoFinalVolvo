@@ -6,13 +6,12 @@ const Header = () => {
     top: 0,
     left: 0,
     width: '100%',
-    zIndex: 1000,
   };
 
   return (
     <div>
       <nav
-        className="navbar navbar-expand-lg bg-body-tertiary"
+        className="navbar navbar-expand-lg navbar-dark bg-dark"
         style={headerStyle}
       >
         <div className="container-fluid">

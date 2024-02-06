@@ -1,11 +1,11 @@
 using ConcessionariaAPI.Exceptions;
 using ConcessionariaAPI.Models;
-using ConcessionariaAPI.Models.dtos;
 using ConcessionariaAPI.Services;
 using ConcessionariaAPI.Services.interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ConcessionariaAPI.Relatorio;
+using ConcessionariaAPI.Models.dtos;
 
 namespace ConcessionariaAPI.Controllers
 {
