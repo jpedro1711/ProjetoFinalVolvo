@@ -46,7 +46,7 @@ namespace ConcessionariaAPI.Services
 
             if(veiculoDto.VersaoSistema.Length == 0 || veiculoDto.VersaoSistema.Length > 30){
                 throw new EntityException("Versão do sistema deve ser informada e possuir no máximo 30 carácteres!");
-            }
+            } 
 
             Veiculo veiculo = veiculoDto.ToEntity();
 
@@ -55,7 +55,6 @@ namespace ConcessionariaAPI.Services
                 Proprietario p = await _proprietarioService.GetById((int)veiculoDto.ProprietarioId);
                 veiculo.Proprietario = p;
             }           
-                        
             foreach (AcessorioDto acessorio in veiculoDto.acessorios)
             {
                 Acessorio ac;
@@ -76,6 +75,7 @@ namespace ConcessionariaAPI.Services
                     throw new EntityException("Acessório não encontrado com id " + acessorio.AcessorioID + " ao criar veículo");
                 }
             }
+            
 
             var created = await _repository.Create(veiculo);
 

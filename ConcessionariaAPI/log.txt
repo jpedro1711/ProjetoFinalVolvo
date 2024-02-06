@@ -130,3 +130,48 @@
 06/02/2024 18:22:51 - ID da venda não deve ser informado!
 06/02/2024 18:22:51, 500, ID da venda não deve ser informado!
 06/02/2024 18:36:12 - IDs informados não coincidem!
+06/02/2024 18:47:01 - Vendedor deve ser maior de idade!
+06/02/2024 18:47:49 - Vendedor deve ser maior de idade!
+06/02/2024 18:48:47 - Vendedor deve ser maior de idade!
+06/02/2024 18:48:58 - Telefone residencial deve possuir 12 dígitos e celular 13!
+06/02/2024 18:49:20 - O tipo do telefone deve ser 'r' para residencial ou 'c' para celular
+06/02/2024 18:49:33 - Telefone residencial deve possuir 12 dígitos e celular 13!
+06/02/2024 18:50:41 - Número do chassi deve ser informado e possuir no máximo 17 carácteres!
+06/02/2024 18:50:41, 500, Número do chassi deve ser informado e possuir no máximo 17 carácteres!
+06/02/2024 18:51:44 - Número do chassi deve ser informado e possuir no máximo 17 carácteres!
+06/02/2024 18:51:44, 500, Número do chassi deve ser informado e possuir no máximo 17 carácteres!
+06/02/2024 18:51:52 - Número do chassi deve ser informado e possuir no máximo 17 carácteres!
+06/02/2024 18:51:52, 500, Número do chassi deve ser informado e possuir no máximo 17 carácteres!
+06/02/2024 18:52:05 - Número do chassi deve ser informado e possuir no máximo 17 carácteres!
+06/02/2024 18:52:05, 500, Número do chassi deve ser informado e possuir no máximo 17 carácteres!
+06/02/2024 18:52:25 - Número do chassi deve ser informado e possuir no máximo 17 carácteres!
+06/02/2024 18:52:25, 500, Número do chassi deve ser informado e possuir no máximo 17 carácteres!
+06/02/2024 18:53:36, 500, Object reference not set to an instance of an object.
+06/02/2024 18:54:15, 500, Object reference not set to an instance of an object.
+06/02/2024 18:54:24, 500, Object reference not set to an instance of an object.
+06/02/2024 18:54:52, 500, Object reference not set to an instance of an object.
+06/02/2024 18:58:20, 500, Object reference not set to an instance of an object.
+06/02/2024 19:00:13, 500, Object reference not set to an instance of an object.
+06/02/2024 19:18:05 - IDs informados não coincidem!
+06/02/2024 19:18:16 - Número Chassi:11111111111111111 já está cadastrado no sistema!
+06/02/2024 19:18:50 - Veículo não encontrado - 404 - GET BY ID, VeiculoRepository
+06/02/2024 19:18:50 - Veículo não encontrado - 404 - GET BY ID, VeiculoRepository
+06/02/2024 19:18:52 - Veículo não encontrado - 404 - GET BY ID, VeiculoRepository
+06/02/2024 19:18:52 - Veículo não encontrado - 404 - GET BY ID, VeiculoRepository
+06/02/2024 19:19:14 - Número do chassi deve ser informado e possuir no máximo 17 carácteres!
+   at ConcessionariaAPI.Services.VeiculoService.Create(VeiculoDto veiculoDto) in C:\projetosvscode-.net\ConcessionariaAPI\ConcessionariaAPI\Services\VeiculoService.cs:line 32
+   at ConcessionariaAPI.Controllers.VeiculoController.Create(VeiculoDto veiculo) in C:\projetosvscode-.net\ConcessionariaAPI\ConcessionariaAPI\Controllers\VeiculoController.cs:line 25
+   at lambda_method6(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at ConcessionariaAPI.Middlewares.ErrorMiddleware.Invoke(HttpContext context) in C:\projetosvscode-.net\ConcessionariaAPI\ConcessionariaAPI\Middlewares\ErrorMiddleware.cs:line 24
+06/02/2024 19:19:14, 500, Número do chassi deve ser informado e possuir no máximo 17 carácteres!

@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const CadastrarVendedor = () => {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [salarioBase, setsalarioBase] = useState('');
   const [dataNascimento, setdataNascimento] = useState('');
   const [dataAdmissao, setdataAdmissao] = useState('');
   const [rua, setRua] = useState('');
@@ -24,7 +23,7 @@ const CadastrarVendedor = () => {
       const dados = {
         nome: nome,
         email: email,
-        salarioBase: parseFloat(salarioBase),
+        salarioBase: 1412,
         dataNascimento: dataNascimento,
         dataAdmissao: dataAdmissao,
         enderecos: [
@@ -53,6 +52,9 @@ const CadastrarVendedor = () => {
       console.log(error);
       console.log(error.message);
       console.log(error.respose);
+      alert(
+        'Verifique os campos! vendedor deve ser maior de idade, telefone residencial deve ter 12 dígitos e telefone celular 13 digitos'
+      );
     }
   };
 
@@ -82,18 +84,6 @@ const CadastrarVendedor = () => {
             id="email"
             required
             onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="salarioBase" className="form-label">
-            Salário base do vendedor
-          </label>
-          <input
-            type="number"
-            className="form-control"
-            id="salarioBase"
-            required
-            onChange={(e) => setsalarioBase(e.target.value)}
           />
         </div>
         <div className="mb-3">

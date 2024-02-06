@@ -34,7 +34,6 @@ namespace ConcessionariaAPI.Middlewares
         {
             context.Response.ContentType = MediaTypeNames.Application.Json;
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-
             ErrorResponseModel response = new ErrorResponseModel(context.Response.StatusCode, e.Message);
             var logMsg = DateTime.Now + ", " + context.Response.StatusCode + ", " + e.Message;
             LogService.SaveLog(logMsg);

@@ -28,15 +28,26 @@ const CadastrarVeiculo = () => {
         modelo: modelo,
         quilometragem: parseInt(quilometragem),
         versaoSistema: versaoSistema,
-        acessorios: [],
+        acessorios: [
+          {
+            acessorioID: 6,
+            descricao: 'tapete de borracha',
+          },
+        ],
       };
-      const res = await axios.post('https://localhost:7084/Veiculo', dados);
-      console.log(dados);
-      console.log(res.status);
-      console.log(res.headers);
-      console.log(res.statusText);
-      console.log(res.data);
-      navigate('/veiculos');
+      try {
+        const res = await axios.post('https://localhost:7084/Veiculo', dados);
+        console.log(dados);
+        console.log(res.status);
+        console.log(res.headers);
+        console.log(res.statusText);
+        console.log(res.data);
+        navigate('/veiculos');
+      } catch (e) {
+        alert(
+          'Erro: veículo deve possuir número de chassi único e com 17 caracteres, valor, modelo e sistema devem ser preenchidos'
+        );
+      }
     }
   };
 
