@@ -82,7 +82,8 @@ namespace ConcessionariaAPI.Repositories
         public async Task<List<Veiculo>> GetVeiculosByKilomers(int km ,string version)
         {
             var cars = await _context.Veiculo
-                .Where(c => c.Quilometragem >= km)                
+                .Where(c => c.Quilometragem >= km)            
+                .Where(c => c.VersaoSistema.ToLower().Equals(version.ToLower()))
                 .ToListAsync();
             return cars;
         }
