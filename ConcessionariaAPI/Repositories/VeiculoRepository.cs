@@ -3,6 +3,7 @@ using ConcessionariaAPI.Models;
 using ConcessionariaAPI.Repositories.interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace ConcessionariaAPI.Repositories
 {
@@ -79,15 +80,22 @@ namespace ConcessionariaAPI.Repositories
             throw new EntityException("Veículo não encontrado", 404, "UPDATE, VeiculoRepository");
         }
 
-        public async Task<List<Veiculo>> GetVeiculosByKilomers(int km ,string version)
+        public async Task<List<Veiculo>> GetVeiculosByKilometers(int km)
         {
             var cars = await _context.Veiculo
                 .Where(c => c.Quilometragem >= km)            
-                .Where(c => c.VersaoSistema.ToLower().Equals(version.ToLower()))
                 .ToListAsync();
             return cars;
         }
-        
+
+        public async Task<List<Veiculo>> GetVeiculosBySystem(string system)
+        {
+            var cars = await _context.Veiculo
+                .Where(c => c.VersaoSistema.ToLower().Equals(system.ToLower()))
+                .ToListAsync();
+            return cars;
+        }
+
         protected async virtual void Dispose(bool disposing)
         {
             if (!this.disposed)

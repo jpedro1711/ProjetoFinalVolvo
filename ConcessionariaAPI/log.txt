@@ -181,3 +181,7 @@
 07/02/2024 11:23:07 - Acessório não encontrado - 404 - GET BY ID, AcessorioRepository
 07/02/2024 14:38:24 - Acessório não encontrado - 404 - GET BY ID, AcessorioRepository
 07/02/2024 17:06:11 - Veículo não encontrado - 404 - GET BY ID, VeiculoRepository
+07/02/2024 17:10:43 - Venda não encontrada - 404 - GET BY ID, VendaRepository
+07/02/2024 17:10:49 - Venda não encontrada - 404 - GET BY ID, VendaRepository
+07/02/2024 17:10:55 - Venda não encontrada - 404 - GET BY ID, VendaRepository
+07/02/2024 17:12:19 - O salário do vendedor deve ser superior a 0!

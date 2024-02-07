@@ -155,9 +155,14 @@ namespace ConcessionariaAPI.Services
             return updated;
         }
 
-        public async Task<List<Veiculo>> GetVeiculosByKilomers(int km, string system)
+        public async Task<List<Veiculo>> GetVeiculosByKilometers(int km)
         {
-            return await _repository.GetVeiculosByKilomers(km, system);              
+            return await _repository.GetVeiculosByKilometers(km);              
+        }
+
+        public async Task<List<Veiculo>> GetVeiculosBySystem(string system)
+        {
+            return await _repository.GetVeiculosBySystem(system);
         }
     }
 }

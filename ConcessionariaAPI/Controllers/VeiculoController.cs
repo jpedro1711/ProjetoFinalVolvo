@@ -74,11 +74,11 @@ namespace ConcessionariaAPI.Controllers
         }
 
         [HttpGet("QuilometragemAcima")]
-        public async Task<IActionResult> GetVeiculosByKilomers(int km, string system)
+        public async Task<IActionResult> GetVeiculosByKilomers(int km)
         {
             try
             {
-                var result = await _service.GetVeiculosByKilomers(km, system);
+                var result = await _service.GetVeiculosByKilometers(km);
                 return Ok(result);
             }
             catch (EntityException e)
@@ -86,6 +86,21 @@ namespace ConcessionariaAPI.Controllers
                 return BadRequest(e.Message);
             }
            
+        }
+
+        [HttpGet("Sistema")]
+        public async Task<IActionResult> GetVeiculosBySystem(string sistema)
+        {
+            try
+            {
+                var result = await _service.GetVeiculosBySystem(sistema);
+                return Ok(result);
+            }
+            catch (EntityException e)
+            {
+                return BadRequest(e.Message);
+            }
+
         }
     }
 }

@@ -10,6 +10,7 @@ namespace ConcessionariaAPI.Services.interfaces
         Task<Veiculo> GetById(int id);
         Task<Veiculo> Update(int id, VeiculoDto entity);
         Task Delete(int id);
-        Task<List<Veiculo>> GetVeiculosByKilomers(int km, string system);
+        Task<List<Veiculo>> GetVeiculosByKilometers(int km);
+        Task<List<Veiculo>> GetVeiculosBySystem(string system);
     }
 }
